@@ -1,0 +1,169 @@
+game,kickoff,model_line,model_total,home_win_pct,market,pick,action,price_cents,model_prob,edge_cents,status,market_title,ticker
+Western Kentucky @ New Mexico State,Thu 10/01 7:00 PM,New Mexico State -0.6,59.2,52.0,winner,New Mexico State to WIN the game,BUY NO,56,0.52,-5.7,PASS,Western Kentucky wins,KXNCAAFGAME-26OCT01WKUNMSU-WKU
+Western Kentucky @ New Mexico State,Thu 10/01 7:00 PM,New Mexico State -0.6,59.2,52.0,spread,"New Mexico State wins by 1 or fewer, or loses",BUY NO,48,0.506,0.8,LEAN,New Mexico St. wins by over 1.5 points,KXNCAAFSPREAD-26OCT01WKUNMSU-NMSU2
+Western Kentucky @ New Mexico State,Thu 10/01 7:00 PM,New Mexico State -0.6,59.2,52.0,total,OVER 56.5 total points,BUY YES,52,0.566,2.9,LEAN,Full Game: Over 56.5 points scored,KXNCAAFTOTAL-26OCT01WKUNMSU-57
+North Texas @ Tulsa,Thu 10/01 8:00 PM,North Texas -9.8,59.8,26.9,winner,North Texas to WIN the game,BUY YES,49,0.731,22.4,BET,North Texas wins,KXNCAAFGAME-26OCT01UNTTLSA-UNT
+North Texas @ Tulsa,Thu 10/01 8:00 PM,North Texas -9.8,59.8,26.9,spread,North Texas wins by MORE than 7.5,BUY YES,25,0.55,28.7,BET,North Texas wins by over 7.5 points,KXNCAAFSPREAD-26OCT01UNTTLSA-UNT8
+North Texas @ Tulsa,Thu 10/01 8:00 PM,North Texas -9.8,59.8,26.9,total,OVER 59.5 total points,BUY YES,43,0.508,6.1,BET,Over 59.5 points scored,KXNCAAFTOTAL-26OCT01UNTTLSA-60
+Pittsburgh @ Virginia Tech,Fri 10/02 6:00 PM,Pittsburgh -3.6,59.7,41.0,winner,Pittsburgh to WIN the game,BUY NO,41,0.59,16.3,BET,Virginia Tech wins,KXNCAAFGAME-26OCT02PITTVT-VT
+Pittsburgh @ Virginia Tech,Fri 10/02 6:00 PM,Pittsburgh -3.6,59.7,41.0,spread,"Virginia Tech wins by 2 or fewer, or loses",BUY NO,44,0.642,18.5,BET,Virginia Tech wins by over 2.5 points,KXNCAAFSPREAD-26OCT02PITTVT-VT3
+Pittsburgh @ Virginia Tech,Fri 10/02 6:00 PM,Pittsburgh -3.6,59.7,41.0,total,OVER 55.5 total points,BUY YES,48,0.599,10.2,BET,Over 55.5 points scored,KXNCAAFTOTAL-26OCT02PITTVT-56
+Liberty @ Delaware,Fri 10/02 6:00 PM,Liberty -1.7,46.9,45.7,winner,Liberty to WIN the game,BUY NO,72,0.543,-19.1,PASS,Delaware wins,KXNCAAFGAME-26OCT02LIBDEL-DEL
+Liberty @ Delaware,Fri 10/02 6:00 PM,Liberty -1.7,46.9,45.7,spread,"Liberty wins by 5 or fewer, or loses",BUY NO,41,0.594,16.7,BET,Liberty wins by over 5.5 points,KXNCAAFSPREAD-26OCT02LIBDEL-LIB6
+Liberty @ Delaware,Fri 10/02 6:00 PM,Liberty -1.7,46.9,45.7,total,UNDER 48.5 total points,BUY NO,44,0.541,8.4,BET,Over 48.5 points scored,KXNCAAFTOTAL-26OCT02LIBDEL-49
+Penn State @ Northwestern,Fri 10/02 7:00 PM,Penn State -1.9,44.2,44.4,winner,Penn State to WIN the game,BUY YES,58,0.556,-4.1,PASS,Penn St. wins,KXNCAAFGAME-26OCT02PSUNW-PSU
+Penn State @ Northwestern,Fri 10/02 7:00 PM,Penn State -1.9,44.2,44.4,spread,"Penn State wins by 2 or fewer, or loses",BUY NO,47,0.502,1.4,LEAN,Penn St. wins by over 2.5 points,KXNCAAFSPREAD-26OCT02PSUNW-PSU3
+Penn State @ Northwestern,Fri 10/02 7:00 PM,Penn State -1.9,44.2,44.4,total,UNDER 46.5 total points,BUY NO,53,0.551,0.4,LEAN,Over 46.5 points scored,KXNCAAFTOTAL-26OCT02PSUNW-47
+West Virginia @ Iowa State,Sat 10/03 11:00 AM,Iowa State -10.3,53.8,75.0,winner,Iowa State to WIN the game,BUY NO,60,0.75,13.3,BET,West Virginia wins,KXNCAAFGAME-26OCT03WVUISU-WVU
+West Virginia @ Iowa State,Sat 10/03 11:00 AM,Iowa State -10.3,53.8,75.0,spread,Iowa State wins by MORE than 7.5,BUY YES,35,0.575,20.9,BET,Iowa St. wins by over 7.5 points,KXNCAAFSPREAD-26OCT03WVUISU-ISU8
+West Virginia @ Iowa State,Sat 10/03 11:00 AM,Iowa State -10.3,53.8,75.0,total,OVER 51.5 total points,BUY YES,55,0.56,-0.8,PASS,Over 51.5 points scored,KXNCAAFTOTAL-26OCT03WVUISU-52
+UCF @ Houston,Sat 10/03 11:00 AM,Houston -6.3,55.9,65.7,winner,Houston to WIN the game,BUY NO,80,0.657,-15.4,PASS,UCF wins,KXNCAAFGAME-26OCT03UCFHOU-UCF
+UCF @ Houston,Sat 10/03 11:00 AM,Houston -6.3,55.9,65.7,spread,"Houston wins by 6 or fewer, or loses",BUY NO,35,0.505,13.9,BET,Houston wins by over 6.5 points,KXNCAAFSPREAD-26OCT03UCFHOU-HOU7
+UCF @ Houston,Sat 10/03 11:00 AM,Houston -6.3,55.9,65.7,total,OVER 52.5 total points,BUY YES,47,0.58,9.2,BET,Over 52.5 points scored,KXNCAAFTOTAL-26OCT03UCFHOU-53
+Middle Tennessee @ Kansas,Sat 10/03 11:00 AM,Kansas -11.0,49.0,76.5,winner,Kansas to WIN the game,BUY YES,91,0.765,-15.1,PASS,Kansas wins,KXNCAAFGAME-26OCT03MTUKU-KU
+Middle Tennessee @ Kansas,Sat 10/03 11:00 AM,Kansas -11.0,49.0,76.5,spread,"Kansas wins by 13 or fewer, or loses",BUY NO,37,0.565,17.8,BET,Kansas wins by over 13.5 points,KXNCAAFSPREAD-26OCT03MTUKU-KU14
+Middle Tennessee @ Kansas,Sat 10/03 11:00 AM,Kansas -11.0,49.0,76.5,total,UNDER 49.5 total points,BUY NO,51,0.505,-2.2,PASS,Full Game: Over 49.5 points scored,KXNCAAFTOTAL-26OCT03MTUKU-50
+Boston College @ SMU,Sat 10/03 11:00 AM,SMU -19.0,46.7,88.9,winner,SMU to WIN the game,BUY YES,92,0.889,-3.6,PASS,SMU wins,KXNCAAFGAME-26OCT03BCSMU-SMU
+Boston College @ SMU,Sat 10/03 11:00 AM,SMU -19.0,46.7,88.9,spread,"SMU wins by 20 or fewer, or loses",BUY NO,47,0.545,5.8,BET,SMU wins by over 20.5 points,KXNCAAFSPREAD-26OCT03BCSMU-SMU21
+Boston College @ SMU,Sat 10/03 11:00 AM,SMU -19.0,46.7,88.9,total,UNDER 52.5 total points,BUY NO,43,0.631,18.4,BET,Over 52.5 points scored,KXNCAAFTOTAL-26OCT03BCSMU-53
+Alabama @ Mississippi State,Sat 10/03 11:00 AM,Alabama -8.6,74.6,28.6,winner,Alabama to WIN the game,BUY NO,68,0.714,1.9,LEAN,Mississippi St. wins,KXNCAAFGAME-26OCT03ALAMSST-MSST
+Alabama @ Mississippi State,Sat 10/03 11:00 AM,Alabama -8.6,74.6,28.6,spread,Alabama wins by MORE than 7.5,BUY YES,42,0.532,9.5,BET,Alabama wins by over 7.5 points,KXNCAAFSPREAD-26OCT03ALAMSST-ALA8
+Alabama @ Mississippi State,Sat 10/03 11:00 AM,Alabama -8.6,74.6,28.6,total,OVER 66.5 total points,BUY YES,36,0.689,31.3,BET,Over 66.5 points scored,KXNCAAFTOTAL-26OCT03ALAMSST-67
+Notre Dame @ North Carolina,Sat 10/03 11:00 AM,Notre Dame -22.6,40.7,7.2,winner,Notre Dame to WIN the game,BUY NO,93,0.928,-0.6,PASS,North Carolina wins,KXNCAAFGAME-26OCT03NDUNC-UNC
+Notre Dame @ North Carolina,Sat 10/03 11:00 AM,Notre Dame -22.6,40.7,7.2,spread,Notre Dame wins by MORE than 21.5,BUY YES,48,0.507,0.9,LEAN,Notre Dame wins by over 21.5 points,KXNCAAFSPREAD-26OCT03NDUNC-ND22
+Notre Dame @ North Carolina,Sat 10/03 11:00 AM,Notre Dame -22.6,40.7,7.2,total,UNDER 42.5 total points,BUY NO,37,0.528,14.2,BET,Over 42.5 points scored,KXNCAAFTOTAL-26OCT03NDUNC-43
+Michigan @ Minnesota,Sat 10/03 11:00 AM,Michigan -2.5,43.7,43.9,winner,Michigan to WIN the game,BUY NO,67,0.561,-12.4,PASS,Minnesota wins,KXNCAAFGAME-26OCT03MICHMINN-MINN
+Michigan @ Minnesota,Sat 10/03 11:00 AM,Michigan -2.5,43.7,43.9,spread,"Michigan wins by 5 or fewer, or loses",BUY NO,49,0.576,6.9,BET,Michigan wins by over 5.5 points,KXNCAAFSPREAD-26OCT03MICHMINN-MICH6
+Michigan @ Minnesota,Sat 10/03 11:00 AM,Michigan -2.5,43.7,43.9,total,OVER 42.5 total points,BUY YES,53,0.535,-1.3,PASS,Over 42.5 points scored,KXNCAAFTOTAL-26OCT03MICHMINN-43
+Navy @ Air Force,Sat 10/03 11:00 AM,Navy -0.8,61.3,48.1,winner,Navy to WIN the game,BUY NO,41,0.519,9.2,BET,Air Force wins,KXNCAAFGAME-26OCT03NAVYAFA-AFA
+Navy @ Air Force,Sat 10/03 11:00 AM,Navy -0.8,61.3,48.1,spread,"Air Force wins by 2 or fewer, or loses",BUY NO,44,0.574,11.7,BET,Air Force wins by over 2.5 points,KXNCAAFSPREAD-26OCT03NAVYAFA-AFA3
+Navy @ Air Force,Sat 10/03 11:00 AM,Navy -0.8,61.3,48.1,total,OVER 53.5 total points,BUY YES,33,0.682,33.6,BET,Over 53.5 points scored,KXNCAAFTOTAL-26OCT03NAVYAFA-54
+Syracuse @ UConn,Sat 10/03 11:00 AM,UConn -7.4,56.1,68.2,winner,UConn to WIN the game,BUY NO,32,0.682,34.7,BET,Syracuse wins,KXNCAAFGAME-26OCT03SYRCONN-SYR
+Syracuse @ UConn,Sat 10/03 11:00 AM,UConn -7.4,56.1,68.2,spread,UConn wins by MORE than 3.5,BUY YES,25,0.603,34.0,BET,UConn wins by over 3.5 points,KXNCAAFSPREAD-26OCT03SYRCONN-CONN4
+Syracuse @ UConn,Sat 10/03 11:00 AM,UConn -7.4,56.1,68.2,total,OVER 55.5 total points,BUY YES,36,0.516,14.0,BET,Over 55.5 points scored,KXNCAAFTOTAL-26OCT03SYRCONN-56
+Stanford @ Wake Forest,Sat 10/03 11:00 AM,Wake Forest -14.9,51.1,83.3,winner,Wake Forest to WIN the game,BUY NO,82,0.833,0.2,LEAN,Stanford wins,KXNCAAFGAME-26OCT03STANWAKE-STAN
+Stanford @ Wake Forest,Sat 10/03 11:00 AM,Wake Forest -14.9,51.1,83.3,spread,Wake Forest wins by MORE than 14.5,BUY YES,44,0.505,4.8,LEAN,Wake Forest wins by over 14.5 points,KXNCAAFSPREAD-26OCT03STANWAKE-WAKE15
+Stanford @ Wake Forest,Sat 10/03 11:00 AM,Wake Forest -14.9,51.1,83.3,total,UNDER 52.5 total points,BUY NO,46,0.535,5.8,BET,Over 52.5 points scored,KXNCAAFTOTAL-26OCT03STANWAKE-53
+Michigan State @ Wisconsin,Sat 10/03 11:30 AM,Wisconsin -4.5,37.6,62.0,winner,Wisconsin to WIN the game,BUY NO,78,0.62,-17.2,PASS,Michigan St. wins,KXNCAAFGAME-26OCT03MSUWIS-MSU
+Michigan State @ Wisconsin,Sat 10/03 11:30 AM,Wisconsin -4.5,37.6,62.0,spread,"Wisconsin wins by 5 or fewer, or loses",BUY NO,36,0.526,14.9,BET,Wisconsin wins by over 5.5 points,KXNCAAFSPREAD-26OCT03MSUWIS-WIS6
+Michigan State @ Wisconsin,Sat 10/03 11:30 AM,Wisconsin -4.5,37.6,62.0,total,UNDER 39.5 total points,BUY NO,40,0.544,12.7,BET,Over 39.5 points scored,KXNCAAFTOTAL-26OCT03MSUWIS-40
+Vanderbilt @ Georgia,Sat 10/03 11:45 AM,Georgia -18.6,61.3,89.2,winner,Georgia to WIN the game,BUY NO,96,0.892,-7.1,PASS,Vanderbilt wins,KXNCAAFGAME-26OCT03VANUGA-VAN
+Vanderbilt @ Georgia,Sat 10/03 11:45 AM,Georgia -18.6,61.3,89.2,spread,"Georgia wins by 20 or fewer, or loses",BUY NO,38,0.551,15.5,BET,Georgia wins by over 20.5 points,KXNCAAFSPREAD-26OCT03VANUGA-UGA21
+Vanderbilt @ Georgia,Sat 10/03 11:45 AM,Georgia -18.6,61.3,89.2,total,OVER 56.5 total points,BUY YES,35,0.613,24.7,BET,Over 56.5 points scored,KXNCAAFTOTAL-26OCT03VANUGA-57
+Western Michigan @ Buffalo,Sat 10/03 12:00 PM,Western Michigan -13.3,44.9,19.1,winner,Western Michigan to WIN the game,BUY YES,84,0.809,-4.0,PASS,Western Michigan wins,KXNCAAFGAME-26OCT03WMUBUFF-WMU
+Western Michigan @ Buffalo,Sat 10/03 12:00 PM,Western Michigan -13.3,44.9,19.1,spread,"Western Michigan wins by 13 or fewer, or loses",BUY NO,50,0.508,-0.9,PASS,Western Michigan wins by over 13.5 points,KXNCAAFSPREAD-26OCT03WMUBUFF-WMU14
+Western Michigan @ Buffalo,Sat 10/03 12:00 PM,Western Michigan -13.3,44.9,19.1,total,UNDER 46.5 total points,BUY NO,50,0.532,1.5,LEAN,Full Game: Over 46.5 points scored,KXNCAAFTOTAL-26OCT03WMUBUFF-47
+Toledo @ Ball State,Sat 10/03 1:00 PM,Toledo -19.4,61.6,10.6,winner,Toledo to WIN the game,BUY YES,91,0.894,-2.2,PASS,Toledo wins,KXNCAAFGAME-26OCT03TOLBALL-TOL
+Toledo @ Ball State,Sat 10/03 1:00 PM,Toledo -19.4,61.6,10.6,spread,Toledo wins by MORE than 17.5,BUY YES,53,0.548,0.1,LEAN,Toledo wins by over 17.5 points,KXNCAAFSPREAD-26OCT03TOLBALL-TOL18
+Toledo @ Ball State,Sat 10/03 1:00 PM,Toledo -19.4,61.6,10.6,total,OVER 58.5 total points,BUY YES,34,0.578,22.2,BET,Over 58.5 points scored,KXNCAAFTOTAL-26OCT03TOLBALL-59
+Auburn @ Tennessee,Sat 10/03 2:30 PM,Tennessee -9.0,58.8,72.3,winner,Tennessee to WIN the game,BUY NO,72,0.723,-1.1,PASS,Auburn wins,KXNCAAFGAME-26OCT03AUBTENN-AUB
+Auburn @ Tennessee,Sat 10/03 2:30 PM,Tennessee -9.0,58.8,72.3,spread,Tennessee wins by MORE than 7.5,BUY YES,48,0.54,4.3,LEAN,Tennessee wins by over 7.5 points,KXNCAAFSPREAD-26OCT03AUBTENN-TENN8
+Auburn @ Tennessee,Sat 10/03 2:30 PM,Tennessee -9.0,58.8,72.3,total,OVER 55.5 total points,BUY YES,45,0.581,11.4,BET,Over 55.5 points scored,KXNCAAFTOTAL-26OCT03AUBTENN-56
+Akron @ Central Michigan,Sat 10/03 2:30 PM,Central Michigan -8.1,41.1,70.4,winner,Central Michigan to WIN the game,BUY YES,70,0.704,-1.1,PASS,Central Michigan wins,KXNCAAFGAME-26OCT03AKRCMU-CMU
+Akron @ Central Michigan,Sat 10/03 2:30 PM,Central Michigan -8.1,41.1,70.4,spread,Central Michigan wins by MORE than 7.5,BUY YES,43,0.514,6.7,BET,Central Michigan wins by over 7.5 points,KXNCAAFSPREAD-26OCT03AKRCMU-CMU8
+Akron @ Central Michigan,Sat 10/03 2:30 PM,Central Michigan -8.1,41.1,70.4,total,UNDER 45.5 total points,BUY NO,46,0.601,12.4,BET,Over 45.5 points scored,KXNCAAFTOTAL-26OCT03AKRCMU-46
+Bowling Green @ Miami (OH),Sat 10/03 2:30 PM,Miami (OH) -17.1,41.8,86.9,winner,Miami (OH) to WIN the game,BUY YES,84,0.869,2.0,LEAN,Miami (OH) wins,KXNCAAFGAME-26OCT03BGSUMOH-MOH
+Bowling Green @ Miami (OH),Sat 10/03 2:30 PM,Miami (OH) -17.1,41.8,86.9,spread,Miami (OH) wins by MORE than 14.5,BUY YES,45,0.559,9.1,BET,Miami (OH) wins by over 14.5 points,KXNCAAFSPREAD-26OCT03BGSUMOH-MOH15
+Bowling Green @ Miami (OH),Sat 10/03 2:30 PM,Miami (OH) -17.1,41.8,86.9,total,UNDER 42.5 total points,BUY NO,48,0.505,0.8,LEAN,Full Game: Over 42.5 points scored,KXNCAAFTOTAL-26OCT03BGSUMOH-43
+Louisville @ NC State,Sat 10/03 2:30 PM,Louisville -1.1,69.4,46.7,winner,Louisville to WIN the game,BUY NO,62,0.533,-10.4,PASS,NC St. wins,KXNCAAFGAME-26OCT03LOUNCST-NCST
+Louisville @ NC State,Sat 10/03 2:30 PM,Louisville -1.1,69.4,46.7,spread,"Louisville wins by 2 or fewer, or loses",BUY NO,43,0.526,7.8,BET,Louisville wins by over 2.5 points,KXNCAAFSPREAD-26OCT03LOUNCST-LOU3
+Louisville @ NC State,Sat 10/03 2:30 PM,Louisville -1.1,69.4,46.7,total,OVER 62.5 total points,BUY YES,39,0.665,25.9,BET,Over 62.5 points scored,KXNCAAFTOTAL-26OCT03LOUNCST-63
+Eastern Michigan @ Massachusetts,Sat 10/03 2:30 PM,Massachusetts -11.0,44.2,76.3,winner,Massachusetts to WIN the game,BUY NO,68,0.763,6.7,BET,Eastern Michigan wins,KXNCAAFGAME-26OCT03EMUMASS-EMU
+Eastern Michigan @ Massachusetts,Sat 10/03 2:30 PM,Massachusetts -11.0,44.2,76.3,spread,Massachusetts wins by MORE than 7.5,BUY YES,44,0.586,12.8,BET,UMass wins by over 7.5 points,KXNCAAFSPREAD-26OCT03EMUMASS-MASS8
+Eastern Michigan @ Massachusetts,Sat 10/03 2:30 PM,Massachusetts -11.0,44.2,76.3,total,UNDER 48.5 total points,BUY NO,48,0.597,10.0,BET,Full Game: Over 48.5 points scored,KXNCAAFTOTAL-26OCT03EMUMASS-49
+Ohio @ Kent State,Sat 10/03 2:30 PM,Ohio -6.0,55.7,35.0,winner,Ohio to WIN the game,BUY YES,62,0.65,1.3,LEAN,Ohio wins,KXNCAAFGAME-26OCT03OHIOKENT-OHIO
+Ohio @ Kent State,Sat 10/03 2:30 PM,Ohio -6.0,55.7,35.0,spread,Ohio wins by MORE than 4.5,BUY YES,46,0.542,6.4,BET,Ohio wins by over 4.5 points,KXNCAAFSPREAD-26OCT03OHIOKENT-OHIO5
+Ohio @ Kent State,Sat 10/03 2:30 PM,Ohio -6.0,55.7,35.0,total,OVER 50.5 total points,BUY YES,50,0.629,11.2,BET,Over 50.5 points scored,KXNCAAFTOTAL-26OCT03OHIOKENT-51
+Ohio State @ Iowa,Sat 10/03 2:30 PM,Ohio State -9.4,44.2,26.8,winner,Ohio State to WIN the game,BUY NO,84,0.732,-11.8,PASS,Iowa wins,KXNCAAFGAME-26OCT03OSUIOWA-IOWA
+Ohio State @ Iowa,Sat 10/03 2:30 PM,Ohio State -9.4,44.2,26.8,spread,"Ohio State wins by 13 or fewer, or loses",BUY NO,44,0.605,14.8,BET,Ohio St. wins by over 13.5 points,KXNCAAFSPREAD-26OCT03OSUIOWA-OSU14
+Ohio State @ Iowa,Sat 10/03 2:30 PM,Ohio State -9.4,44.2,26.8,total,UNDER 44.5 total points,BUY NO,47,0.501,1.4,LEAN,Over 44.5 points scored,KXNCAAFTOTAL-26OCT03OSUIOWA-45
+Memphis @ Charlotte,Sat 10/03 2:30 PM,Memphis -21.5,54.3,8.3,winner,Memphis to WIN the game,BUY YES,92,0.917,-0.8,PASS,Memphis wins,KXNCAAFGAME-26OCT03MEMCHAR-MEM
+Memphis @ Charlotte,Sat 10/03 2:30 PM,Memphis -21.5,54.3,8.3,spread,Memphis wins by MORE than 17.5,BUY YES,57,0.598,1.1,LEAN,Memphis wins by over 17.5 points,KXNCAAFSPREAD-26OCT03MEMCHAR-MEM18
+Memphis @ Charlotte,Sat 10/03 2:30 PM,Memphis -21.5,54.3,8.3,total,OVER 53.5 total points,BUY YES,48,0.525,2.7,LEAN,Full Game: Over 53.5 points scored,KXNCAAFTOTAL-26OCT03MEMCHAR-54
+Wyoming @ North Dakota State,Sat 10/03 2:30 PM,North Dakota State -22.3,30.1,92.5,winner,North Dakota State to WIN the game,BUY NO,91,0.925,0.9,LEAN,Wyoming wins,KXNCAAFGAME-26OCT03WYONDSU-WYO
+Wyoming @ North Dakota State,Sat 10/03 2:30 PM,North Dakota State -22.3,30.1,92.5,spread,North Dakota State wins by MORE than 7.5,BUY YES,78,0.81,1.8,LEAN,North Dakota St. wins by over 7.5 points,KXNCAAFSPREAD-26OCT03WYONDSU-NDSU8
+Wyoming @ North Dakota State,Sat 10/03 2:30 PM,North Dakota State -22.3,30.1,92.5,total,UNDER 37.5 total points,BUY NO,29,0.635,33.1,BET,Full Game: Over 37.5 points scored,KXNCAAFTOTAL-26OCT03WYONDSU-38
+Virginia @ Florida State,Sat 10/03 2:30 PM,Virginia -2.8,50.7,42.8,winner,Virginia to WIN the game,BUY YES,56,0.572,-0.5,PASS,Virginia wins,KXNCAAFGAME-26OCT03UVAFSU-UVA
+Virginia @ Florida State,Sat 10/03 2:30 PM,Virginia -2.8,50.7,42.8,spread,"Florida State wins by 2 or fewer, or loses",BUY NO,61,0.627,0.0,LEAN,Florida St. wins by over 2.5 points,KXNCAAFSPREAD-26OCT03UVAFSU-FSU3
+Virginia @ Florida State,Sat 10/03 2:30 PM,Virginia -2.8,50.7,42.8,total,UNDER 51.5 total points,BUY NO,50,0.519,0.1,LEAN,Over 51.5 points scored,KXNCAAFTOTAL-26OCT03UVAFSU-52
+Florida @ Missouri,Sat 10/03 2:30 PM,Florida -2.9,63.4,42.5,winner,Florida to WIN the game,BUY NO,67,0.575,-11.1,PASS,Missouri wins,KXNCAAFGAME-26OCT03FLAMIZZ-MIZZ
+Florida @ Missouri,Sat 10/03 2:30 PM,Florida -2.9,63.4,42.5,spread,"Florida wins by 3 or fewer, or loses",BUY NO,43,0.506,5.9,BET,Florida wins by over 3.5 points,KXNCAAFSPREAD-26OCT03FLAMIZZ-FLA4
+Florida @ Missouri,Sat 10/03 2:30 PM,Florida -2.9,63.4,42.5,total,OVER 58.5 total points,BUY YES,47,0.616,12.9,BET,Over 58.5 points scored,KXNCAAFTOTAL-26OCT03FLAMIZZ-59
+California @ UNLV,Sat 10/03 2:30 PM,UNLV -8.2,44.7,71.1,winner,UNLV to WIN the game,BUY YES,56,0.711,13.4,BET,UNLV wins,KXNCAAFGAME-26OCT03CALUNLV-UNLV
+California @ UNLV,Sat 10/03 2:30 PM,UNLV -8.2,44.7,71.1,spread,UNLV wins by MORE than 7.5,BUY YES,33,0.521,17.5,BET,UNLV wins by over 7.5 points,KXNCAAFSPREAD-26OCT03CALUNLV-UNLV8
+California @ UNLV,Sat 10/03 2:30 PM,UNLV -8.2,44.7,71.1,total,UNDER 46.5 total points,BUY NO,34,0.543,18.7,BET,Over 46.5 points scored,KXNCAAFTOTAL-26OCT03CALUNLV-47
+Old Dominion @ Georgia State,Sat 10/03 2:30 PM,Georgia State -3.3,56.2,58.0,winner,Georgia State to WIN the game,BUY YES,55,0.58,1.3,LEAN,Georgia St. wins,KXNCAAFGAME-26OCT03ODUGAST-GAST
+Old Dominion @ Georgia State,Sat 10/03 2:30 PM,Georgia State -3.3,56.2,58.0,spread,"Old Dominion wins by 2 or fewer, or loses",BUY NO,60,0.631,1.4,LEAN,Old Dominion wins by over 2.5 points,KXNCAAFSPREAD-26OCT03ODUGAST-ODU3
+Old Dominion @ Georgia State,Sat 10/03 2:30 PM,Georgia State -3.3,56.2,58.0,total,OVER 52.5 total points,BUY YES,47,0.589,10.2,BET,Over 52.5 points scored,KXNCAAFTOTAL-26OCT03ODUGAST-53
+Marshall @ James Madison,Sat 10/03 2:45 PM,James Madison -27.2,61.9,96.2,winner,James Madison to WIN the game,BUY NO,90,0.962,5.6,BET,Marshall wins,KXNCAAFGAME-26OCT03MRSHJMU-MRSH
+Marshall @ James Madison,Sat 10/03 2:45 PM,James Madison -27.2,61.9,96.2,spread,James Madison wins by MORE than 21.5,BUY YES,43,0.638,19.1,BET,James Madison wins by over 21.5 points,KXNCAAFSPREAD-26OCT03MRSHJMU-JMU22
+Marshall @ James Madison,Sat 10/03 2:45 PM,James Madison -27.2,61.9,96.2,total,OVER 56.5 total points,BUY YES,49,0.632,12.5,BET,Over 56.5 points scored,KXNCAAFTOTAL-26OCT03MRSHJMU-57
+Maryland @ Nebraska,Sat 10/03 3:00 PM,Nebraska -14.5,55.4,82.9,winner,Nebraska to WIN the game,BUY YES,86,0.829,-4.0,PASS,Nebraska wins,KXNCAAFGAME-26OCT03MDNEB-NEB
+Maryland @ Nebraska,Sat 10/03 3:00 PM,Nebraska -14.5,55.4,82.9,spread,"Nebraska wins by 23 or fewer, or loses",BUY NO,71,0.716,-0.8,PASS,Nebraska wins by over 23.5 points,KXNCAAFSPREAD-26OCT03MDNEB-NEB24
+Maryland @ Nebraska,Sat 10/03 3:00 PM,Nebraska -14.5,55.4,82.9,total,OVER 54.5 total points,BUY YES,45,0.52,5.3,BET,Over 54.5 points scored,KXNCAAFTOTAL-26OCT03MDNEB-55
+UTEP @ New Mexico,Sat 10/03 3:00 PM,New Mexico -27.0,55.8,95.8,winner,New Mexico to WIN the game,BUY NO,94,0.958,1.4,LEAN,UTEP wins,KXNCAAFGAME-26OCT03UTEPUNM-UTEP
+UTEP @ New Mexico,Sat 10/03 3:00 PM,New Mexico -27.0,55.8,95.8,spread,New Mexico wins by MORE than 24.5,BUY YES,45,0.556,8.8,BET,New Mexico wins by over 24.5 points,KXNCAAFSPREAD-26OCT03UTEPUNM-UNM25
+UTEP @ New Mexico,Sat 10/03 3:00 PM,New Mexico -27.0,55.8,95.8,total,OVER 52.5 total points,BUY YES,40,0.587,17.1,BET,Full Game: Over 52.5 points scored,KXNCAAFTOTAL-26OCT03UTEPUNM-53
+Kentucky @ South Carolina,Sat 10/03 3:15 PM,South Carolina -1.9,52.7,54.7,winner,South Carolina to WIN the game,BUY NO,58,0.547,-5.0,PASS,Kentucky wins,KXNCAAFGAME-26OCT03UKSCAR-UK
+Kentucky @ South Carolina,Sat 10/03 3:15 PM,South Carolina -1.9,52.7,54.7,spread,"South Carolina wins by 2 or fewer, or loses",BUY NO,47,0.509,2.1,LEAN,South Carolina wins by over 2.5 points,KXNCAAFSPREAD-26OCT03UKSCAR-SCAR3
+Kentucky @ South Carolina,Sat 10/03 3:15 PM,South Carolina -1.9,52.7,54.7,total,UNDER 53.5 total points,BUY NO,50,0.518,0.1,LEAN,Over 53.5 points scored,KXNCAAFTOTAL-26OCT03UKSCAR-54
+Purdue @ Illinois,Sat 10/03 3:15 PM,Illinois -12.1,67.0,78.9,winner,Illinois to WIN the game,BUY NO,78,0.789,-0.3,PASS,Purdue wins,KXNCAAFGAME-26OCT03PURILL-PUR
+Purdue @ Illinois,Sat 10/03 3:15 PM,Illinois -12.1,67.0,78.9,spread,Illinois wins by MORE than 10.5,BUY YES,47,0.547,6.0,BET,Illinois wins by over 10.5 points,KXNCAAFSPREAD-26OCT03PURILL-ILL11
+Purdue @ Illinois,Sat 10/03 3:15 PM,Illinois -12.1,67.0,78.9,total,OVER 63.5 total points,BUY YES,46,0.586,10.8,BET,Over 63.5 points scored,KXNCAAFTOTAL-26OCT03PURILL-64
+Oregon State @ Colorado State,Sat 10/03 5:00 PM,Oregon State -1.9,65.6,45.0,winner,Oregon State to WIN the game,BUY NO,68,0.55,-14.5,PASS,Colorado St. wins,KXNCAAFGAME-26OCT03ORSTCSU-CSU
+Oregon State @ Colorado State,Sat 10/03 5:00 PM,Oregon State -1.9,65.6,45.0,spread,"Oregon State wins by 2 or fewer, or loses",BUY NO,36,0.507,13.1,BET,Oregon St. wins by over 2.5 points,KXNCAAFSPREAD-26OCT03ORSTCSU-ORST3
+Oregon State @ Colorado State,Sat 10/03 5:00 PM,Oregon State -1.9,65.6,45.0,total,OVER 63.5 total points,BUY YES,45,0.566,9.8,BET,Over 63.5 points scored,KXNCAAFTOTAL-26OCT03ORSTCSU-64
+Georgia Southern @ Coastal Carolina,Sat 10/03 6:00 PM,Georgia Southern -1.1,48.4,46.3,winner,Georgia Southern to WIN the game,BUY YES,56,0.537,-4.0,PASS,Georgia Southern wins,KXNCAAFGAME-26OCT03GASOCCAR-GASO
+Georgia Southern @ Coastal Carolina,Sat 10/03 6:00 PM,Georgia Southern -1.1,48.4,46.3,spread,"Georgia Southern wins by 2 or fewer, or loses",BUY NO,50,0.52,0.2,LEAN,Georgia Southern wins by over 2.5 points,KXNCAAFSPREAD-26OCT03GASOCCAR-GASO3
+Georgia Southern @ Coastal Carolina,Sat 10/03 6:00 PM,Georgia Southern -1.1,48.4,46.3,total,UNDER 52.5 total points,BUY NO,46,0.59,11.3,BET,Full Game: Over 52.5 points scored,KXNCAAFTOTAL-26OCT03GASOCCAR-53
+UTSA @ Rice,Sat 10/03 6:00 PM,UTSA -7.9,56.8,30.3,winner,UTSA to WIN the game,BUY NO,81,0.697,-12.4,PASS,Rice wins,KXNCAAFGAME-26OCT03UTSARICE-RICE
+UTSA @ Rice,Sat 10/03 6:00 PM,UTSA -7.9,56.8,30.3,spread,"UTSA wins by 9 or fewer, or loses",BUY NO,43,0.544,9.7,BET,UTSA wins by over 9.5 points,KXNCAAFSPREAD-26OCT03UTSARICE-UTSA10
+UTSA @ Rice,Sat 10/03 6:00 PM,UTSA -7.9,56.8,30.3,total,OVER 56.5 total points,BUY YES,49,0.509,0.2,LEAN,Over 56.5 points scored,KXNCAAFTOTAL-26OCT03UTSARICE-57
+Arkansas @ Texas A&M,Sat 10/03 6:00 PM,Texas A&M -13.9,57.7,81.6,winner,Texas A&M to WIN the game,BUY NO,84,0.816,-3.3,PASS,Arkansas wins,KXNCAAFGAME-26OCT03ARKTXAM-ARK
+Arkansas @ Texas A&M,Sat 10/03 6:00 PM,Texas A&M -13.9,57.7,81.6,spread,"Texas A&M wins by 16 or fewer, or loses",BUY NO,57,0.568,-1.9,PASS,Texas A&M wins by over 16.5 points,KXNCAAFSPREAD-26OCT03ARKTXAM-TXAM17
+Arkansas @ Texas A&M,Sat 10/03 6:00 PM,Texas A&M -13.9,57.7,81.6,total,OVER 51.5 total points,BUY YES,46,0.649,17.2,BET,Over 51.5 points scored,KXNCAAFTOTAL-26OCT03ARKTXAM-52
+UL Monroe @ South Alabama,Sat 10/03 6:00 PM,South Alabama -18.9,63.6,88.7,winner,South Alabama to WIN the game,BUY YES,84,0.887,3.8,LEAN,South Alabama wins,KXNCAAFGAME-26OCT03ULMUSA-USA
+UL Monroe @ South Alabama,Sat 10/03 6:00 PM,South Alabama -18.9,63.6,88.7,spread,South Alabama wins by MORE than 14.5,BUY YES,47,0.607,11.9,BET,South Alabama wins by over 14.5 points,KXNCAAFSPREAD-26OCT03ULMUSA-USA15
+UL Monroe @ South Alabama,Sat 10/03 6:00 PM,South Alabama -18.9,63.6,88.7,total,OVER 58.5 total points,BUY YES,47,0.628,14.1,BET,Over 58.5 points scored,KXNCAAFTOTAL-26OCT03ULMUSA-59
+BYU @ TCU,Sat 10/03 6:00 PM,BYU -4.9,47.5,37.1,winner,BYU to WIN the game,BUY NO,70,0.629,-8.6,PASS,TCU wins,KXNCAAFGAME-26OCT03BYUTCU-TCU
+BYU @ TCU,Sat 10/03 6:00 PM,BYU -4.9,47.5,37.1,spread,"BYU wins by 5 or fewer, or loses",BUY NO,45,0.511,4.4,LEAN,BYU wins by over 5.5 points,KXNCAAFSPREAD-26OCT03BYUTCU-BYU6
+BYU @ TCU,Sat 10/03 6:00 PM,BYU -4.9,47.5,37.1,total,OVER 47.5 total points,BUY YES,51,0.501,-2.7,PASS,Over 47.5 points scored,KXNCAAFTOTAL-26OCT03BYUTCU-48
+Miami @ Clemson,Sat 10/03 6:30 PM,Miami -13.4,51.5,19.1,winner,Miami to WIN the game,BUY YES,87,0.809,-6.9,PASS,Miami (FL) wins,KXNCAAFGAME-26OCT03MIACLEM-MIA
+Miami @ Clemson,Sat 10/03 6:30 PM,Miami -13.4,51.5,19.1,spread,"Miami wins by 16 or fewer, or loses",BUY NO,49,0.584,7.7,BET,Miami (FL) wins by over 16.5 points,KXNCAAFSPREAD-26OCT03MIACLEM-MIA17
+Miami @ Clemson,Sat 10/03 6:30 PM,Miami -13.4,51.5,19.1,total,OVER 49.5 total points,BUY YES,44,0.548,9.1,BET,Over 49.5 points scored,KXNCAAFTOTAL-26OCT03MIACLEM-50
+Temple @ South Florida,Sat 10/03 6:30 PM,South Florida -12.7,54.9,79.6,winner,South Florida to WIN the game,BUY NO,69,0.796,9.1,BET,Temple wins,KXNCAAFGAME-26OCT03TEMUSF-TEM
+Temple @ South Florida,Sat 10/03 6:30 PM,South Florida -12.7,54.9,79.6,spread,South Florida wins by MORE than 7.5,BUY YES,44,0.626,16.9,BET,South Florida wins by over 7.5 points,KXNCAAFSPREAD-26OCT03TEMUSF-USF8
+Temple @ South Florida,Sat 10/03 6:30 PM,South Florida -12.7,54.9,79.6,total,OVER 51.5 total points,BUY YES,41,0.584,15.7,BET,Over 51.5 points scored,KXNCAAFTOTAL-26OCT03TEMUSF-52
+Washington @ USC,Sat 10/03 6:30 PM,USC -9.7,62.0,73.3,winner,USC to WIN the game,BUY NO,77,0.733,-4.9,PASS,Washington wins,KXNCAAFGAME-26OCT03WASHUSC-WASH
+Washington @ USC,Sat 10/03 6:30 PM,USC -9.7,62.0,73.3,spread,"USC wins by 20 or fewer, or loses",BUY NO,75,0.759,-0.4,PASS,USC wins by over 20.5 points,KXNCAAFSPREAD-26OCT03WASHUSC-USC21
+Washington @ USC,Sat 10/03 6:30 PM,USC -9.7,62.0,73.3,total,OVER 60.5 total points,BUY YES,47,0.535,4.8,LEAN,Over 60.5 points scored,KXNCAAFTOTAL-26OCT03WASHUSC-61
+Utah State @ Boise State,Sat 10/03 6:30 PM,Boise State -19.5,43.1,89.6,winner,Boise State to WIN the game,BUY NO,93,0.896,-3.9,PASS,Utah St. wins,KXNCAAFGAME-26OCT03USUBSU-USU
+Utah State @ Boise State,Sat 10/03 6:30 PM,Boise State -19.5,43.1,89.6,spread,"Boise State wins by 23 or fewer, or loses",BUY NO,59,0.623,1.6,LEAN,Boise St. wins by over 23.5 points,KXNCAAFSPREAD-26OCT03USUBSU-BSU24
+Utah State @ Boise State,Sat 10/03 6:30 PM,Boise State -19.5,43.1,89.6,total,UNDER 49.5 total points,BUY NO,44,0.643,18.6,BET,Over 49.5 points scored,KXNCAAFTOTAL-26OCT03USUBSU-50
+Army @ Louisiana Tech,Sat 10/03 6:30 PM,Army -1.7,52.8,45.9,winner,Army to WIN the game,BUY YES,54,0.541,-1.7,PASS,Army wins,KXNCAAFGAME-26OCT03ARMYLT-ARMY
+Army @ Louisiana Tech,Sat 10/03 6:30 PM,Army -1.7,52.8,45.9,spread,"Louisiana Tech wins by 2 or fewer, or loses",BUY NO,59,0.594,-1.3,PASS,Louisiana Tech wins by over 2.5 points,KXNCAAFSPREAD-26OCT03ARMYLT-LT3
+Army @ Louisiana Tech,Sat 10/03 6:30 PM,Army -1.7,52.8,45.9,total,OVER 49.5 total points,BUY YES,45,0.587,12.0,BET,Full Game: Over 49.5 points scored,KXNCAAFTOTAL-26OCT03ARMYLT-50
+Texas Tech @ Colorado,Sat 10/03 6:30 PM,Texas Tech -16.0,47.9,14.8,winner,Texas Tech to WIN the game,BUY NO,82,0.852,2.2,LEAN,Colorado wins,KXNCAAFGAME-26OCT03TTUCOLO-COLO
+Texas Tech @ Colorado,Sat 10/03 6:30 PM,Texas Tech -16.0,47.9,14.8,spread,Texas Tech wins by MORE than 14.5,BUY YES,42,0.528,9.1,BET,Texas Tech wins by over 14.5 points,KXNCAAFSPREAD-26OCT03TTUCOLO-TTU15
+Texas Tech @ Colorado,Sat 10/03 6:30 PM,Texas Tech -16.0,47.9,14.8,total,UNDER 50.5 total points,BUY NO,50,0.562,4.5,LEAN,Over 50.5 points scored,KXNCAAFTOTAL-26OCT03TTUCOLO-51
+Arkansas State @ Louisiana,Sat 10/03 7:00 PM,Louisiana -7.4,44.6,67.9,winner,Louisiana to WIN the game,BUY NO,70,0.679,-3.6,PASS,Arkansas St. wins,KXNCAAFGAME-26OCT03ARSTULL-ARST
+Arkansas State @ Louisiana,Sat 10/03 7:00 PM,Louisiana -7.4,44.6,67.9,spread,Louisiana wins by MORE than 4.5,BUY YES,58,0.569,-2.9,PASS,Louisiana wins by over 4.5 points,KXNCAAFSPREAD-26OCT03ARSTULL-ULL5
+Arkansas State @ Louisiana,Sat 10/03 7:00 PM,Louisiana -7.4,44.6,67.9,total,UNDER 45.5 total points,BUY NO,44,0.517,5.9,BET,Full Game: Over 45.5 points scored,KXNCAAFTOTAL-26OCT03ARSTULL-46
+Indiana @ Rutgers,Sat 10/03 7:00 PM,Indiana -22.4,58.8,7.0,winner,Indiana to WIN the game,BUY NO,95,0.93,-2.3,PASS,Rutgers wins,KXNCAAFGAME-26OCT03INDRUTG-RUTG
+Indiana @ Rutgers,Sat 10/03 7:00 PM,Indiana -22.4,58.8,7.0,spread,"Indiana wins by 23 or fewer, or loses",BUY NO,47,0.523,3.6,LEAN,Indiana wins by over 23.5 points,KXNCAAFSPREAD-26OCT03INDRUTG-IND24
+Indiana @ Rutgers,Sat 10/03 7:00 PM,Indiana -22.4,58.8,7.0,total,OVER 58.5 total points,BUY YES,44,0.511,5.4,BET,Over 58.5 points scored,KXNCAAFTOTAL-26OCT03INDRUTG-59
+Fresno State @ Washington State,Sat 10/03 8:30 PM,Fresno State -1.6,36.2,46.1,winner,Fresno State to WIN the game,BUY NO,47,0.539,5.2,BET,Washington St. wins,KXNCAAFGAME-26OCT03FRESWSU-WSU
+Fresno State @ Washington State,Sat 10/03 8:30 PM,Fresno State -1.6,36.2,46.1,spread,"Washington State wins by 2 or fewer, or loses",BUY NO,51,0.595,6.8,BET,Washington St. wins by over 2.5 points,KXNCAAFSPREAD-26OCT03FRESWSU-WSU3
+Fresno State @ Washington State,Sat 10/03 8:30 PM,Fresno State -1.6,36.2,46.1,total,UNDER 40.5 total points,BUY NO,36,0.596,22.0,BET,Over 40.5 points scored,KXNCAAFTOTAL-26OCT03FRESWSU-41
+Texas State @ San Diego State,Sat 10/03 9:30 PM,San Diego State -0.3,57.3,50.6,winner,San Diego State to WIN the game,BUY NO,36,0.506,13.0,BET,Texas St. wins,KXNCAAFGAME-26OCT03TXSTSDSU-TXST
+Texas State @ San Diego State,Sat 10/03 9:30 PM,San Diego State -0.3,57.3,50.6,spread,"Texas State wins by 2 or fewer, or loses",BUY NO,41,0.561,13.4,BET,Texas St. wins by over 2.5 points,KXNCAAFSPREAD-26OCT03TXSTSDSU-TXST3
+Texas State @ San Diego State,Sat 10/03 9:30 PM,San Diego State -0.3,57.3,50.6,total,UNDER 58.5 total points,BUY NO,48,0.525,2.7,LEAN,Over 58.5 points scored,KXNCAAFTOTAL-26OCT03TXSTSDSU-59
+Baylor @ Arizona State,Sat 10/03 9:30 PM,Arizona State -0.5,53.8,51.4,winner,Arizona State to WIN the game,BUY NO,63,0.514,-13.2,PASS,Baylor wins,KXNCAAFGAME-26OCT03BAYASU-BAY
+Baylor @ Arizona State,Sat 10/03 9:30 PM,Arizona State -0.5,53.8,51.4,spread,"Arizona State wins by 2 or fewer, or loses",BUY NO,41,0.541,11.4,BET,Arizona St. wins by over 2.5 points,KXNCAAFSPREAD-26OCT03BAYASU-ASU3
+Baylor @ Arizona State,Sat 10/03 9:30 PM,Arizona State -0.5,53.8,51.4,total,OVER 51.5 total points,BUY YES,42,0.556,11.9,BET,Over 51.5 points scored,KXNCAAFTOTAL-26OCT03BAYASU-52
+Cincinnati @ Arizona,Sat 10/03 10:00 PM,Arizona -5.4,59.1,63.3,winner,Arizona to WIN the game,BUY NO,71,0.633,-9.1,PASS,Cincinnati wins,KXNCAAFGAME-26OCT03CINARIZ-CIN
+Cincinnati @ Arizona,Sat 10/03 10:00 PM,Arizona -5.4,59.1,63.3,spread,"Arizona wins by 5 or fewer, or loses",BUY NO,43,0.505,5.8,BET,Arizona wins by over 5.5 points,KXNCAAFSPREAD-26OCT03CINARIZ-ARIZ6
+Cincinnati @ Arizona,Sat 10/03 10:00 PM,Arizona -5.4,59.1,63.3,total,OVER 56.5 total points,BUY YES,48,0.565,6.7,BET,Over 56.5 points scored,KXNCAAFTOTAL-26OCT03CINARIZ-57
+San José State @ Hawai'i,Sat 10/03 10:59 PM,Hawai'i -4.1,50.4,60.3,winner,Hawai'i to WIN the game,BUY NO,57,0.603,1.6,LEAN,San Jose St. wins,KXNCAAFGAME-26OCT04SJSUHAW-SJSU
+San José State @ Hawai'i,Sat 10/03 10:59 PM,Hawai'i -4.1,50.4,60.3,spread,Hawai'i wins by MORE than 3.5,BUY YES,44,0.522,6.5,BET,Hawai'i wins by over 3.5 points,KXNCAAFSPREAD-26OCT04SJSUHAW-HAW4
+San José State @ Hawai'i,Sat 10/03 10:59 PM,Hawai'i -4.1,50.4,60.3,total,UNDER 58.5 total points,BUY NO,69,0.685,-2.0,PASS,Over 58.5 points scored,KXNCAAFTOTAL-26OCT04SJSUHAW-59
