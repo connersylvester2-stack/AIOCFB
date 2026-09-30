@@ -1,0 +1,85 @@
+name: CFB picks
+
+on:
+  schedule:
+    # GitHub cron is always UTC. These are Central time DURING daylight saving (Mar-Nov):
+    #   Wed 9:00 AM CT  - lines and Kalshi markets are up, early look
+    #   Fri 6:00 PM CT  - after midweek injury news
+    #   Sat 9:00 AM CT  - gameday; completed games are skipped automatically
+    # In winter (CST, Nov-Mar) each one runs an hour earlier. Runs can start a few minutes late.
+    - cron: "0 14 * * 3"
+    - cron: "0 23 * * 5"
+    - cron: "0 14 * * 6"
+  workflow_dispatch:      # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write         # lets the job commit the CSVs back to the repo
+
+concurrency:
+  group: cfb-picks
+  cancel-in-progress: false
+
+env:
+  TZ: America/Chicago                                  # kickoff times in the output are shown in Central
+  RATING_ARGS: "--ridge 2.5 --carryover 1.0 --scale 1.1"   # from backtest.py; edit here to change
+
+jobs:
+  picks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore API cache (saves CFBD calls)
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: cfbd-cache-${{ github.run_id }}
+          restore-keys: cfbd-cache-
+
+      - name: Run pipeline
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          set -eo pipefail
+          mkdir -p output
+          # clear last run's game outputs so a week with no games can't reuse stale picks
+          rm -f output/sim_results.csv output/sim_draws.npz output/model_picks_all_games.csv output/recommendations.csv
+          python power_rankings.py $RATING_ARGS
+          python cover_stats.py
+          python simulate_games.py --all
+          if [ -f output/sim_results.csv ]; then
+            python kalshi_picks.py | tee output/latest_picks.txt
+          else
+            echo "No upcoming FBS-vs-FBS games to simulate." | tee output/latest_picks.txt
+          fi
+
+      - name: Show picks on the run summary page
+        if: always()
+        run: |
+          {
+            echo "## CFB picks"
+            echo '```'
+            cat output/latest_picks.txt 2>/dev/null || echo "no output - see the job log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A output
+          if [ -f injuries.csv ]; then git add injuries.csv; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "CFB picks $(date '+%a %b %-d %-I:%M %p %Z')"
+            git pull --rebase
+            git push
+          fi
