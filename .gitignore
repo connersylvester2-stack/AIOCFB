@@ -1,0 +1,6 @@
+.env
+.venv/
+.cache/
+__pycache__/
+output/sim_draws.npz
+.DS_Store
