@@ -229,11 +229,16 @@ def game_board(sim_rows, cands, min_edge):
             print(f"          BUY {c['side']} @ {round(c['cost'] * 100)}c | model {c['p_adj']:.0%} | "
                   f"edge {c['edge'] * 100:+.1f}c   [{st}]{note}")
             print(f"          on Kalshi: \"{c['m'].get('title', '')}\" -> tap {c['side']}")
+            meta = c["meta"]
             out.append(dict(game=f"{r['away']} @ {r['home']}", kickoff=r["kickoff"], model_line=r["model_line"],
                             model_total=r["model_total"], home_win_pct=r["home_win_pct"], market=kind, pick=text,
                             action=f"BUY {c['side']}", price_cents=round(c["cost"] * 100),
                             model_prob=round(c["p_adj"], 3), edge_cents=round(c["edge"] * 100, 1), status=st,
-                            market_title=c["m"].get("title"), ticker=c["m"].get("ticker")))
+                            market_title=c["m"].get("title"), ticker=c["m"].get("ticker"),
+                            game_id=gid, week=r.get("week"), kickoff_utc=r.get("kickoff_utc"),
+                            home=r["home"], away=r["away"], side=c["side"], yes_team=meta.get("team"),
+                            opp=meta.get("opp"), strike=meta.get("strike"), total_under=meta.get("under"),
+                            price_dollars=round(c["cost"], 4), fee=round(c["fee"], 4)))
     pd.DataFrame(out).to_csv(OUT / "model_picks_all_games.csv", index=False)
     print(f"\nSaved -> {OUT / 'model_picks_all_games.csv'}")
 

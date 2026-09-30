@@ -385,7 +385,7 @@ def main():
         margin, total = hs - as_, hs + as_
         model_margin = exp_h - exp_a
         row = dict(
-            game_id=gid, week=g["week"], kickoff=local_kickoff(g["start"]), away=a, home=h, neutral=bool(g["neutral"]),
+            game_id=gid, week=g["week"], kickoff=local_kickoff(g["start"]), kickoff_utc=g["start"], away=a, home=h, neutral=bool(g["neutral"]),
             away_rank=int(R.at[a, "overall_rank"]), home_rank=int(R.at[h, "overall_rank"]),
             mode=mode, exp_home_pts=round(exp_h, 1), exp_away_pts=round(exp_a, 1),
             pure_model_margin_home=round(pure_margin, 1), pure_model_total=round(pure_total, 1),
