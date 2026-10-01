@@ -68,11 +68,40 @@ summary::-webkit-details-marker{display:none}
 .detail .wide{grid-column:1/-1;font-size:14px;color:var(--muted)}
 .empty{padding:28px 16px;color:var(--muted)}
 .note{color:var(--muted);font-size:13px;margin-top:18px;max-width:72ch}
+/* my bets */
+.btools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.btn{font:600 17px "Barlow Condensed",Barlow,sans-serif;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#162033}
+.btn.small{min-height:36px;font-size:16px;padding:0 12px}
+.btn.danger{color:var(--neg)}
+.bsum{display:grid;grid-template-columns:1.5fr repeat(4,1fr);margin-bottom:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.bsum>div{padding:12px 14px} .bsum>div+div{border-left:1px solid var(--line)}
+.bsum span{display:block;color:var(--muted);font-size:13px}
+.bsum b{display:block;font:700 22px/1.15 "Barlow Condensed",sans-serif}
+.bsum .big b{font-size:34px}
+.bx{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.bf{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+.bf label{display:block;color:var(--muted);font-size:13px;margin-bottom:3px}
+.bf input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+.s5{grid-column:span 5}.s7{grid-column:span 7}.s3{grid-column:span 3}.s2{grid-column:span 2}.s4{grid-column:span 4}
+.bmath{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.bmath .m{display:flex;gap:26px;flex-wrap:wrap}
+.bmath .m span{display:block;color:var(--muted);font-size:12px}
+.bmath .m b{font:700 20px "Barlow Condensed",sans-serif}
+.berr{color:var(--neg);min-height:1.3em;margin:8px 0 0;font-size:14px}
+.bact{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bact select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 10px;min-height:36px}
+.b-row{grid-template-columns:62px 1.6fr 90px 100px}
+.badge.open{background:var(--track);color:var(--muted)}
 @media (max-width:700px){
   .r-row{grid-template-columns:34px 1fr 1.1fr} .r-row .rr{display:none}
   .c-row{grid-template-columns:1.3fr .8fr .7fr} .c-row .hide-s{display:none}
   .g-row{grid-template-columns:62px 1fr} .g-row .gx{display:none}
   .p-row{grid-template-columns:30px 1fr 60px} .p-row .hide-s{display:none}
+  .bsum{grid-template-columns:1fr 1fr} .bsum .big{grid-column:1/-1;border-bottom:1px solid var(--line)}
+  .bsum>div:nth-child(2),.bsum>div:nth-child(4){border-left:0} .bsum>div:nth-child(n+4){border-top:1px solid var(--line)}
+  .s5,.s7,.s3,.s2,.s4{grid-column:span 12} .s3.h{grid-column:span 6}
+  .b-row{grid-template-columns:54px 1fr 84px} .b-row .hide-s{display:none}
 }
 </style>
 </head>
@@ -81,6 +110,7 @@ summary::-webkit-details-marker{display:none}
   <h1>College football model</h1>
   <p class="sub">Power rankings, against-the-spread trends and model lines for FBS games. Everything here comes from the model's own numbers.</p>
   <div class="tabs" role="tablist" id="tabs"></div>
+  <section id="extra" hidden></section>
   <div class="controls">
     <input id="q" type="search" placeholder="Search team" aria-label="Search team">
     <select id="sort" aria-label="Sort by"></select>
@@ -94,6 +124,7 @@ summary::-webkit-details-marker{display:none}
 // ===== SETTINGS: edit these =====
 const CONFIG = {
   SHOW_PICKS: false,   // true adds a Picks tab. Pages are public, so leave false if picks are for subscribers.
+  SHOW_MY_BETS: true,  // true adds a My bets tab. Bets are saved only in the visitor's own browser, never in the repo.
   files: {
     rankings: "output/power_rankings.csv",
     cover:    "output/cover_stats.csv",
@@ -127,11 +158,12 @@ const SORTS={
   cover:[["ATS rank","ats_rank",1],["Best cover %","ats_cover_pct",-1],["Worst cover %","ats_cover_pct",1],["Best avg cover margin","avg_cover_margin",-1],
     ["Most overs","over_pct",-1],["Most unders","under_pct",-1],["Most points above implied","avg_pts_vs_implied",-1],["Team total over %","team_total_over_pct",-1]],
   games:[["Kickoff","kickoff_utc",1],["Biggest model favorite","_absmargin",-1],["Highest model total","model_total",-1],["Lowest model total","model_total",1]],
-  picks:[["Model rank","rank",1],["Biggest edge","edge_cents",-1]]
+  picks:[["Model rank","rank",1],["Biggest edge","edge_cents",-1]],
+  bets:[["Newest","date",-1],["Oldest","date",1],["Open first","_open",-1],["Biggest cost","cost",-1],["Best results first","_pnl",-1],["Worst results first","_pnl",1]]
 };
 
 function sortRows(rows,key,dir){
-  const val=r=>key==="_absmargin"?Math.abs(N(r.model_margin_home)??0):key==="kickoff_utc"?r.kickoff_utc:N(r[key]);
+  const val=r=>key==="_absmargin"?Math.abs(N(r.model_margin_home)??0):(key==="kickoff_utc"||key==="date")?r[key]:key==="_pnl"?Bets.pnl(r):key==="_open"?(r.status==="pending"?1:0):N(r[key]);
   return rows.slice().sort((a,b)=>{const x=val(a),y=val(b);
     if(x===null||x===undefined)return 1; if(y===null||y===undefined)return -1;
     return (x<y?-1:x>y?1:0)*dir});
@@ -241,22 +273,94 @@ function renderList(tab,rows){
     for(const g of rows){const d=dayOf(g.kickoff);if(g._grouped&&d!==last){out+=`<div class="day">${esc(d)}</div>`;last=d}out+=gameRow(g)}
     return out;
   }
-  const fn={rankings:rankingRow,cover:coverRow,picks:pickRow}[tab];
+  const fn={rankings:rankingRow,cover:coverRow,picks:pickRow,bets:betRow}[tab];
   return rows.map(fn).join("");
+}
+
+// ---- My bets: logic and row (pure; the page code for saving and the form is further down) ----
+const Bets=(()=>{
+  const ST=["pending","won","lost","push"];
+  const toCents=v=>{const x=String(v==null?"":v).replace(/[$,\s]/g,"");if(x==="")return NaN;const n=Number(x);return Number.isFinite(n)?Math.round(n*100):NaN};
+  const money=(c,signed)=>{if(c==null||Number.isNaN(c))return "–";const a=(Math.abs(c)/100).toLocaleString("en-US",{style:"currency",currency:"USD"});return c<0?"-"+a:signed&&c>0?"+"+a:a};
+  const pnl=b=>b.status==="won"?b.payout-b.cost:b.status==="lost"?-b.cost:b.status==="push"?0:null;
+  const validate=f=>{
+    if(!String(f.game||"").trim())return "Enter the game.";
+    if(!String(f.bet||"").trim())return "Enter the bet you placed.";
+    const c=toCents(f.cost),p=toCents(f.payout);
+    if(!(c>0))return "Enter a cost greater than $0.";
+    if(!(p>0))return "Enter the max payout.";
+    if(p<=c)return "Max payout must be more than the cost.";
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(String(f.date||"")))return "Pick a date.";
+    return "";
+  };
+  const summarize=bets=>{
+    const s={open:0,atRisk:0,potentialPayout:0,w:0,l:0,p:0,net:0,staked:0};
+    for(const b of bets){
+      if(b.status==="pending"){s.open++;s.atRisk+=b.cost;s.potentialPayout+=b.payout;continue}
+      s.net+=pnl(b);
+      if(b.status==="won"){s.w++;s.staked+=b.cost}else if(b.status==="lost"){s.l++;s.staked+=b.cost}else s.p++;
+    }
+    s.potentialProfit=s.potentialPayout-s.atRisk;
+    s.roi=s.staked>0?s.net/s.staked:null;
+    return s;
+  };
+  const newId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+  const guard=t=>/^[=+\-@\t\r]/.test(t)?"'"+t:t, unguard=t=>/^'[=+\-@\t\r]/.test(t)?t.slice(1):t;
+  const qt=t=>{t=String(t==null?"":t);return /[",\n\r]/.test(t)?'"'+t.replace(/"/g,'""')+'"':t};
+  const usd=c=>(c/100).toFixed(2);
+  const toCSV=bets=>["id,date,game,bet,cost,max_payout,status,pnl,notes"].concat(bets.map(b=>{const v=pnl(b);
+    return [b.id,b.date,qt(guard(b.game)),qt(guard(b.bet)),usd(b.cost),usd(b.payout),b.status,v==null?"":usd(v),qt(guard(b.notes||""))].join(",")})).join("\n")+"\n";
+  const fromCSV=text=>{
+    const rows=parseCSV(String(text).replace(/^\uFEFF/,"")).map(r=>Object.fromEntries(Object.entries(r).map(([k,v])=>[k.trim().toLowerCase().replace(/[\s-]+/g,"_"),String(v).trim()])));
+    const bets=[];let skipped=0;
+    for(const r of rows){
+      const f={game:unguard(r.game||""),bet:unguard(r.bet||r.your_bet||""),cost:r.cost||"",payout:r.max_payout||r.maxpayout||r.payout||"",date:r.date||""};
+      if(validate(f)){skipped++;continue}
+      const st=(r.status||r.result||"").toLowerCase();
+      bets.push({id:r.id||newId(),date:f.date,game:f.game,bet:f.bet,cost:toCents(f.cost),payout:toCents(f.payout),status:ST.includes(st)?st:"pending",notes:unguard(r.notes||"")});
+    }
+    return {bets,skipped};
+  };
+  return {ST,toCents,money,pnl,validate,summarize,newId,toCSV,fromCSV};
+})();
+const fmtDay=s=>{const [y,m,d]=String(s).split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-US",{month:"short",day:"numeric"})};
+
+function betRow(b){
+  const p=Bets.pnl(b);
+  const right=b.status==="pending"?`<span class="badge open">Open</span>`:b.status==="push"?`<span class="badge open">Push</span>`:`<span class="num ${p>=0?"pos":"neg"}">${Bets.money(p,true)}</span>`;
+  const opts=[["pending","Open"],["won","Won"],["lost","Lost"],["push","Push"]].map(o=>`<option value="${o[0]}"${o[0]===b.status?" selected":""}>${o[1]}</option>`).join("");
+  return `<details data-id="${esc(b.id)}"><summary class="b-row">
+    <span class="dim">${esc(fmtDay(b.date))}</span>
+    <span class="tm"><b>${esc(b.game)}</b><small>${esc(b.bet)}</small></span>
+    <span class="num hide-s">${Bets.money(b.cost)}</span>
+    <span class="num">${right}</span></summary>
+    <div class="detail">
+      ${tile("Cost",Bets.money(b.cost))}
+      ${tile("Max payout",Bets.money(b.payout))}
+      ${tile("Profit if it wins",Bets.money(b.payout-b.cost,true))}
+      ${tile("Break-even win rate",(b.cost/b.payout*100).toFixed(1)+"%")}
+      ${tile("Date",esc(b.date))}
+      ${b.notes?`<div class="wide">${esc(b.notes)}</div>`:""}
+      <div class="wide bact"><label for="r-${esc(b.id)}">Result</label>
+        <select id="r-${esc(b.id)}" data-result="${esc(b.id)}">${opts}</select>
+        <button type="button" class="btn small" data-edit="${esc(b.id)}">Edit</button>
+        <button type="button" class="btn small danger" data-del="${esc(b.id)}">Delete</button></div></div></details>`;
 }
 // ==== END CORE ====
 
-const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]].concat(CONFIG.SHOW_PICKS?[["picks","Picks"]]:[]);
+const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]].concat(CONFIG.SHOW_PICKS?[["picks","Picks"]]:[]).concat(CONFIG.SHOW_MY_BETS?[["bets","My bets"]]:[]);
 const NOTES={
   rankings:"Rating is the model's points-above-average scale. Tap a team for offense, defense, schedule and efficiency detail.",
   cover:"ATS means against the spread. Share of total line is a team's average points as a percent of the game's total line.",
   games:"Model lines come from the simulator and do not use sportsbook lines. Tap a game for projected score, weather and injuries.",
-  picks:"Model output, not a guarantee and not betting advice. Confirm injuries and lineups before betting."
+  picks:"Model output, not a guarantee and not betting advice. Confirm injuries and lineups before betting.",
+  bets:"Your own bets, saved only in this browser. On Kalshi each contract pays $1 if it wins. Export a CSV to back them up or move them to another device."
 };
 const state={tab:"rankings",data:{},loaded:{}};
 const $=id=>document.getElementById(id);
 
 async function load(tab){
+  if(tab==="bets"){B.list=bLoad();state.data.bets=B.list;state.loaded.bets=true;return}
   if(state.loaded[tab])return;
   try{
     const r=await fetch(CONFIG.files[tab],{cache:"no-store"});
@@ -270,14 +374,17 @@ function buildControls(){
   const rows=state.data[state.tab]||[];
   const confs=[...new Set(rows.map(r=>r.conference).filter(Boolean))].sort();
   $("conf").innerHTML=`<option value="">All conferences</option>`+confs.map(c=>`<option>${esc(c)}</option>`).join("");
-  $("conf").style.display=(state.tab==="games"||state.tab==="picks")?"none":"";
+  $("conf").style.display=(state.tab==="games"||state.tab==="picks"||state.tab==="bets")?"none":"";
+  const ph=state.tab==="bets"?"Search game or bet":"Search team";
+  $("q").placeholder=ph;$("q").setAttribute("aria-label",ph);
   $("q").value="";
 }
 function render(){
   const rows0=state.data[state.tab];
   $("note").textContent=NOTES[state.tab]||"";
+  if(state.tab==="bets")renderSum();
   if(rows0===null){$("status").textContent="";$("list").innerHTML=`<div class="empty">Couldn't load ${esc(CONFIG.files[state.tab])}. Check the file name in CONFIG at the top of index.html and that the file is in the repo.</div>`;return}
-  if(!rows0.length){$("list").innerHTML=`<div class="empty">That file has no rows yet.</div>`;return}
+  if(!rows0.length){$("status").textContent="";$("list").innerHTML=`<div class="empty">${state.tab==="bets"?"No bets yet. Add your first one above.":"That file has no rows yet."}</div>`;return}
   const [, key, dir]=SORTS[state.tab][+$("sort").value||0];
   const q=$("q").value.trim().toLowerCase(),conf=$("conf").value;
   let rows=rows0.filter(r=>{
@@ -287,18 +394,112 @@ function render(){
   });
   rows=sortRows(rows,key,dir);
   if(state.tab==="games")rows.forEach(g=>g._grouped=key==="kickoff_utc");
-  $("status").textContent=`${rows.length} ${state.tab==="games"?"games":state.tab==="picks"?"picks":"teams"}`;
+  $("status").textContent=`${rows.length} ${state.tab==="games"?"games":state.tab==="picks"?"picks":state.tab==="bets"?"bets":"teams"}`;
   $("list").innerHTML=rows.length?renderList(state.tab,rows):`<div class="empty">Nothing matches that search.</div>`;
+  if(state.tab==="bets"&&B.open){const d=document.querySelector(`#list details[data-id="${CSS.escape(B.open)}"]`);if(d)d.open=true;B.open=null}
 }
 async function show(tab){
   state.tab=tab;location.hash=tab;
   document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
+  $("extra").hidden=tab!=="bets";if(tab==="bets")buildExtra();
   $("status").textContent="Loading";
   await load(tab);buildControls();render();
 }
 $("tabs").innerHTML=TABS.map(t=>`<button role="tab" data-t="${t[0]}" aria-selected="false">${t[1]}</button>`).join("");
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)show(b.dataset.t)};
 $("sort").onchange=render;$("conf").onchange=render;$("q").oninput=render;
+
+// ---- My bets: page code (saving, form, export and import) ----
+const BKEY="cfb_my_bets_v1";
+const B={list:[],editing:null,ok:true,built:false,open:null};
+function bLoad(){try{const d=JSON.parse(localStorage.getItem(BKEY)||"[]");return Array.isArray(d)?d:[]}catch(e){B.ok=false;return []}}
+function bSave(){try{localStorage.setItem(BKEY,JSON.stringify(B.list));B.ok=true}catch(e){B.ok=false}if($("bWarn"))$("bWarn").hidden=B.ok}
+const todayStr=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+function renderSum(){
+  if(!B.built)return;
+  const s=Bets.summarize(B.list),st=s.w+s.l+s.p;
+  const cell=(k,v,h,c,big)=>`<div${big?' class="big"':""}><span>${k}</span><b class="${c||""}">${v}</b>${h?`<span>${h}</span>`:""}</div>`;
+  $("bSum").innerHTML=cell("Net profit and loss",Bets.money(s.net,true),st?st+" settled":"No settled bets yet",s.net>0?"pos":s.net<0?"neg":"",true)
+    +cell("At risk now",Bets.money(s.atRisk),s.open+(s.open===1?" open bet":" open bets"))
+    +cell("Payout if all win",Bets.money(s.potentialPayout),s.open?Bets.money(s.potentialProfit,true)+" profit":"")
+    +cell("Record",s.w+"-"+s.l+(s.p?"-"+s.p:""),"Won-lost"+(s.p?"-push":""))
+    +cell("Return on cost",s.roi==null?"–":(s.roi>=0?"+":"")+(s.roi*100).toFixed(1)+"%","Pushes excluded",s.roi==null?"":s.net>=0?"pos":"neg");
+  $("bGames").innerHTML=[...new Set(B.list.map(b=>b.game))].map(g=>`<option value="${esc(g)}">`).join("");
+}
+function bMath(){
+  const c=Bets.toCents($("bCost").value),p=Bets.toCents($("bPay").value),ok=c>0&&p>c;
+  $("mP").textContent=ok?Bets.money(p-c,true):"–";
+  $("mB").textContent=ok?(c/p*100).toFixed(1)+"%":"–";
+}
+function bReset(){
+  B.editing=null;
+  for(const id of ["bGame","bBet","bCost","bPay","bNotes"])$(id).value="";
+  $("bDate").value=todayStr();$("bSubmit").textContent="Add bet";$("bCancel").hidden=true;$("bErr").textContent="";bMath();
+}
+function bEdit(id){
+  const b=B.list.find(x=>x.id===id);if(!b)return;
+  B.editing=id;
+  $("bGame").value=b.game;$("bBet").value=b.bet;$("bCost").value=(b.cost/100).toFixed(2);$("bPay").value=(b.payout/100).toFixed(2);
+  $("bDate").value=b.date;$("bNotes").value=b.notes||"";$("bSubmit").textContent="Save changes";$("bCancel").hidden=false;$("bErr").textContent="";bMath();
+  $("bForm").scrollIntoView({block:"center"});$("bGame").focus();
+}
+function buildExtra(){
+  if(B.built)return;
+  B.built=true;
+  $("extra").innerHTML=`
+    <div class="btools"><button type="button" class="btn small" id="bExport">Export CSV</button><button type="button" class="btn small" id="bImport">Import CSV</button><input type="file" id="bFile" accept=".csv,text/csv" hidden></div>
+    <p class="note" id="bWarn" hidden>This browser is blocking saved data, so your bets will vanish when you close the tab. Export a CSV before you leave.</p>
+    <div class="bsum" id="bSum"></div>
+    <form class="bx" id="bForm" novalidate>
+      <div class="bf">
+        <div class="s5"><label for="bGame">Game</label><input id="bGame" list="bGames" autocomplete="off" placeholder="Navy @ Air Force"><datalist id="bGames"></datalist></div>
+        <div class="s7"><label for="bBet">Your bet</label><input id="bBet" autocomplete="off" placeholder="Over 48.5 total points (Yes)"></div>
+        <div class="s3 h"><label for="bCost">Cost ($)</label><input id="bCost" inputmode="decimal" autocomplete="off" placeholder="5.00"></div>
+        <div class="s3 h"><label for="bPay">Max payout ($)</label><input id="bPay" inputmode="decimal" autocomplete="off" placeholder="10.00"></div>
+        <div class="s2"><label for="bDate">Date</label><input id="bDate" type="date"></div>
+        <div class="s4"><label for="bNotes">Notes (optional)</label><input id="bNotes" autocomplete="off" placeholder="Ticker, source, reason"></div>
+      </div>
+      <div class="bmath"><div class="m" aria-live="polite"><div><span>Profit if it wins</span><b id="mP">–</b></div><div><span>Break-even win rate</span><b id="mB">–</b></div></div>
+        <div class="bact"><button type="button" class="btn" id="bCancel" hidden>Cancel</button><button type="submit" class="btn primary" id="bSubmit">Add bet</button></div></div>
+      <p class="berr" id="bErr" role="alert"></p>
+    </form>`;
+  $("bForm").addEventListener("submit",e=>{
+    e.preventDefault();
+    const f={game:$("bGame").value,bet:$("bBet").value,cost:$("bCost").value,payout:$("bPay").value,date:$("bDate").value};
+    const err=Bets.validate(f);$("bErr").textContent=err;if(err)return;
+    const rec={game:f.game.trim(),bet:f.bet.trim(),cost:Bets.toCents(f.cost),payout:Bets.toCents(f.payout),date:f.date,notes:$("bNotes").value.trim()};
+    if(B.editing){Object.assign(B.list.find(x=>x.id===B.editing),rec);B.open=B.editing}
+    else B.list.push(Object.assign({id:Bets.newId(),status:"pending"},rec));
+    bSave();bReset();render();$("bGame").focus();
+  });
+  $("bCancel").onclick=bReset;
+  $("bCost").oninput=bMath;$("bPay").oninput=bMath;
+  $("bExport").onclick=()=>{
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([Bets.toCSV(B.list)],{type:"text/csv;charset=utf-8"}));
+    a.download="my_bets_"+todayStr()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  };
+  $("bImport").onclick=()=>$("bFile").click();
+  $("bFile").onchange=async e=>{
+    const file=e.target.files[0];e.target.value="";if(!file)return;
+    const {bets,skipped}=Bets.fromCSV(await file.text());
+    const have=new Set(B.list.map(b=>b.id));let added=0;
+    for(const b of bets)if(!have.has(b.id)){B.list.push(b);have.add(b.id);added++}
+    bSave();render();
+    alert("Imported "+added+" bet"+(added===1?"":"s")+(bets.length-added?", "+(bets.length-added)+" already here":"")+(skipped?", "+skipped+" skipped (missing or invalid fields)":"")+".");
+  };
+  $("list").addEventListener("change",e=>{
+    const sel=e.target.closest("select[data-result]");if(!sel)return;
+    const b=B.list.find(x=>x.id===sel.dataset.result);if(!b)return;
+    b.status=sel.value;B.open=b.id;bSave();render();
+  });
+  $("list").addEventListener("click",e=>{
+    const ed=e.target.closest("button[data-edit]");if(ed){bEdit(ed.dataset.edit);return}
+    const dl=e.target.closest("button[data-del]");
+    if(dl){const b=B.list.find(x=>x.id===dl.dataset.del);
+      if(b&&confirm("Delete this bet?\n"+b.game+" - "+b.bet)){B.list=B.list.filter(x=>x.id!==b.id);state.data.bets=B.list;if(B.editing===b.id)bReset();bSave();render()}}
+  });
+  bReset();
+}
 const start=location.hash.slice(1);
 show(TABS.some(t=>t[0]===start)?start:"rankings");
 </script>
