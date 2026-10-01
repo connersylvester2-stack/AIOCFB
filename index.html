@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- College football model dashboard. Includes: Power rankings, Cover trends, Games, My bets (private-repo sync). Version 2026-10-01 sync. -->
+<!-- College football model dashboard. Includes: Power rankings, Cover trends, Games, All / CFB / Golf / NFL / MLB bets (private-repo sync). Version 2026-10-01 all-bets. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -94,6 +94,13 @@ summary::-webkit-details-marker{display:none}
 .bact select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 10px;min-height:36px}
 .b-row{grid-template-columns:62px 1.6fr 90px 100px}
 .badge.open{background:var(--track);color:var(--muted)}
+.bbreak{padding:0;overflow:hidden}
+.bbreak table{width:100%;border-collapse:collapse}
+.bbreak th,.bbreak td{padding:9px 14px;text-align:right}
+.bbreak th:first-child,.bbreak td:first-child{text-align:left}
+.bbreak thead th{font-weight:600;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
+.bbreak tbody tr+tr td{border-top:1px solid var(--line)}
+.bbreak tfoot td{border-top:2px solid var(--line);font-weight:700}
 .sybar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .sybar .st{flex:1 1 240px;color:var(--muted);font-size:14px}
 .st.good{color:var(--pos)} .st.bad{color:var(--neg)}
@@ -108,6 +115,7 @@ summary::-webkit-details-marker{display:none}
   .bsum>div:nth-child(2),.bsum>div:nth-child(4){border-left:0} .bsum>div:nth-child(n+4){border-top:1px solid var(--line)}
   .s5,.s7,.s3,.s2,.s4{grid-column:span 12} .s3.h{grid-column:span 6}
   .b-row{grid-template-columns:54px 1fr 84px} .b-row .hide-s{display:none}
+  .bbreak .hide-s{display:none} .bbreak th,.bbreak td{padding:9px 10px}
 }
 </style>
 </head>
@@ -130,7 +138,8 @@ summary::-webkit-details-marker{display:none}
 // ===== SETTINGS: edit these =====
 const CONFIG = {
   SHOW_PICKS: false,   // true adds a Picks tab. Pages are public, so leave false if picks are for subscribers.
-  SHOW_MY_BETS: true,  // true adds a My bets tab. Bets are saved only in the visitor's own browser, never in the repo.
+  SHOW_MY_BETS: true,  // true adds the bet-tracking tabs. Bets are saved only in the visitor's own browser, never in the repo.
+  BET_SPORTS: ["all", "cfb", "golf", "nfl", "mlb"],   // which bet tabs to show, in this order ("all" is the combined view). Remove a name to hide that tab.
   files: {
     rankings: "output/power_rankings.csv",
     cover:    "output/cover_stats.csv",
@@ -273,17 +282,24 @@ function pickRow(p){
       <div class="wide">Kalshi market: ${esc(p.market_title)}</div></div></details>`;
 }
 
-function renderList(tab,rows){
+function renderList(tab,rows,opts){
   if(tab==="games"){
     let out="",last="";
     for(const g of rows){const d=dayOf(g.kickoff);if(g._grouped&&d!==last){out+=`<div class="day">${esc(d)}</div>`;last=d}out+=gameRow(g)}
     return out;
   }
-  const fn={rankings:rankingRow,cover:coverRow,picks:pickRow,bets:betRow}[tab];
-  return rows.map(fn).join("");
+  const fn={rankings:rankingRow,cover:coverRow,picks:pickRow,bets:r=>betRow(r,opts&&opts.allSports)}[tab];
+  return rows.map(r=>fn(r)).join("");
 }
 
-// ---- My bets: logic and row (pure; the page code for saving and the form is further down) ----
+// ---- My bets: sports, logic and row (pure; the page code for saving and the form is further down) ----
+const SPORTS={
+  cfb:{tab:"CFB bets",game:"Game",gamePh:"Navy @ Air Force",betPh:"Over 48.5 total points (Yes)",search:"Search game or bet"},
+  golf:{tab:"Golf bets",game:"Tournament",gamePh:"Sanderson Farms Championship",betPh:"Scottie Scheffler top 10 (Yes)",search:"Search tournament or bet"},
+  nfl:{tab:"NFL bets",game:"Game",gamePh:"Chiefs @ Bills",betPh:"Over 47.5 total points (Yes)",search:"Search game or bet"},
+  mlb:{tab:"MLB bets",game:"Game",gamePh:"Dodgers @ Padres",betPh:"Dodgers to win (Yes)",search:"Search game or bet"}
+};
+const sportOf=b=>SPORTS[b&&b.sport]?b.sport:"cfb";   // older bets have no sport and count as CFB
 const Bets=(()=>{
   const ST=["pending","won","lost","push"];
   const toCents=v=>{const x=String(v==null?"":v).replace(/[$,\s]/g,"");if(x==="")return NaN;const n=Number(x);return Number.isFinite(n)?Math.round(n*100):NaN};
@@ -314,18 +330,21 @@ const Bets=(()=>{
   const guard=t=>/^[=+\-@\t\r]/.test(t)?"'"+t:t, unguard=t=>/^'[=+\-@\t\r]/.test(t)?t.slice(1):t;
   const qt=t=>{t=String(t==null?"":t);return /[",\n\r]/.test(t)?'"'+t.replace(/"/g,'""')+'"':t};
   const usd=c=>(c/100).toFixed(2);
-  const toCSV=bets=>["id,date,game,bet,cost,max_payout,status,pnl,notes"].concat(bets.map(b=>{const v=pnl(b);
-    return [b.id,b.date,qt(guard(b.game)),qt(guard(b.bet)),usd(b.cost),usd(b.payout),b.status,v==null?"":usd(v),qt(guard(b.notes||""))].join(",")})).join("\n")+"\n";
-  const fromCSV=text=>{
+  const toCSV=bets=>["id,sport,date,game,bet,cost,max_payout,status,pnl,notes"].concat(bets.map(b=>{const v=pnl(b);
+    return [b.id,sportOf(b),b.date,qt(guard(b.game)),qt(guard(b.bet)),usd(b.cost),usd(b.payout),b.status,v==null?"":usd(v),qt(guard(b.notes||""))].join(",")})).join("\n")+"\n";
+  const fromCSV=(text,defaultSport)=>{
+    defaultSport=SPORTS[defaultSport]?defaultSport:"cfb";
     const rows=parseCSV(String(text).replace(/^\uFEFF/,"")).map(r=>Object.fromEntries(Object.entries(r).map(([k,v])=>[k.trim().toLowerCase().replace(/[\s-]+/g,"_"),String(v).trim()])));
-    const bets=[];let skipped=0;
+    const bets=[];let skipped=0,defaulted=0;
     for(const r of rows){
       const f={game:unguard(r.game||""),bet:unguard(r.bet||r.your_bet||""),cost:r.cost||"",payout:r.max_payout||r.maxpayout||r.payout||"",date:r.date||""};
       if(validate(f)){skipped++;continue}
       const st=(r.status||r.result||"").toLowerCase();
-      bets.push({id:r.id||newId(),date:f.date,game:f.game,bet:f.bet,cost:toCents(f.cost),payout:toCents(f.payout),status:ST.includes(st)?st:"pending",notes:unguard(r.notes||"")});
+      const sp=(r.sport||"").toLowerCase(),sport=SPORTS[sp]?sp:sp==="pga"?"golf":defaultSport;
+      if(!SPORTS[sp]&&sp!=="pga")defaulted++;
+      bets.push({id:r.id||newId(),sport,date:f.date,game:f.game,bet:f.bet,cost:toCents(f.cost),payout:toCents(f.payout),status:ST.includes(st)?st:"pending",notes:unguard(r.notes||"")});
     }
-    return {bets,skipped};
+    return {bets,skipped,defaulted};
   };
   // ---- sync helpers: each record carries updatedAt; deletes leave a small tombstone so they reach other devices
   const merge=(local,remote)=>{const m=new Map();for(const r of remote||[])if(r&&r.id)m.set(r.id,r);
@@ -333,17 +352,18 @@ const Bets=(()=>{
   const purge=(all,now)=>all.filter(b=>!(b.deleted&&now-(b.updatedAt||0)>15552000000));
   const same=(a,b)=>{const k=x=>JSON.stringify([...x].sort((p,q)=>p.id<q.id?-1:p.id>q.id?1:0));return k(a)===k(b)};
   const sane=r=>!!r&&typeof r.id==="string"&&r.id!==""&&(r.deleted===true||(typeof r.game==="string"&&typeof r.bet==="string"
-    &&Number.isFinite(r.cost)&&Number.isFinite(r.payout)&&r.cost>0&&r.payout>r.cost&&/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))&&ST.includes(r.status)));
+    &&Number.isFinite(r.cost)&&Number.isFinite(r.payout)&&r.cost>0&&r.payout>r.cost&&/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))&&ST.includes(r.status)&&(r.sport==null||!!SPORTS[r.sport])));
   return {ST,toCents,money,pnl,validate,summarize,newId,toCSV,fromCSV,merge,purge,same,sane};
 })();
 const fmtDay=s=>{const [y,m,d]=String(s).split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-US",{month:"short",day:"numeric"})};
 
-function betRow(b){
+function betRow(b,showSport){
+  const spName=SPORTS[sportOf(b)].tab.replace(" bets","");
   const p=Bets.pnl(b);
   const right=b.status==="pending"?`<span class="badge open">Open</span>`:b.status==="push"?`<span class="badge open">Push</span>`:`<span class="num ${p>=0?"pos":"neg"}">${Bets.money(p,true)}</span>`;
   const opts=[["pending","Open"],["won","Won"],["lost","Lost"],["push","Push"]].map(o=>`<option value="${o[0]}"${o[0]===b.status?" selected":""}>${o[1]}</option>`).join("");
   return `<details data-id="${esc(b.id)}"><summary class="b-row">
-    <span class="dim">${esc(fmtDay(b.date))}</span>
+    <span class="dim">${esc(fmtDay(b.date))}${showSport?"<br>"+esc(spName):""}</span>
     <span class="tm"><b>${esc(b.game)}</b><small>${esc(b.bet)}</small></span>
     <span class="num hide-s">${Bets.money(b.cost)}</span>
     <span class="num">${right}</span></summary>
@@ -352,6 +372,7 @@ function betRow(b){
       ${tile("Max payout",Bets.money(b.payout))}
       ${tile("Profit if it wins",Bets.money(b.payout-b.cost,true))}
       ${tile("Break-even win rate",(b.cost/b.payout*100).toFixed(1)+"%")}
+      ${showSport?tile("Sport",esc(spName)):""}
       ${tile("Date",esc(b.date))}
       ${b.notes?`<div class="wide">${esc(b.notes)}</div>`:""}
       <div class="wide bact"><label for="r-${esc(b.id)}">Result</label>
@@ -361,15 +382,15 @@ function betRow(b){
 }
 // ==== END CORE ====
 
-const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]].concat(CONFIG.SHOW_PICKS?[["picks","Picks"]]:[]).concat(CONFIG.SHOW_MY_BETS?[["bets","My bets"]]:[]);
+const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]].concat(CONFIG.SHOW_PICKS?[["picks","Picks"]]:[]).concat(CONFIG.SHOW_MY_BETS?(CONFIG.BET_SPORTS||[]).filter(k=>k==="all"||SPORTS[k]).map(k=>["bets_"+k,k==="all"?"All bets":SPORTS[k].tab]):[]);
 const NOTES={
   rankings:"Rating is the model's points-above-average scale. Tap a team for offense, defense, schedule and efficiency detail.",
   cover:"ATS means against the spread. Share of total line is a team's average points as a percent of the game's total line.",
   games:"Model lines come from the simulator and do not use sportsbook lines. Tap a game for projected score, weather and injuries.",
   picks:"Model output, not a guarantee and not betting advice. Confirm injuries and lineups before betting.",
-  bets:"Your own bets. They are saved on this device, and shared between your devices if you set up sync. On Kalshi each contract pays $1 if it wins."
+  bets:"Your own bets, kept separately for each sport. They are saved on this device, and shared between your devices if you set up sync. On Kalshi each contract pays $1 if it wins."
 };
-const state={tab:"rankings",data:{},loaded:{}};
+const state={tab:"rankings",data:{},loaded:{},sport:"cfb"};
 const $=id=>document.getElementById(id);
 
 async function load(tab){
@@ -387,8 +408,11 @@ function buildControls(){
   const rows=state.data[state.tab]||[];
   const confs=[...new Set(rows.map(r=>r.conference).filter(Boolean))].sort();
   $("conf").innerHTML=`<option value="">All conferences</option>`+confs.map(c=>`<option>${esc(c)}</option>`).join("");
-  $("conf").style.display=(state.tab==="games"||state.tab==="picks"||state.tab==="bets")?"none":"";
-  const ph=state.tab==="bets"?"Search game or bet":"Search team";
+  const allBets=state.tab==="bets"&&state.sport==="all";
+  if(allBets)$("conf").innerHTML=`<option value="">All sports</option>`+Object.keys(SPORTS).map(k=>`<option value="${k}">${esc(SPORTS[k].tab.replace(" bets",""))}</option>`).join("");
+  $("conf").style.display=(state.tab==="games"||state.tab==="picks"||(state.tab==="bets"&&!allBets))?"none":"";
+  $("conf").setAttribute("aria-label",allBets?"Sport":"Conference");
+  const ph=state.tab==="bets"?(SPORTS[state.sport]||{search:"Search game or bet"}).search:"Search team";
   $("q").placeholder=ph;$("q").setAttribute("aria-label",ph);
   $("q").value="";
 }
@@ -402,22 +426,24 @@ function render(){
   const [, key, dir]=SORTS[state.tab][+$("sort").value||0];
   const q=$("q").value.trim().toLowerCase(),conf=$("conf").value;
   let rows=rows0.filter(r=>{
-    if(conf&&r.conference!==conf)return false;
+    if(conf&&(state.tab==="bets"?sportOf(r):r.conference)!==conf)return false;
     if(!q)return true;
     return [r.team,r.away,r.home,r.bet,r.game].some(s=>s&&String(s).toLowerCase().includes(q));
   });
   rows=sortRows(rows,key,dir);
   if(state.tab==="games")rows.forEach(g=>g._grouped=key==="kickoff_utc");
   $("status").textContent=`${rows.length} ${state.tab==="games"?"games":state.tab==="picks"?"picks":state.tab==="bets"?"bets":"teams"}`;
-  $("list").innerHTML=rows.length?renderList(state.tab,rows):`<div class="empty">Nothing matches that search.</div>`;
+  $("list").innerHTML=rows.length?renderList(state.tab,rows,{allSports:state.tab==="bets"&&state.sport==="all"}):`<div class="empty">Nothing matches that search.</div>`;
   if(state.tab==="bets"){for(const id of keep.concat(B.open?[B.open]:[])){const d=document.querySelector(`#list details[data-id="${CSS.escape(id)}"]`);if(d)d.open=true}B.open=null}
 }
 async function show(tab){
-  state.tab=tab;location.hash=tab;
+  const isBet=tab.startsWith("bets_");
+  state.tab=isBet?"bets":tab;if(isBet)state.sport=tab.slice(5);location.hash=tab;
   document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
-  $("extra").hidden=tab!=="bets";if(tab==="bets")buildExtra();
+  const cur=document.querySelector('#tabs button[aria-selected="true"]');if(cur&&cur.scrollIntoView)cur.scrollIntoView({inline:"center",block:"nearest"});
+  $("extra").hidden=!isBet;if(isBet){buildExtra();bSport()}
   $("status").textContent="Loading";
-  await load(tab);buildControls();render();
+  await load(state.tab);buildControls();render();
 }
 $("tabs").innerHTML=TABS.map(t=>`<button role="tab" data-t="${t[0]}" aria-selected="false">${t[1]}</button>`).join("");
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)show(b.dataset.t)};
@@ -427,7 +453,7 @@ $("sort").onchange=render;$("conf").onchange=render;$("q").oninput=render;
 const BKEY="cfb_my_bets_v1",SKEY="cfb_my_bets_sync_v1";
 const B={all:[],editing:null,ok:true,built:false,open:null};
 const Sy={cfg:null,busy:false,again:false,timer:null,last:0};
-const live=()=>B.all.filter(b=>!b.deleted);
+const live=()=>B.all.filter(b=>!b.deleted&&(state.sport==="all"||sportOf(b)===state.sport));
 function bRefresh(){state.data.bets=live()}
 function bLoad(){try{const d=JSON.parse(localStorage.getItem(BKEY)||"[]");return Array.isArray(d)?d:[]}catch(e){B.ok=false;return []}}
 function bSave(){try{localStorage.setItem(BKEY,JSON.stringify(B.all));B.ok=true}catch(e){B.ok=false}if($("bWarn"))$("bWarn").hidden=B.ok}
@@ -515,6 +541,13 @@ function renderSum(){
     +cell("Record",s.w+"-"+s.l+(s.p?"-"+s.p:""),"Won-lost"+(s.p?"-push":""))
     +cell("Return on cost",s.roi==null?"–":(s.roi>=0?"+":"")+(s.roi*100).toFixed(1)+"%","Pushes excluded",s.roi==null?"":s.net>=0?"pos":"neg");
   $("bGames").innerHTML=[...new Set(L.map(b=>b.game))].map(g=>`<option value="${esc(g)}">`).join("");
+  const bb=$("bBreak");
+  if(state.sport!=="all"){bb.hidden=true;return}
+  const tr=(label,x,n,total)=>`<tr><td>${esc(label)}</td><td class="hide-s">${n}</td><td>${x.w}-${x.l}${x.p?"-"+x.p:""}</td><td class="${x.net>0?"pos":x.net<0?"neg":""}">${Bets.money(x.net,true)}</td><td>${x.roi==null?"–":(x.roi>=0?"+":"")+(x.roi*100).toFixed(1)+"%"}</td></tr>`;
+  const per=Object.keys(SPORTS).map(k=>{const l=B.all.filter(b=>!b.deleted&&sportOf(b)===k);return {k,n:l.length,x:Bets.summarize(l)}}).filter(r=>r.n>0);
+  bb.hidden=per.length===0;
+  bb.innerHTML=`<table><thead><tr><th>Sport</th><th class="hide-s">Bets</th><th>Record</th><th>Net</th><th>Return</th></tr></thead><tbody>`
+    +per.map(r=>tr(SPORTS[r.k].tab.replace(" bets",""),r.x,r.n)).join("")+`</tbody><tfoot>${tr("All sports",s,L.length)}</tfoot></table>`;
 }
 function bMath(){
   const c=Bets.toCents($("bCost").value),p=Bets.toCents($("bPay").value),ok=c>0&&p>c;
@@ -525,6 +558,12 @@ function bReset(){
   B.editing=null;
   for(const id of ["bGame","bBet","bCost","bPay","bNotes"])$(id).value="";
   $("bDate").value=todayStr();$("bSubmit").textContent="Add bet";$("bCancel").hidden=true;$("bErr").textContent="";bMath();
+}
+function bSport(){
+  const all=state.sport==="all";
+  $("bForm").hidden=all;$("bAllNote").hidden=!all;
+  if(!all){const S=SPORTS[state.sport];$("lGame").textContent=S.game;$("bGame").placeholder=S.gamePh;$("bBet").placeholder=S.betPh}
+  bReset();
 }
 function bEdit(id){
   const b=B.all.find(x=>x.id===id&&!x.deleted);if(!b)return;
@@ -557,9 +596,11 @@ function buildExtra(){
     </form>
     <p class="note" id="bWarn" hidden>This browser is blocking saved data, so your bets will vanish when you close the tab. Export a CSV before you leave.</p>
     <div class="bsum" id="bSum"></div>
+    <div class="bx bbreak" id="bBreak" hidden></div>
+    <p class="note" id="bAllNote" hidden>This tab combines every sport. To add or edit a bet, open its sport tab. You can still change a result or delete a bet here.</p>
     <form class="bx" id="bForm" novalidate>
       <div class="bf">
-        <div class="s5"><label for="bGame">Game</label><input id="bGame" list="bGames" autocomplete="off" placeholder="Navy @ Air Force"><datalist id="bGames"></datalist></div>
+        <div class="s5"><label for="bGame" id="lGame">Game</label><input id="bGame" list="bGames" autocomplete="off" placeholder="Navy @ Air Force"><datalist id="bGames"></datalist></div>
         <div class="s7"><label for="bBet">Your bet</label><input id="bBet" autocomplete="off" placeholder="Over 48.5 total points (Yes)"></div>
         <div class="s3 h"><label for="bCost">Cost ($)</label><input id="bCost" inputmode="decimal" autocomplete="off" placeholder="5.00"></div>
         <div class="s3 h"><label for="bPay">Max payout ($)</label><input id="bPay" inputmode="decimal" autocomplete="off" placeholder="10.00"></div>
@@ -577,32 +618,36 @@ function buildExtra(){
     const err=Bets.validate(f);$("bErr").textContent=err;if(err)return;
     const rec={game:f.game.trim(),bet:f.bet.trim(),cost:Bets.toCents(f.cost),payout:Bets.toCents(f.payout),date:f.date,notes:$("bNotes").value.trim()};
     if(B.editing){Object.assign(B.all.find(x=>x.id===B.editing),rec,{updatedAt:Date.now()});B.open=B.editing}
-    else B.all.push(Object.assign({id:Bets.newId(),status:"pending",updatedAt:Date.now()},rec));
+    else B.all.push(Object.assign({id:Bets.newId(),sport:state.sport,status:"pending",updatedAt:Date.now()},rec));
     bChanged();bReset();render();$("bGame").focus();
   });
   $("bCancel").onclick=bReset;
   $("bCost").oninput=bMath;$("bPay").oninput=bMath;
   $("bExport").onclick=()=>{
     const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([Bets.toCSV(live())],{type:"text/csv;charset=utf-8"}));
-    a.download="my_bets_"+todayStr()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    a.download="my_"+state.sport+"_bets_"+todayStr()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
   };
   $("bImport").onclick=()=>$("bFile").click();
   $("bFile").onchange=async e=>{
     const file=e.target.files[0];e.target.value="";if(!file)return;
-    const {bets,skipped}=Bets.fromCSV(await file.text());
+    const {bets,skipped,defaulted}=Bets.fromCSV(await file.text(),state.sport);
+    const other=state.sport==="all"?0:bets.filter(b=>b.sport!==state.sport).length;
     const at=new Map(B.all.map((b,i)=>[b.id,i]));let added=0;
     for(const b of bets){const i=at.get(b.id),rec=Object.assign({},b,{updatedAt:Date.now()});
       if(i===undefined){B.all.push(rec);at.set(b.id,B.all.length-1);added++}else if(B.all[i].deleted){B.all[i]=rec;added++}}
     bChanged();render();
-    alert("Imported "+added+" bet"+(added===1?"":"s")+(bets.length-added?", "+(bets.length-added)+" already here":"")+(skipped?", "+skipped+" skipped (missing or invalid fields)":"")+".");
+    alert("Imported "+added+" bet"+(added===1?"":"s")+(bets.length-added?", "+(bets.length-added)+" already here":"")+(other?", "+other+" belong to other sport tabs":"")+(state.sport==="all"&&defaulted?", "+defaulted+" had no sport and went to CFB bets":"")+(skipped?", "+skipped+" skipped (missing or invalid fields)":"")+".");
   };
   $("list").addEventListener("change",e=>{
     const sel=e.target.closest("select[data-result]");if(!sel)return;
     const b=B.all.find(x=>x.id===sel.dataset.result&&!x.deleted);if(!b)return;
     b.status=sel.value;b.updatedAt=Date.now();B.open=b.id;bChanged();render();
   });
-  $("list").addEventListener("click",e=>{
-    const ed=e.target.closest("button[data-edit]");if(ed){bEdit(ed.dataset.edit);return}
+  $("list").addEventListener("click",async e=>{
+    const ed=e.target.closest("button[data-edit]");
+    if(ed){const b=B.all.find(x=>x.id===ed.dataset.edit&&!x.deleted);if(!b)return;
+      if(state.sport==="all")await show("bets_"+sportOf(b));   // editing happens in the bet's own sport tab
+      bEdit(b.id);return}
     const dl=e.target.closest("button[data-del]");
     if(dl){const b=B.all.find(x=>x.id===dl.dataset.del&&!x.deleted);
       if(b&&confirm("Delete this bet?\n"+b.game+" - "+b.bet)){
@@ -626,7 +671,7 @@ function buildExtra(){
   window.addEventListener("online",()=>{if(Sy.cfg&&state.tab==="bets")syncNow()});
   bReset();
 }
-const start=location.hash.slice(1);
+const start0=location.hash.slice(1),start=start0==="bets"?"bets_cfb":start0;
 show(TABS.some(t=>t[0]===start)?start:"rankings");
 </script>
 </body>
