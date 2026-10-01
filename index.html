@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CFB Model">
+<title>College Football Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDEFF2; --surface:#FFFFFF; --ink:#162033; --muted:#5F6B7C; --line:#D6DBE3;
+  --pos:#1F6F5C; --pos-bg:#DCEFE9; --neg:#B5483D; --neg-bg:#F6E0DD; --gold:#E8B100; --track:#E4E8EE;
+  box-sizing:border-box; padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0F1623; --surface:#172131; --ink:#E7ECF3; --muted:#9AA7B8; --line:#27344A;
+    --pos:#4FC3A5; --pos-bg:#12362D; --neg:#EE8478; --neg-bg:#3A1E1B; --gold:#F2C230; --track:#223048}
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Barlow,-apple-system,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:980px;margin:0 auto;padding:22px 16px 56px}
+h1{font:700 34px/1.05 "Barlow Condensed",Barlow,sans-serif;letter-spacing:.01em;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 18px;max-width:62ch}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line);margin-bottom:14px;overflow-x:auto}
+.tabs button{border:0;background:none;color:var(--muted);font:600 19px "Barlow Condensed",Barlow,sans-serif;padding:10px 14px;min-height:44px;cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.controls input,.controls select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+.controls input{flex:1 1 180px}
+button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.status{color:var(--muted);font-size:14px;min-height:20px;margin:0 0 10px}
+.list{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+details{border-bottom:1px solid var(--line)} details:last-child{border-bottom:0}
+summary{list-style:none;cursor:pointer;padding:11px 14px;min-height:58px;display:grid;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+.rk{font:700 22px "Barlow Condensed",sans-serif;color:var(--muted);text-align:right}
+.tm b{display:block;font:700 20px/1.1 "Barlow Condensed",sans-serif}
+.tm small{color:var(--muted);font-size:13px}
+.num{text-align:right;font-weight:500}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.dim{color:var(--muted);font-size:13px}
+/* rankings */
+.r-row{grid-template-columns:40px 1.2fr 1.4fr 120px}
+.div{position:relative;height:18px;background:var(--track);border-radius:4px}
+.div::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.35}
+.div i{position:absolute;top:0;bottom:0;border-radius:3px}
+.div i.p{background:var(--pos)} .div i.n{background:var(--neg)}
+.rate{display:grid;grid-template-columns:1fr 52px;gap:8px;align-items:center}
+/* cover */
+.c-row{grid-template-columns:1.4fr .8fr .7fr .7fr .8fr}
+/* games */
+.g-row{grid-template-columns:72px 1.3fr 1fr 1.2fr}
+.wp{display:flex;height:18px;border-radius:4px;overflow:hidden;background:var(--track)}
+.wp i{display:block;height:100%} .wp .a{background:var(--muted);opacity:.55} .wp .h{background:var(--ink)}
+.wpl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:2px}
+.day{background:var(--bg);padding:8px 14px;font:700 17px "Barlow Condensed",sans-serif;color:var(--muted);border-bottom:1px solid var(--line)}
+.mt div{font:700 18px/1.15 "Barlow Condensed",sans-serif} .mt span{color:var(--muted);font:500 13px Barlow,sans-serif}
+/* picks */
+.p-row{grid-template-columns:36px 90px 1.6fr 70px 70px}
+.badge{font-size:13px;font-weight:600;padding:3px 9px;border-radius:99px;text-align:center}
+.badge.yes{background:var(--pos-bg);color:var(--pos)} .badge.no{background:var(--neg-bg);color:var(--neg)}
+.detail{padding:6px 14px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px 18px}
+.detail .t{border-bottom:1px dashed var(--line);padding-bottom:4px}
+.detail .t span{display:block;color:var(--muted);font-size:12px} .detail .t b{font-weight:600}
+.detail .wide{grid-column:1/-1;font-size:14px;color:var(--muted)}
+.empty{padding:28px 16px;color:var(--muted)}
+.note{color:var(--muted);font-size:13px;margin-top:18px;max-width:72ch}
+@media (max-width:700px){
+  .r-row{grid-template-columns:34px 1fr 1.1fr} .r-row .rr{display:none}
+  .c-row{grid-template-columns:1.3fr .8fr .7fr} .c-row .hide-s{display:none}
+  .g-row{grid-template-columns:62px 1fr} .g-row .gx{display:none}
+  .p-row{grid-template-columns:30px 1fr 60px} .p-row .hide-s{display:none}
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>College football model</h1>
+  <p class="sub">Power rankings, against-the-spread trends and model lines for FBS games. Everything here comes from the model's own numbers.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search team" aria-label="Search team">
+    <select id="sort" aria-label="Sort by"></select>
+    <select id="conf" aria-label="Conference"></select>
+  </div>
+  <p class="status" id="status" aria-live="polite"></p>
+  <div class="list" id="list"></div>
+  <p class="note" id="note"></p>
+</main>
+<script>
+// ===== SETTINGS: edit these =====
+const CONFIG = {
+  SHOW_PICKS: false,   // true adds a Picks tab. Pages are public, so leave false if picks are for subscribers.
+  files: {
+    rankings: "output/power_rankings.csv",
+    cover:    "output/cover_stats.csv",
+    games:    "output/sim_results.csv",
+    picks:    "output/recommendations.csv"
+  }
+};
+
+// ==== CORE (pure functions, no page access) ====
+function parseCSV(t){
+  const rows=[];let row=[],f="",q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c==='"'){if(t[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c==='"')q=true;
+    else if(c===','){row.push(f);f=""}
+    else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;row.push(f);f="";if(row.length>1||row[0]!=="")rows.push(row);row=[]}
+    else f+=c}
+  if(f!==""||row.length){row.push(f);rows.push(row)}
+  const h=(rows.shift()||[]).map(s=>s.trim());
+  return rows.map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]===undefined?"":r[i]])));
+}
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const N=x=>{const v=parseFloat(x);return isNaN(v)?null:v};
+const f1=(x,d=1)=>{const v=N(x);return v===null?"–":v.toFixed(d)};
+const sgn=(x,d=1)=>{const v=N(x);return v===null?"–":(v>0?"+":"")+v.toFixed(d)};
+const tile=(k,v)=>`<div class="t"><span>${esc(k)}</span><b>${v}</b></div>`;
+
+const SORTS={
+  rankings:[["Overall rank","overall_rank",1],["Offense rank","off_rank",1],["Defense rank","def_rank",1],["Toughest schedule","sos_rank",1],
+    ["Efficiency rank","efficiency_rank",1],["Rated above its efficiency","results_vs_efficiency",-1],["Rated below its efficiency","results_vs_efficiency",1]],
+  cover:[["ATS rank","ats_rank",1],["Best cover %","ats_cover_pct",-1],["Worst cover %","ats_cover_pct",1],["Best avg cover margin","avg_cover_margin",-1],
+    ["Most overs","over_pct",-1],["Most unders","under_pct",-1],["Most points above implied","avg_pts_vs_implied",-1],["Team total over %","team_total_over_pct",-1]],
+  games:[["Kickoff","kickoff_utc",1],["Biggest model favorite","_absmargin",-1],["Highest model total","model_total",-1],["Lowest model total","model_total",1]],
+  picks:[["Model rank","rank",1],["Biggest edge","edge_cents",-1]]
+};
+
+function sortRows(rows,key,dir){
+  const val=r=>key==="_absmargin"?Math.abs(N(r.model_margin_home)??0):key==="kickoff_utc"?r.kickoff_utc:N(r[key]);
+  return rows.slice().sort((a,b)=>{const x=val(a),y=val(b);
+    if(x===null||x===undefined)return 1; if(y===null||y===undefined)return -1;
+    return (x<y?-1:x>y?1:0)*dir});
+}
+
+function divBar(v){const x=N(v)??0,w=Math.min(Math.abs(x)/26,1)*50;
+  return `<span class="div"><i class="${x>=0?"p":"n"}" style="left:${x>=0?50:50-w}%;width:${w}%"></i></span>`}
+
+function rankingRow(r){
+  const gap=N(r.results_vs_efficiency);
+  const gapTxt=gap===null?"":gap>=20?"Rated well above what its efficiency suggests.":gap<=-20?"Rated well below what its efficiency suggests.":"Rating and efficiency are roughly in line.";
+  const rt=N(r.overall_rating);
+  return `<details><summary class="r-row">
+    <span class="rk">${esc(r.overall_rank)}</span>
+    <span class="tm"><b>${esc(r.team)}</b><small>${esc(r.conference)}, ${esc(r.record)}</small></span>
+    <span class="rate">${divBar(r.overall_rating)}<span class="num ${rt>=0?"pos":"neg"}">${sgn(r.overall_rating)}</span></span>
+    <span class="rr dim">Off #${esc(r.off_rank)} &nbsp; Def #${esc(r.def_rank)}</span></summary>
+    <div class="detail">
+      ${tile("Offense rating (rank)",`${sgn(r.off_rating)} (#${esc(r.off_rank)})`)}
+      ${tile("Defense rating (rank)",`${sgn(r.def_rating)} (#${esc(r.def_rank)})`)}
+      ${tile("Schedule strength (rank)",`${sgn(r.sos)} (#${esc(r.sos_rank)})`)}
+      ${tile("Points for / against",`${f1(r.ppg)} / ${f1(r.papg)}`)}
+      ${tile("Avg margin",sgn(r.avg_margin))}
+      ${tile("Last 3 games margin",sgn(r.last3_margin))}
+      ${tile("Offense / defense PPA",`${f1(r.off_ppa,3)} / ${f1(r.def_ppa,3)}`)}
+      ${tile("Success rate off / def",`${f1(N(r.off_success)*100,1)}% / ${f1(N(r.def_success)*100,1)}%`)}
+      ${tile("Explosiveness off / def",`${f1(r.off_explosive,2)} / ${f1(r.def_explosive,2)}`)}
+      ${tile("Efficiency rank",`#${f1(r.efficiency_rank,0)}`)}
+      ${tile("Preseason rating",sgn(r.prior_rating))}
+      <div class="wide">${esc(gapTxt)}</div></div></details>`;
+}
+
+function coverRow(r){
+  const cp=N(r.ats_cover_pct),mg=N(r.avg_cover_margin);
+  return `<details><summary class="c-row">
+    <span class="tm"><b>${esc(r.team)}</b><small>${esc(r.conference)}</small></span>
+    <span class="num">${esc(r.ats_record)}</span>
+    <span class="num ${cp>=60?"pos":cp<=40?"neg":""}">${f1(cp,0)}%</span>
+    <span class="num hide-s ${mg>=0?"pos":"neg"}">${sgn(mg)}</span>
+    <span class="num hide-s">${esc(r.over_record)} <span class="dim">O/U</span></span></summary>
+    <div class="detail">
+      ${tile("Games with lines",esc(r.games_with_lines))}
+      ${tile("Last 3 ATS",esc(r.ats_last3))}
+      ${tile("As favorite",esc(r.ats_as_fav))}
+      ${tile("As underdog",esc(r.ats_as_dog))}
+      ${tile("Home",esc(r.ats_home))}
+      ${tile("Away",esc(r.ats_away))}
+      ${tile("Over / under %",`${f1(r.over_pct,0)}% / ${f1(r.under_pct,0)}%`)}
+      ${tile("Avg total line",f1(r.avg_total_line))}
+      ${tile("Avg actual game total",f1(r.avg_game_total))}
+      ${tile("Avg points scored",f1(r.avg_pts))}
+      ${tile("Avg implied team total",f1(r.avg_implied_team_total))}
+      ${tile("Points vs implied",sgn(r.avg_pts_vs_implied))}
+      ${tile("Team total over %",`${f1(r.team_total_over_pct,0)}%`)}
+      ${tile("Share of total line",`${f1(r.avg_pts_share_of_line_pct)}%`)}
+      ${tile("Share of game points",`${f1(r.avg_pts_share_of_game_pct)}%`)}
+      <div class="wide">Small samples: most teams have 3 to 5 games with lines.</div></div></details>`;
+}
+
+function dayOf(k){return String(k||"").split(" ").slice(0,2).join(" ")}
+function timeOf(k){return String(k||"").split(" ").slice(2).join(" ")}
+function gameRow(g){
+  const hw=N(g.home_win_pct)??50,aw=N(g.away_win_pct)??50;
+  const wx=g.weather==="dome"?"Dome":esc(g.weather||"");
+  const inj=g.injury_notes?`<div class="wide">Injuries: ${esc(g.injury_notes)}</div>`:"";
+  return `<details><summary class="g-row">
+    <span class="dim">${esc(timeOf(g.kickoff))}</span>
+    <span class="mt"><div>${esc(g.away)} <span>#${esc(g.away_rank)}</span></div><div>${esc(g.home)} <span>#${esc(g.home_rank)}</span></div></span>
+    <span class="gx"><b>${esc(g.model_line)}</b><div class="dim">Total ${f1(g.model_total)}</div></span>
+    <span class="gx"><div class="wp" aria-label="Win probability"><i class="a" style="width:${aw}%"></i><i class="h" style="width:${hw}%"></i></div>
+      <div class="wpl"><span>${esc(g.away)} ${f1(aw,0)}%</span><span>${f1(hw,0)}% ${esc(g.home)}</span></div></span></summary>
+    <div class="detail">
+      ${tile("Model line",esc(g.model_line))}
+      ${tile("Model total",f1(g.model_total))}
+      ${tile("Projected score",`${esc(g.away)} ${f1(g.exp_away_pts,0)}, ${esc(g.home)} ${f1(g.exp_home_pts,0)}`)}
+      ${tile("Home win %",`${f1(hw,0)}%`)}
+      ${tile("Margin spread (1 SD)",f1(g.sd_margin))}
+      ${tile("Total spread (1 SD)",f1(g.sd_total))}
+      ${tile("Home field points",f1(g.hfa_pts))}
+      ${tile("Pace factor",f1(g.pace_mult,3))}
+      ${tile("Weather total adj",sgn(g.weather_total_adj,2))}
+      <div class="wide">Weather: ${wx}</div>${inj}</div></details>`;
+}
+
+function pickRow(p){
+  const yes=/YES/.test(p.action||"");
+  return `<details><summary class="p-row">
+    <span class="rk">${esc(p.rank)}</span>
+    <span class="badge ${yes?"yes":"no"}">${esc(p.action)}</span>
+    <span class="tm"><b>${esc(p.bet)}</b><small>${esc(p.game)}</small></span>
+    <span class="num hide-s">${esc(p.price_cents)}c</span>
+    <span class="num pos">+${f1(p.edge_cents)}c</span></summary>
+    <div class="detail">
+      ${tile("Kickoff",esc(p.kickoff))}
+      ${tile("Units",esc(p.units))}
+      ${tile("Contracts / cost",`${esc(p.contracts)} / $${f1(p.cost_dollars,2)}`)}
+      ${tile("Model chance",`${f1(N(p.model_prob)*100,0)}%`)}
+      ${tile("Market chance",`${f1(N(p.market_prob)*100,0)}%`)}
+      <div class="wide">${esc(p.why)} ${esc(p.context)}</div>
+      ${p.flags?`<div class="wide">Check first: ${esc(p.flags)}</div>`:""}
+      <div class="wide">Kalshi market: ${esc(p.market_title)}</div></div></details>`;
+}
+
+function renderList(tab,rows){
+  if(tab==="games"){
+    let out="",last="";
+    for(const g of rows){const d=dayOf(g.kickoff);if(g._grouped&&d!==last){out+=`<div class="day">${esc(d)}</div>`;last=d}out+=gameRow(g)}
+    return out;
+  }
+  const fn={rankings:rankingRow,cover:coverRow,picks:pickRow}[tab];
+  return rows.map(fn).join("");
+}
+// ==== END CORE ====
+
+const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]].concat(CONFIG.SHOW_PICKS?[["picks","Picks"]]:[]);
+const NOTES={
+  rankings:"Rating is the model's points-above-average scale. Tap a team for offense, defense, schedule and efficiency detail.",
+  cover:"ATS means against the spread. Share of total line is a team's average points as a percent of the game's total line.",
+  games:"Model lines come from the simulator and do not use sportsbook lines. Tap a game for projected score, weather and injuries.",
+  picks:"Model output, not a guarantee and not betting advice. Confirm injuries and lineups before betting."
+};
+const state={tab:"rankings",data:{},loaded:{}};
+const $=id=>document.getElementById(id);
+
+async function load(tab){
+  if(state.loaded[tab])return;
+  try{
+    const r=await fetch(CONFIG.files[tab],{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    state.data[tab]=parseCSV(await r.text());
+  }catch(e){state.data[tab]=null}
+  state.loaded[tab]=true;
+}
+function buildControls(){
+  $("sort").innerHTML=SORTS[state.tab].map((s,i)=>`<option value="${i}">${esc(s[0])}</option>`).join("");
+  const rows=state.data[state.tab]||[];
+  const confs=[...new Set(rows.map(r=>r.conference).filter(Boolean))].sort();
+  $("conf").innerHTML=`<option value="">All conferences</option>`+confs.map(c=>`<option>${esc(c)}</option>`).join("");
+  $("conf").style.display=(state.tab==="games"||state.tab==="picks")?"none":"";
+  $("q").value="";
+}
+function render(){
+  const rows0=state.data[state.tab];
+  $("note").textContent=NOTES[state.tab]||"";
+  if(rows0===null){$("status").textContent="";$("list").innerHTML=`<div class="empty">Couldn't load ${esc(CONFIG.files[state.tab])}. Check the file name in CONFIG at the top of index.html and that the file is in the repo.</div>`;return}
+  if(!rows0.length){$("list").innerHTML=`<div class="empty">That file has no rows yet.</div>`;return}
+  const [, key, dir]=SORTS[state.tab][+$("sort").value||0];
+  const q=$("q").value.trim().toLowerCase(),conf=$("conf").value;
+  let rows=rows0.filter(r=>{
+    if(conf&&r.conference!==conf)return false;
+    if(!q)return true;
+    return [r.team,r.away,r.home,r.bet,r.game].some(s=>s&&String(s).toLowerCase().includes(q));
+  });
+  rows=sortRows(rows,key,dir);
+  if(state.tab==="games")rows.forEach(g=>g._grouped=key==="kickoff_utc");
+  $("status").textContent=`${rows.length} ${state.tab==="games"?"games":state.tab==="picks"?"picks":"teams"}`;
+  $("list").innerHTML=rows.length?renderList(state.tab,rows):`<div class="empty">Nothing matches that search.</div>`;
+}
+async function show(tab){
+  state.tab=tab;location.hash=tab;
+  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
+  $("status").textContent="Loading";
+  await load(tab);buildControls();render();
+}
+$("tabs").innerHTML=TABS.map(t=>`<button role="tab" data-t="${t[0]}" aria-selected="false">${t[1]}</button>`).join("");
+$("tabs").onclick=e=>{const b=e.target.closest("button");if(b)show(b.dataset.t)};
+$("sort").onchange=render;$("conf").onchange=render;$("q").oninput=render;
+const start=location.hash.slice(1);
+show(TABS.some(t=>t[0]===start)?start:"rankings");
+</script>
+</body>
+</html>
