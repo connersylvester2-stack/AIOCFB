@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My bets</title>
+<style>
+  /* Theme: change these values to match the rest of your site. */
+  :root {
+    --bg: #0b1220;
+    --panel: #111a2e;
+    --panel-2: #0e1626;
+    --line: #243049;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --good: #4ade80;
+    --bad: #f87171;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+  main { max-width: 1040px; margin: 0 auto; padding: 28px 20px 64px; }
+
+  .top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+  .sub { margin: 4px 0 0; color: var(--muted); font-size: 15px; max-width: 60ch; }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  button, .btn {
+    font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+    border-radius: 6px; padding: 8px 14px; border: 1px solid var(--line);
+    background: transparent; color: var(--text);
+  }
+  button:hover { border-color: var(--muted); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #04121f; }
+  button.primary:hover { filter: brightness(1.08); }
+  button.link { border: 0; padding: 4px 6px; color: var(--muted); font-weight: 500; }
+  button.link:hover { color: var(--text); text-decoration: underline; }
+  button.link.danger:hover { color: var(--bad); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .notice { margin: 16px 0 0; padding: 10px 14px; border: 1px solid #7c5c10; background: #2a2108; color: #fbd38d; border-radius: 6px; font-size: 14px; }
+
+  /* Summary band */
+  .summary { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); margin: 26px 0 8px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat { padding: 16px 18px; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat .label { font-size: 13px; color: var(--muted); }
+  .stat .value { font-size: 22px; font-weight: 700; margin-top: 2px; }
+  .stat.main .value { font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; }
+  .stat .hint { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .pos { color: var(--good); } .neg { color: var(--bad); }
+
+  /* Entry form */
+  h2 { font-size: 18px; margin: 34px 0 12px; }
+  form { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+  .f { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .f label { font-size: 14px; color: var(--muted); }
+  .f .help { font-size: 12.5px; color: var(--muted); }
+  .c5 { grid-column: span 5; } .c7 { grid-column: span 7; } .c3 { grid-column: span 3; }
+  .c2 { grid-column: span 2; } .c4 { grid-column: span 4; }
+  input, select {
+    font: inherit; font-size: 15px; color: var(--text); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; width: 100%; min-width: 0;
+  }
+  input::placeholder { color: #5b6b86; }
+  input[type=date] { color-scheme: dark; }
+  .ticket { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .math { display: flex; gap: 26px; flex-wrap: wrap; }
+  .math div span:first-child { display: block; font-size: 13px; color: var(--muted); }
+  .math .v { font-size: 18px; font-weight: 700; }
+  .actions { display: flex; gap: 8px; }
+  .err { min-height: 1.3em; margin: 10px 0 0; color: var(--bad); font-size: 14px; }
+
+  /* Ledger */
+  .filters { display: flex; gap: 6px; margin: 0 0 10px; }
+  .filters button { padding: 6px 12px; font-weight: 500; color: var(--muted); }
+  .filters button[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: #0c2233; }
+  .tablewrap { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 11px 12px; text-align: left; vertical-align: middle; }
+  thead th { font-size: 13px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); background: var(--panel-2); white-space: nowrap; }
+  tbody tr + tr td { border-top: 1px solid var(--line); }
+  td.r, th.r { text-align: right; }
+  .game { font-weight: 600; } .bet { font-weight: 400; } .notes { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .bet { max-width: 30ch; }
+  select.status { width: auto; padding: 6px 8px; font-size: 14px; font-weight: 600; }
+  select.status.won { color: var(--good); } select.status.lost { color: var(--bad); }
+  select.status.pending { color: var(--accent); } select.status.push { color: var(--muted); }
+  .empty { padding: 34px 20px; text-align: center; color: var(--muted); }
+  .foot { margin-top: 18px; font-size: 13.5px; color: var(--muted); max-width: 70ch; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (max-width: 820px) {
+    .summary { grid-template-columns: 1fr 1fr; }
+    .stat.main { grid-column: 1 / -1; border-bottom: 1px solid var(--line); }
+    .stat:nth-child(2), .stat:nth-child(4) { border-left: 0; }
+    .stat:nth-child(n+4) { border-top: 1px solid var(--line); }
+    .c5, .c7, .c3, .c2, .c4 { grid-column: span 12; }
+    .c3.half, .c2.half { grid-column: span 6; }
+    thead { display: none; }
+    table, tbody, tr, td { display: block; width: 100%; }
+    tbody tr { padding: 12px 14px; }
+    tbody tr + tr { border-top: 1px solid var(--line); }
+    tbody tr + tr td { border-top: 0; }
+    td { padding: 3px 0; text-align: left !important; }
+    td[data-label]::before { content: attr(data-label) "  "; color: var(--muted); font-size: 13px; }
+    td.gamecell::before, td.actions-cell::before { content: none; }
+    .bet { max-width: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) { button { transition: border-color .12s, filter .12s; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div>
+      <h1>My bets</h1>
+      <p class="sub">The bets you place yourself. They are saved in this browser only; nothing is uploaded or shared.</p>
+    </div>
+    <div class="tools">
+      <button type="button" id="exportBtn">Export CSV</button>
+      <button type="button" id="importBtn">Import CSV</button>
+      <input type="file" id="importFile" accept=".csv,text/csv" class="sr" tabindex="-1">
+    </div>
+  </div>
+  <p class="notice" id="storageNotice" hidden>This browser is blocking saved data (private mode?), so your bets will disappear when you close the tab. Export a CSV before you leave.</p>
+
+  <section class="summary" aria-label="Summary" id="summary"></section>
+
+  <h2 id="formTitle">Add a bet</h2>
+  <form id="betForm" novalidate>
+    <div class="grid">
+      <div class="f c5"><label for="game">Game</label><input id="game" list="gameList" autocomplete="off" placeholder="Navy @ Air Force"><datalist id="gameList"></datalist></div>
+      <div class="f c7"><label for="bet">Your bet</label><input id="bet" autocomplete="off" placeholder="Over 48.5 total points (Yes)"></div>
+      <div class="f c3 half"><label for="cost">Cost ($)</label><input id="cost" inputmode="decimal" autocomplete="off" placeholder="5.00"></div>
+      <div class="f c3 half"><label for="payout">Max payout ($)</label><input id="payout" inputmode="decimal" autocomplete="off" placeholder="10.00"><span class="help">On Kalshi, each contract pays $1 if it wins.</span></div>
+      <div class="f c2"><label for="date">Date</label><input id="date" type="date"></div>
+      <div class="f c4"><label for="notes">Notes (optional)</label><input id="notes" autocomplete="off" placeholder="Ticker, source, reason"></div>
+    </div>
+    <div class="ticket">
+      <div class="math" aria-live="polite">
+        <div><span>Profit if it wins</span><span class="v num" id="mathProfit">-</span></div>
+        <div><span>Payout per $1 risked</span><span class="v num" id="mathMult">-</span></div>
+        <div><span>Break-even win rate</span><span class="v num" id="mathImplied">-</span></div>
+      </div>
+      <div class="actions">
+        <button type="button" id="cancelEdit" hidden>Cancel</button>
+        <button type="submit" class="primary" id="submitBtn">Add bet</button>
+      </div>
+    </div>
+    <p class="err" id="formError" role="alert"></p>
+  </form>
+
+  <h2>Your bets</h2>
+  <div class="filters" role="group" aria-label="Filter bets" id="filters"></div>
+  <div class="tablewrap">
+    <table>
+      <caption class="sr">Bets you placed</caption>
+      <thead><tr>
+        <th>Date</th><th>Game and bet</th><th class="r">Cost</th><th class="r">Max payout</th><th class="r">If it wins</th><th>Result</th><th class="r">P&amp;L</th><th><span class="sr">Actions</span></th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden>No bets yet. Add your first one above.</div>
+  </div>
+  <p class="foot">Clearing your browser data erases this list, and it does not sync between devices. Export a CSV now and then, and import it on another device to move your bets over. Keep the CSV out of your public repository.</p>
+</main>
+
+<script>
+/*LOGIC-START*/
+const Logic = (() => {
+  const STATUSES = ['pending', 'won', 'lost', 'push'];
+
+  function toCents(v) {
+    const s = String(v == null ? '' : v).replace(/[$,\s]/g, '');
+    if (s === '') return NaN;
+    const n = Number(s);
+    return Number.isFinite(n) ? Math.round(n * 100) : NaN;
+  }
+  function money(c, signed) {
+    if (c == null || Number.isNaN(c)) return '-';
+    const abs = (Math.abs(c) / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    if (c < 0) return '-' + abs;
+    return signed && c > 0 ? '+' + abs : abs;
+  }
+  function pnl(b) {
+    if (b.status === 'won') return b.payout - b.cost;
+    if (b.status === 'lost') return -b.cost;
+    if (b.status === 'push') return 0;
+    return null;
+  }
+  function validate(f) {
+    if (!String(f.game || '').trim()) return 'Enter the game.';
+    if (!String(f.bet || '').trim()) return 'Enter the bet you placed.';
+    const cost = toCents(f.cost), payout = toCents(f.payout);
+    if (!(cost > 0)) return 'Enter a cost greater than $0.';
+    if (!(payout > 0)) return 'Enter the max payout.';
+    if (payout <= cost) return 'Max payout must be more than the cost.';
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(f.date || ''))) return 'Pick a date.';
+    return '';
+  }
+  function summarize(bets) {
+    const s = { open: 0, atRisk: 0, potentialPayout: 0, w: 0, l: 0, p: 0, net: 0, staked: 0 };
+    for (const b of bets) {
+      if (b.status === 'pending') { s.open++; s.atRisk += b.cost; s.potentialPayout += b.payout; continue; }
+      const v = pnl(b);
+      s.net += v;
+      if (b.status === 'won') { s.w++; s.staked += b.cost; }
+      else if (b.status === 'lost') { s.l++; s.staked += b.cost; }
+      else s.p++;
+    }
+    s.potentialProfit = s.potentialPayout - s.atRisk;
+    s.roi = s.staked > 0 ? s.net / s.staked : null;
+    return s;
+  }
+  const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+  // ---- CSV ----
+  const CSV_HEAD = ['id', 'date', 'game', 'bet', 'cost', 'max_payout', 'status', 'pnl', 'notes'];
+  const guard = (t) => (/^[=+\-@\t\r]/.test(t) ? "'" + t : t);       // stop spreadsheet formulas
+  const unguard = (t) => (/^'[=+\-@\t\r]/.test(t) ? t.slice(1) : t);
+  const q = (t) => { t = String(t == null ? '' : t); return /[",\n\r]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
+  const dollars = (c) => (c / 100).toFixed(2);
+
+  function toCSV(bets) {
+    const lines = [CSV_HEAD.join(',')];
+    for (const b of bets) {
+      const v = pnl(b);
+      lines.push([b.id, b.date, q(guard(b.game)), q(guard(b.bet)), dollars(b.cost), dollars(b.payout), b.status,
+        v == null ? '' : dollars(v), q(guard(b.notes || ''))].join(','));
+    }
+    return lines.join('\n') + '\n';
+  }
+  function parseCSV(text) {
+    const rows = []; let row = [], cur = '', inQ = false;
+    text = String(text).replace(/^\uFEFF/, '');
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQ) {
+        if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else inQ = false; }
+        else cur += ch;
+      } else if (ch === '"') inQ = true;
+      else if (ch === ',') { row.push(cur); cur = ''; }
+      else if (ch === '\n' || ch === '\r') {
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+        row.push(cur); cur = '';
+        if (row.some((c) => c !== '')) rows.push(row);
+        row = [];
+      } else cur += ch;
+    }
+    row.push(cur);
+    if (row.some((c) => c !== '')) rows.push(row);
+    return rows;
+  }
+  function fromCSV(text) {
+    const rows = parseCSV(text);
+    if (rows.length < 2) return { bets: [], skipped: 0 };
+    const head = rows[0].map((h) => h.trim().toLowerCase().replace(/[\s-]+/g, '_'));
+    const col = (...names) => head.findIndex((h) => names.includes(h));
+    const ix = { id: col('id'), date: col('date'), game: col('game'), bet: col('bet', 'your_bet'),
+      cost: col('cost'), payout: col('max_payout', 'maxpayout', 'payout'), status: col('status', 'result'), notes: col('notes') };
+    const bets = []; let skipped = 0;
+    for (const r of rows.slice(1)) {
+      const get = (k) => (ix[k] >= 0 ? (r[ix[k]] || '').trim() : '');
+      const f = { game: unguard(get('game')), bet: unguard(get('bet')), cost: get('cost'), payout: get('payout'), date: get('date') };
+      if (validate(f)) { skipped++; continue; }
+      const status = STATUSES.includes(get('status').toLowerCase()) ? get('status').toLowerCase() : 'pending';
+      bets.push({ id: get('id') || newId(), date: f.date, game: f.game, bet: f.bet, cost: toCents(f.cost),
+        payout: toCents(f.payout), status, notes: unguard(get('notes')) });
+    }
+    return { bets, skipped };
+  }
+  return { STATUSES, toCents, money, pnl, validate, summarize, newId, toCSV, fromCSV, parseCSV };
+})();
+/*LOGIC-END*/
+</script>
+
+<script>
+(() => {
+  const L = Logic;
+  const KEY = 'cfb_my_bets_v1';
+  const $ = (id) => document.getElementById(id);
+  let bets = [], filter = 'all', editingId = null, storageOK = true;
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      const data = raw ? JSON.parse(raw) : [];
+      return Array.isArray(data) ? data : [];
+    } catch (e) { storageOK = false; return []; }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(bets)); storageOK = true; }
+    catch (e) { storageOK = false; }
+    $('storageNotice').hidden = storageOK;
+  }
+  const todayStr = () => {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  };
+  const fmtDate = (s) => {
+    const [y, m, d] = s.split('-').map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+  const el = (tag, attrs, text) => {
+    const n = document.createElement(tag);
+    for (const k in (attrs || {})) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    return n;
+  };
+  const signClass = (c) => (c > 0 ? 'pos' : c < 0 ? 'neg' : '');
+
+  function renderSummary() {
+    const s = L.summarize(bets);
+    const box = $('summary'); box.textContent = '';
+    const mk = (label, value, hint, cls, main) => {
+      const d = el('div', { class: 'stat' + (main ? ' main' : '') });
+      d.append(el('div', { class: 'label' }, label), el('div', { class: 'value num ' + (cls || '') }, value));
+      if (hint) d.append(el('div', { class: 'hint' }, hint));
+      box.append(d);
+    };
+    const settled = s.w + s.l + s.p;
+    mk('Net profit and loss', L.money(s.net, true), settled ? settled + ' settled' : 'No settled bets yet', signClass(s.net), true);
+    mk('At risk now', L.money(s.atRisk), s.open + (s.open === 1 ? ' open bet' : ' open bets'));
+    mk('Payout if all win', L.money(s.potentialPayout), s.open ? L.money(s.potentialProfit, true) + ' profit' : '');
+    mk('Record', s.w + '-' + s.l + (s.p ? '-' + s.p : ''), 'Won-lost' + (s.p ? '-push' : ''));
+    mk('Return on cost', s.roi == null ? '-' : (s.roi >= 0 ? '+' : '') + (s.roi * 100).toFixed(1) + '%', 'Settled bets, pushes excluded', s.roi == null ? '' : signClass(s.net));
+  }
+
+  function renderFilters() {
+    const counts = { all: bets.length, pending: bets.filter((b) => b.status === 'pending').length };
+    counts.settled = counts.all - counts.pending;
+    const f = $('filters'); f.textContent = '';
+    for (const [k, label] of [['all', 'All'], ['pending', 'Open'], ['settled', 'Settled']]) {
+      const b = el('button', { type: 'button', 'aria-pressed': String(filter === k) }, label + ' ' + counts[k]);
+      b.addEventListener('click', () => { filter = k; render(); });
+      f.append(b);
+    }
+  }
+
+  function renderRows() {
+    const tbody = $('rows'); tbody.textContent = '';
+    const list = bets.filter((b) => filter === 'all' || (filter === 'pending' ? b.status === 'pending' : b.status !== 'pending'))
+      .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) || (a.id < b.id ? 1 : -1));
+    $('empty').hidden = list.length > 0;
+    $('empty').textContent = bets.length ? 'No bets match this filter.' : 'No bets yet. Add your first one above.';
+    for (const b of list) {
+      const tr = el('tr');
+      const td = (cls, label) => { const t = el('td', Object.assign({ class: cls || '' }, label ? { 'data-label': label } : {})); tr.append(t); return t; };
+      td('num', 'Date').textContent = fmtDate(b.date);
+      const g = td('gamecell'); g.append(el('div', { class: 'game' }, b.game), el('div', { class: 'bet' }, b.bet));
+      if (b.notes) g.append(el('div', { class: 'notes' }, b.notes));
+      td('r num', 'Cost').textContent = L.money(b.cost);
+      td('r num', 'Max payout').textContent = L.money(b.payout);
+      td('r num', 'If it wins').textContent = L.money(b.payout - b.cost, true);
+      const rc = td('', 'Result');
+      const sel = el('select', { class: 'status ' + b.status, 'aria-label': 'Result for ' + b.game });
+      for (const [v, t] of [['pending', 'Open'], ['won', 'Won'], ['lost', 'Lost'], ['push', 'Push']]) {
+        const o = el('option', { value: v }, t); if (v === b.status) o.selected = true; sel.append(o);
+      }
+      sel.addEventListener('change', () => { b.status = sel.value; save(); render(); });
+      rc.append(sel);
+      const p = L.pnl(b);
+      td('r num ' + (p == null ? '' : signClass(p)), 'P&L').textContent = p == null ? '-' : L.money(p, true);
+      const ac = td('r actions-cell');
+      const ed = el('button', { type: 'button', class: 'link', 'aria-label': 'Edit ' + b.game }, 'Edit');
+      const del = el('button', { type: 'button', class: 'link danger', 'aria-label': 'Delete ' + b.game }, 'Delete');
+      ed.addEventListener('click', () => startEdit(b.id));
+      del.addEventListener('click', () => {
+        if (confirm('Delete this bet?\n' + b.game + ' - ' + b.bet)) { bets = bets.filter((x) => x.id !== b.id); if (editingId === b.id) resetForm(); save(); render(); }
+      });
+      ac.append(ed, del);
+      tbody.append(tr);
+    }
+  }
+
+  function renderGames() {
+    const dl = $('gameList'); dl.textContent = '';
+    [...new Set(bets.map((b) => b.game))].forEach((g) => dl.append(el('option', { value: g })));
+  }
+  function render() { renderSummary(); renderFilters(); renderRows(); renderGames(); }
+
+  // ---- form ----
+  const val = (id) => $(id).value;
+  function updateMath() {
+    const c = L.toCents(val('cost')), p = L.toCents(val('payout'));
+    const ok = c > 0 && p > c;
+    $('mathProfit').textContent = ok ? L.money(p - c, true) : '-';
+    $('mathMult').textContent = ok ? ((p - c) / c).toFixed(2) + 'x' : '-';
+    $('mathImplied').textContent = ok ? (c / p * 100).toFixed(1) + '%' : '-';
+  }
+  function resetForm() {
+    editingId = null;
+    for (const id of ['game', 'bet', 'cost', 'payout', 'notes']) $(id).value = '';
+    $('date').value = todayStr();
+    $('formTitle').textContent = 'Add a bet'; $('submitBtn').textContent = 'Add bet'; $('cancelEdit').hidden = true;
+    $('formError').textContent = ''; updateMath();
+  }
+  function startEdit(id) {
+    const b = bets.find((x) => x.id === id); if (!b) return;
+    editingId = id;
+    $('game').value = b.game; $('bet').value = b.bet; $('cost').value = (b.cost / 100).toFixed(2);
+    $('payout').value = (b.payout / 100).toFixed(2); $('date').value = b.date; $('notes').value = b.notes || '';
+    $('formTitle').textContent = 'Edit bet'; $('submitBtn').textContent = 'Save changes'; $('cancelEdit').hidden = false;
+    $('formError').textContent = ''; updateMath();
+    $('game').scrollIntoView({ block: 'center' }); $('game').focus();
+  }
+  $('betForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = { game: val('game'), bet: val('bet'), cost: val('cost'), payout: val('payout'), date: val('date') };
+    const err = L.validate(f);
+    $('formError').textContent = err;
+    if (err) return;
+    const rec = { game: f.game.trim(), bet: f.bet.trim(), cost: L.toCents(f.cost), payout: L.toCents(f.payout), date: f.date, notes: val('notes').trim() };
+    if (editingId) { Object.assign(bets.find((x) => x.id === editingId), rec); }
+    else bets.push(Object.assign({ id: L.newId(), status: 'pending' }, rec));
+    save(); resetForm(); render(); $('game').focus();
+  });
+  $('cancelEdit').addEventListener('click', resetForm);
+  $('cost').addEventListener('input', updateMath); $('payout').addEventListener('input', updateMath);
+
+  // ---- export / import ----
+  $('exportBtn').addEventListener('click', () => {
+    const blob = new Blob([L.toCSV(bets)], { type: 'text/csv;charset=utf-8' });
+    const a = el('a', { href: URL.createObjectURL(blob), download: 'my_bets_' + todayStr() + '.csv' });
+    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  $('importBtn').addEventListener('click', () => $('importFile').click());
+  $('importFile').addEventListener('change', async (e) => {
+    const file = e.target.files[0]; e.target.value = ''; if (!file) return;
+    const { bets: incoming, skipped } = L.fromCSV(await file.text());
+    const have = new Set(bets.map((b) => b.id)); let added = 0;
+    for (const b of incoming) { if (!have.has(b.id)) { bets.push(b); have.add(b.id); added++; } }
+    save(); render();
+    $('formError').textContent = '';
+    alert('Imported ' + added + ' bet' + (added === 1 ? '' : 's') + (incoming.length - added ? ', ' + (incoming.length - added) + ' already here' : '') + (skipped ? ', ' + skipped + ' skipped (missing or invalid fields)' : '') + '.');
+  });
+
+  bets = load(); $('storageNotice').hidden = storageOK; resetForm(); render();
+})();
+</script>
+</body>
+</html>
