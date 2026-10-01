@@ -93,6 +93,11 @@ summary::-webkit-details-marker{display:none}
 .bact select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 10px;min-height:36px}
 .b-row{grid-template-columns:62px 1.6fr 90px 100px}
 .badge.open{background:var(--track);color:var(--muted)}
+.sybar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.sybar .st{flex:1 1 240px;color:var(--muted);font-size:14px}
+.st.good{color:var(--pos)} .st.bad{color:var(--neg)}
+.steps{margin:8px 0 14px;padding-left:20px;color:var(--muted);font-size:14px}
+.steps li{margin-bottom:4px}
 @media (max-width:700px){
   .r-row{grid-template-columns:34px 1fr 1.1fr} .r-row .rr{display:none}
   .c-row{grid-template-columns:1.3fr .8fr .7fr} .c-row .hide-s{display:none}
@@ -321,7 +326,14 @@ const Bets=(()=>{
     }
     return {bets,skipped};
   };
-  return {ST,toCents,money,pnl,validate,summarize,newId,toCSV,fromCSV};
+  // ---- sync helpers: each record carries updatedAt; deletes leave a small tombstone so they reach other devices
+  const merge=(local,remote)=>{const m=new Map();for(const r of remote||[])if(r&&r.id)m.set(r.id,r);
+    for(const l of local||[]){const r=m.get(l.id);if(!r||(l.updatedAt||0)>=(r.updatedAt||0))m.set(l.id,l)}return [...m.values()]};
+  const purge=(all,now)=>all.filter(b=>!(b.deleted&&now-(b.updatedAt||0)>15552000000));
+  const same=(a,b)=>{const k=x=>JSON.stringify([...x].sort((p,q)=>p.id<q.id?-1:p.id>q.id?1:0));return k(a)===k(b)};
+  const sane=r=>!!r&&typeof r.id==="string"&&r.id!==""&&(r.deleted===true||(typeof r.game==="string"&&typeof r.bet==="string"
+    &&Number.isFinite(r.cost)&&Number.isFinite(r.payout)&&r.cost>0&&r.payout>r.cost&&/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))&&ST.includes(r.status)));
+  return {ST,toCents,money,pnl,validate,summarize,newId,toCSV,fromCSV,merge,purge,same,sane};
 })();
 const fmtDay=s=>{const [y,m,d]=String(s).split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-US",{month:"short",day:"numeric"})};
 
@@ -354,13 +366,13 @@ const NOTES={
   cover:"ATS means against the spread. Share of total line is a team's average points as a percent of the game's total line.",
   games:"Model lines come from the simulator and do not use sportsbook lines. Tap a game for projected score, weather and injuries.",
   picks:"Model output, not a guarantee and not betting advice. Confirm injuries and lineups before betting.",
-  bets:"Your own bets, saved only in this browser. On Kalshi each contract pays $1 if it wins. Export a CSV to back them up or move them to another device."
+  bets:"Your own bets. They are saved on this device, and shared between your devices if you set up sync. On Kalshi each contract pays $1 if it wins."
 };
 const state={tab:"rankings",data:{},loaded:{}};
 const $=id=>document.getElementById(id);
 
 async function load(tab){
-  if(tab==="bets"){B.list=bLoad();state.data.bets=B.list;state.loaded.bets=true;return}
+  if(tab==="bets"){B.all=bLoad();bRefresh();state.loaded.bets=true;if(Sy.cfg&&Date.now()-Sy.last>5000)setTimeout(syncNow,0);return}
   if(state.loaded[tab])return;
   try{
     const r=await fetch(CONFIG.files[tab],{cache:"no-store"});
@@ -383,6 +395,7 @@ function render(){
   const rows0=state.data[state.tab];
   $("note").textContent=NOTES[state.tab]||"";
   if(state.tab==="bets")renderSum();
+  const keep=state.tab==="bets"?[...document.querySelectorAll("#list details[open]")].map(d=>d.dataset.id):[];
   if(rows0===null){$("status").textContent="";$("list").innerHTML=`<div class="empty">Couldn't load ${esc(CONFIG.files[state.tab])}. Check the file name in CONFIG at the top of index.html and that the file is in the repo.</div>`;return}
   if(!rows0.length){$("status").textContent="";$("list").innerHTML=`<div class="empty">${state.tab==="bets"?"No bets yet. Add your first one above.":"That file has no rows yet."}</div>`;return}
   const [, key, dir]=SORTS[state.tab][+$("sort").value||0];
@@ -396,7 +409,7 @@ function render(){
   if(state.tab==="games")rows.forEach(g=>g._grouped=key==="kickoff_utc");
   $("status").textContent=`${rows.length} ${state.tab==="games"?"games":state.tab==="picks"?"picks":state.tab==="bets"?"bets":"teams"}`;
   $("list").innerHTML=rows.length?renderList(state.tab,rows):`<div class="empty">Nothing matches that search.</div>`;
-  if(state.tab==="bets"&&B.open){const d=document.querySelector(`#list details[data-id="${CSS.escape(B.open)}"]`);if(d)d.open=true;B.open=null}
+  if(state.tab==="bets"){for(const id of keep.concat(B.open?[B.open]:[])){const d=document.querySelector(`#list details[data-id="${CSS.escape(id)}"]`);if(d)d.open=true}B.open=null}
 }
 async function show(tab){
   state.tab=tab;location.hash=tab;
@@ -409,22 +422,98 @@ $("tabs").innerHTML=TABS.map(t=>`<button role="tab" data-t="${t[0]}" aria-select
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)show(b.dataset.t)};
 $("sort").onchange=render;$("conf").onchange=render;$("q").oninput=render;
 
-// ---- My bets: page code (saving, form, export and import) ----
-const BKEY="cfb_my_bets_v1";
-const B={list:[],editing:null,ok:true,built:false,open:null};
+// ---- My bets: page code (saving, sync, form, export and import) ----
+const BKEY="cfb_my_bets_v1",SKEY="cfb_my_bets_sync_v1";
+const B={all:[],editing:null,ok:true,built:false,open:null};
+const Sy={cfg:null,busy:false,again:false,timer:null,last:0};
+const live=()=>B.all.filter(b=>!b.deleted);
+function bRefresh(){state.data.bets=live()}
 function bLoad(){try{const d=JSON.parse(localStorage.getItem(BKEY)||"[]");return Array.isArray(d)?d:[]}catch(e){B.ok=false;return []}}
-function bSave(){try{localStorage.setItem(BKEY,JSON.stringify(B.list));B.ok=true}catch(e){B.ok=false}if($("bWarn"))$("bWarn").hidden=B.ok}
+function bSave(){try{localStorage.setItem(BKEY,JSON.stringify(B.all));B.ok=true}catch(e){B.ok=false}if($("bWarn"))$("bWarn").hidden=B.ok}
+function bChanged(){bSave();bRefresh();if(Sy.cfg){clearTimeout(Sy.timer);Sy.timer=setTimeout(syncNow,1200);setSy("Saved here, syncing in a moment","")}}
 const todayStr=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+
+// ---- sync through a private GitHub repository ----
+const b64e=t=>{let bin="";new TextEncoder().encode(t).forEach(c=>bin+=String.fromCharCode(c));return btoa(bin)};
+const b64d=t=>new TextDecoder().decode(Uint8Array.from(atob(String(t).replace(/\s/g,"")),c=>c.charCodeAt(0)));
+const ghFetch=(url,token,opt={})=>fetch(url,{cache:"no-store",...opt,headers:{Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",Authorization:"Bearer "+token,...(opt.body?{"Content-Type":"application/json"}:{})}});
+const fileUrl=()=>"https://api.github.com/repos/"+Sy.cfg.repo+"/contents/"+Sy.cfg.path.split("/").map(encodeURIComponent).join("/");
+async function ghError(r){
+  let m="";try{m=(await r.json()).message||""}catch(e){}
+  if(r.status===401)return new Error("GitHub rejected the token. It may be wrong or expired.");
+  if(r.status===403)return new Error("The token isn't allowed to do that. Give it Contents: Read and write on this repository."+(m?" ("+m+")":""));
+  if(r.status===404)return new Error("Repository not found. Check the name, and that the token can access it.");
+  return new Error("GitHub returned "+r.status+(m?": "+m:"")+".");
+}
+function sLoad(){try{Sy.cfg=JSON.parse(localStorage.getItem(SKEY)||"null")}catch(e){Sy.cfg=null}}
+function setSy(text,tone){const el=$("syState");if(!el)return;el.textContent=text;el.className="st"+(tone?" "+tone:"")}
+function syIdle(){
+  if(!Sy.cfg)return setSy("Not syncing. Your bets are saved on this device only.","");
+  setSy(Sy.last?"Synced at "+new Date(Sy.last).toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}):"Sync is on","good");
+}
+function syUi(){
+  $("syNow").hidden=!Sy.cfg;$("syOff").hidden=!Sy.cfg;$("syCfg").textContent=Sy.cfg?"Sync settings":"Set up sync";
+  if(Sy.cfg){$("syRepo").value=Sy.cfg.repo;$("syPath").value=Sy.cfg.path;$("syTok").placeholder="Saved on this device"}
+  syIdle();
+}
+async function connect(repo,path,token){
+  repo=String(repo).trim().replace(/^https?:\/\/github\.com\//,"").replace(/\.git$/,"").replace(/\/+$/,"");
+  path=(String(path).trim()||"bets.json").replace(/^\/+/,"");
+  token=String(token).trim();
+  if(!/^[\w.-]+\/[\w.-]+$/.test(repo))throw new Error("Enter the repository as owner/name, for example your-name/my-bets-data.");
+  if(!token)throw new Error("Paste the access token.");
+  const r=await ghFetch("https://api.github.com/repos/"+repo,token);
+  if(!r.ok)throw await ghError(r);
+  const j=await r.json();
+  if(!j.private)throw new Error("That repository is public, so anyone could read your bets. Create a private repository and use that one.");
+  if(j.permissions&&j.permissions.push===false)throw new Error("This token can only read that repository. Give it Contents: Read and write.");
+  Sy.cfg={repo,path,token};localStorage.setItem(SKEY,JSON.stringify(Sy.cfg));
+}
+async function syncNow(){
+  if(!Sy.cfg)return;
+  if(Sy.busy){Sy.again=true;return}
+  Sy.busy=true;clearTimeout(Sy.timer);setSy("Syncing","");
+  let failed=false;
+  try{
+    for(let i=0;i<3;i++){
+      const g=await ghFetch(fileUrl(),Sy.cfg.token);
+      let sha=null,remote=[];
+      if(g.status!==404){
+        if(!g.ok)throw await ghError(g);
+        const j=await g.json();sha=j.sha;
+        try{const d=JSON.parse(b64d(j.content));remote=(Array.isArray(d.bets)?d.bets:[]).filter(Bets.sane)}
+        catch(e){throw new Error("The sync file isn't valid. Open it on GitHub and fix or delete it.")}
+      }
+      const merged=Bets.purge(Bets.merge(B.all,remote),Date.now());
+      B.all=merged;bSave();bRefresh();
+      if(sha!==null&&Bets.same(merged,remote))break;
+      const body={message:"Update bets",content:b64e(JSON.stringify({version:1,bets:merged},null,1))};
+      if(sha)body.sha=sha;
+      const p=await ghFetch(fileUrl(),Sy.cfg.token,{method:"PUT",body:JSON.stringify(body)});
+      if(p.ok)break;
+      if((p.status===409||p.status===422)&&i<2)continue;
+      throw await ghError(p);
+    }
+    Sy.last=Date.now();syIdle();
+  }catch(e){
+    failed=true;
+    setSy("Sync failed: "+(e instanceof TypeError?"no connection. Your changes are saved here and will sync when you are back online.":e.message),"bad");
+  }finally{Sy.busy=false}
+  if(state.tab==="bets")render();
+  if(Sy.again&&!failed){Sy.again=false;syncNow()}
+}
+
+// ---- display ----
 function renderSum(){
   if(!B.built)return;
-  const s=Bets.summarize(B.list),st=s.w+s.l+s.p;
+  const L=live(),s=Bets.summarize(L),st=s.w+s.l+s.p;
   const cell=(k,v,h,c,big)=>`<div${big?' class="big"':""}><span>${k}</span><b class="${c||""}">${v}</b>${h?`<span>${h}</span>`:""}</div>`;
   $("bSum").innerHTML=cell("Net profit and loss",Bets.money(s.net,true),st?st+" settled":"No settled bets yet",s.net>0?"pos":s.net<0?"neg":"",true)
     +cell("At risk now",Bets.money(s.atRisk),s.open+(s.open===1?" open bet":" open bets"))
     +cell("Payout if all win",Bets.money(s.potentialPayout),s.open?Bets.money(s.potentialProfit,true)+" profit":"")
     +cell("Record",s.w+"-"+s.l+(s.p?"-"+s.p:""),"Won-lost"+(s.p?"-push":""))
     +cell("Return on cost",s.roi==null?"–":(s.roi>=0?"+":"")+(s.roi*100).toFixed(1)+"%","Pushes excluded",s.roi==null?"":s.net>=0?"pos":"neg");
-  $("bGames").innerHTML=[...new Set(B.list.map(b=>b.game))].map(g=>`<option value="${esc(g)}">`).join("");
+  $("bGames").innerHTML=[...new Set(L.map(b=>b.game))].map(g=>`<option value="${esc(g)}">`).join("");
 }
 function bMath(){
   const c=Bets.toCents($("bCost").value),p=Bets.toCents($("bPay").value),ok=c>0&&p>c;
@@ -437,7 +526,7 @@ function bReset(){
   $("bDate").value=todayStr();$("bSubmit").textContent="Add bet";$("bCancel").hidden=true;$("bErr").textContent="";bMath();
 }
 function bEdit(id){
-  const b=B.list.find(x=>x.id===id);if(!b)return;
+  const b=B.all.find(x=>x.id===id&&!x.deleted);if(!b)return;
   B.editing=id;
   $("bGame").value=b.game;$("bBet").value=b.bet;$("bCost").value=(b.cost/100).toFixed(2);$("bPay").value=(b.payout/100).toFixed(2);
   $("bDate").value=b.date;$("bNotes").value=b.notes||"";$("bSubmit").textContent="Save changes";$("bCancel").hidden=false;$("bErr").textContent="";bMath();
@@ -445,9 +534,26 @@ function bEdit(id){
 }
 function buildExtra(){
   if(B.built)return;
-  B.built=true;
+  B.built=true;sLoad();
   $("extra").innerHTML=`
     <div class="btools"><button type="button" class="btn small" id="bExport">Export CSV</button><button type="button" class="btn small" id="bImport">Import CSV</button><input type="file" id="bFile" accept=".csv,text/csv" hidden></div>
+    <div class="sybar"><span class="st" id="syState" aria-live="polite"></span><button type="button" class="btn small" id="syNow" hidden>Sync now</button><button type="button" class="btn small" id="syCfg">Set up sync</button></div>
+    <form class="bx" id="syForm" hidden novalidate>
+      <p class="note" style="margin-top:0">Sync keeps your bets in a private GitHub repository, so every device you connect shows the same list. Do steps 1 and 2 once, then step 3 on each device.</p>
+      <ol class="steps">
+        <li>On GitHub, create a new repository. Set it to Private and tick "Add a README file".</li>
+        <li>In GitHub, open Settings, Developer settings, Personal access tokens, Fine-grained tokens, and generate a new token. Choose "Only select repositories" and pick that repository. Under Permissions, set Contents to Read and write.</li>
+        <li>Paste the repository name and the token below.</li>
+      </ol>
+      <div class="bf">
+        <div class="s5"><label for="syRepo">Private repository</label><input id="syRepo" placeholder="your-name/my-bets-data" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+        <div class="s3"><label for="syPath">File name</label><input id="syPath" value="bets.json" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+        <div class="s4"><label for="syTok">Access token</label><input id="syTok" type="password" placeholder="github_pat_..." autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      </div>
+      <p class="note">The token is saved in this browser only, never in the site or the repository. Anyone who can use this browser can use the token, so give it access to that one repository and revoke it on GitHub if a device is lost.</p>
+      <div class="bact"><button type="submit" class="btn primary" id="syGo">Connect and sync</button><button type="button" class="btn danger" id="syOff" hidden>Disconnect this device</button></div>
+      <p class="berr" id="syErr" role="alert"></p>
+    </form>
     <p class="note" id="bWarn" hidden>This browser is blocking saved data, so your bets will vanish when you close the tab. Export a CSV before you leave.</p>
     <div class="bsum" id="bSum"></div>
     <form class="bx" id="bForm" novalidate>
@@ -463,41 +569,60 @@ function buildExtra(){
         <div class="bact"><button type="button" class="btn" id="bCancel" hidden>Cancel</button><button type="submit" class="btn primary" id="bSubmit">Add bet</button></div></div>
       <p class="berr" id="bErr" role="alert"></p>
     </form>`;
+  syUi();
   $("bForm").addEventListener("submit",e=>{
     e.preventDefault();
     const f={game:$("bGame").value,bet:$("bBet").value,cost:$("bCost").value,payout:$("bPay").value,date:$("bDate").value};
     const err=Bets.validate(f);$("bErr").textContent=err;if(err)return;
     const rec={game:f.game.trim(),bet:f.bet.trim(),cost:Bets.toCents(f.cost),payout:Bets.toCents(f.payout),date:f.date,notes:$("bNotes").value.trim()};
-    if(B.editing){Object.assign(B.list.find(x=>x.id===B.editing),rec);B.open=B.editing}
-    else B.list.push(Object.assign({id:Bets.newId(),status:"pending"},rec));
-    bSave();bReset();render();$("bGame").focus();
+    if(B.editing){Object.assign(B.all.find(x=>x.id===B.editing),rec,{updatedAt:Date.now()});B.open=B.editing}
+    else B.all.push(Object.assign({id:Bets.newId(),status:"pending",updatedAt:Date.now()},rec));
+    bChanged();bReset();render();$("bGame").focus();
   });
   $("bCancel").onclick=bReset;
   $("bCost").oninput=bMath;$("bPay").oninput=bMath;
   $("bExport").onclick=()=>{
-    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([Bets.toCSV(B.list)],{type:"text/csv;charset=utf-8"}));
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([Bets.toCSV(live())],{type:"text/csv;charset=utf-8"}));
     a.download="my_bets_"+todayStr()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
   };
   $("bImport").onclick=()=>$("bFile").click();
   $("bFile").onchange=async e=>{
     const file=e.target.files[0];e.target.value="";if(!file)return;
     const {bets,skipped}=Bets.fromCSV(await file.text());
-    const have=new Set(B.list.map(b=>b.id));let added=0;
-    for(const b of bets)if(!have.has(b.id)){B.list.push(b);have.add(b.id);added++}
-    bSave();render();
+    const at=new Map(B.all.map((b,i)=>[b.id,i]));let added=0;
+    for(const b of bets){const i=at.get(b.id),rec=Object.assign({},b,{updatedAt:Date.now()});
+      if(i===undefined){B.all.push(rec);at.set(b.id,B.all.length-1);added++}else if(B.all[i].deleted){B.all[i]=rec;added++}}
+    bChanged();render();
     alert("Imported "+added+" bet"+(added===1?"":"s")+(bets.length-added?", "+(bets.length-added)+" already here":"")+(skipped?", "+skipped+" skipped (missing or invalid fields)":"")+".");
   };
   $("list").addEventListener("change",e=>{
     const sel=e.target.closest("select[data-result]");if(!sel)return;
-    const b=B.list.find(x=>x.id===sel.dataset.result);if(!b)return;
-    b.status=sel.value;B.open=b.id;bSave();render();
+    const b=B.all.find(x=>x.id===sel.dataset.result&&!x.deleted);if(!b)return;
+    b.status=sel.value;b.updatedAt=Date.now();B.open=b.id;bChanged();render();
   });
   $("list").addEventListener("click",e=>{
     const ed=e.target.closest("button[data-edit]");if(ed){bEdit(ed.dataset.edit);return}
     const dl=e.target.closest("button[data-del]");
-    if(dl){const b=B.list.find(x=>x.id===dl.dataset.del);
-      if(b&&confirm("Delete this bet?\n"+b.game+" - "+b.bet)){B.list=B.list.filter(x=>x.id!==b.id);state.data.bets=B.list;if(B.editing===b.id)bReset();bSave();render()}}
+    if(dl){const b=B.all.find(x=>x.id===dl.dataset.del&&!x.deleted);
+      if(b&&confirm("Delete this bet?\n"+b.game+" - "+b.bet)){
+        B.all=B.all.map(x=>x.id===b.id?{id:b.id,deleted:true,updatedAt:Date.now()}:x);
+        if(B.editing===b.id)bReset();bChanged();render()}}
   });
+  // sync controls
+  $("syCfg").onclick=()=>{$("syForm").hidden=!$("syForm").hidden;if(!$("syForm").hidden)$("syRepo").focus()};
+  $("syNow").onclick=syncNow;
+  $("syForm").addEventListener("submit",async e=>{
+    e.preventDefault();$("syErr").textContent="";$("syGo").disabled=true;
+    try{await connect($("syRepo").value,$("syPath").value,$("syTok").value||(Sy.cfg&&Sy.cfg.token)||"");$("syTok").value="";$("syForm").hidden=true;syUi();await syncNow()}
+    catch(err){$("syErr").textContent=err instanceof TypeError?"Couldn't reach GitHub. Check your connection and try again.":err.message}
+    finally{$("syGo").disabled=false}
+  });
+  $("syOff").onclick=()=>{
+    if(!confirm("Disconnect this device? Your bets stay on this device and in your GitHub repository."))return;
+    localStorage.removeItem(SKEY);Sy.cfg=null;Sy.last=0;clearTimeout(Sy.timer);$("syTok").value="";$("syTok").placeholder="github_pat_...";$("syForm").hidden=true;syUi();
+  };
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden&&Sy.cfg&&state.tab==="bets"&&Date.now()-Sy.last>30000)syncNow()});
+  window.addEventListener("online",()=>{if(Sy.cfg&&state.tab==="bets")syncNow()});
   bReset();
 }
 const start=location.hash.slice(1);
