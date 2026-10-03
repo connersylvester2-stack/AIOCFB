@@ -1,8 +1,8 @@
 Fetching Kalshi markets...
-  winner (KXNCAAFGAME): 446 open markets, 108 matched your games, 108 priced
-  spread (KXNCAAFSPREAD): 2415 open markets, 1565 matched your games, 1565 priced
-  total  (KXNCAAFTOTAL): 1745 open markets, 1026 matched your games, 1026 priced
-  4606 open markets checked, 2699 matched to your simulated games.
+  winner (KXNCAAFGAME): 528 open markets, 100 matched your games, 100 priced
+  spread (KXNCAAFSPREAD): 2396 open markets, 1467 matched your games, 1467 priced
+  total  (KXNCAAFTOTAL): 1726 open markets, 961 matched your games, 961 priced
+  4650 open markets checked, 2528 matched to your simulated games.
 
 ==============================================================================
  THE MODEL'S PICK ON EVERY GAME
@@ -11,652 +11,604 @@ Fetching Kalshi markets...
  LEAN = model likes it, but the edge is small
  PASS = the model's side is priced too high to be worth it
 
-Pittsburgh @ Virginia Tech   (Fri 10/02 6:00 PM)
-  Model: Pittsburgh -3.6, total 59.7   |   Virginia Tech wins 41%, Pittsburgh wins 59%
-  WINNER: Pittsburgh to WIN the game
-          BUY NO @ 29c | model 59% | edge +28.7c   [BET]
-          on Kalshi: "Virginia Tech wins" -> tap NO
-  SPREAD: Virginia Tech wins by 2 or fewer, or loses
-          BUY NO @ 33c | model 64% | edge +29.8c   [BET]
-          on Kalshi: "Virginia Tech wins by over 2.5 points" -> tap NO
-  TOTAL : OVER 58.5 total points
-          BUY YES @ 50c | model 54% | edge +1.8c   [LEAN]
-          on Kalshi: "Over 58.5 points scored" -> tap YES
-
-Liberty @ Delaware   (Fri 10/02 6:00 PM)
-  Model: Liberty -1.7, total 46.9   |   Delaware wins 46%, Liberty wins 54%
-  WINNER: Liberty to WIN the game
-          BUY YES @ 75c | model 54% | edge -22.1c   [PASS]
-          on Kalshi: "Liberty wins" -> tap YES
-  SPREAD: Liberty wins by 2 or fewer, or loses
-          BUY NO @ 30c | model 51% | edge +20.0c   [BET]
-          on Kalshi: "Liberty wins by over 2.5 points" -> tap NO
-  TOTAL : UNDER 49.5 total points
-          BUY NO @ 56c | model 56% | edge -1.7c   [PASS]
-          on Kalshi: "Over 49.5 points scored" -> tap NO
-
-Penn State @ Northwestern   (Fri 10/02 7:00 PM)
-  Model: Penn State -2.0, total 44.3   |   Northwestern wins 45%, Penn State wins 55%
-  WINNER: Penn State to WIN the game
-          BUY YES @ 57c | model 55% | edge -3.6c   [PASS]
-          on Kalshi: "Penn St. wins" -> tap YES
-  SPREAD: Penn State wins by 2 or fewer, or loses
-          BUY NO @ 49c | model 50% | edge -0.5c   [PASS]
-          on Kalshi: "Penn St. wins by over 2.5 points" -> tap NO
-  TOTAL : UNDER 46.5 total points
-          BUY NO @ 49c | model 54% | edge +3.5c   [LEAN]
-          on Kalshi: "Over 46.5 points scored" -> tap NO
-
-Memphis @ Charlotte   (Sat 10/03 10:00 AM)
-  Model: Memphis -21.5, total 54.7   |   Charlotte wins 8%, Memphis wins 92%
-  WINNER: Memphis to WIN the game
-          BUY YES @ 92c | model 92% | edge -0.4c   [PASS]
-          on Kalshi: "Memphis wins" -> tap YES
-  SPREAD: Memphis wins by MORE than 17.5
-          BUY YES @ 56c | model 60% | edge +2.3c   [LEAN]
-          on Kalshi: "Memphis wins by over 17.5 points" -> tap YES
-  TOTAL : OVER 54.5 total points
-          BUY YES @ 43c | model 51% | edge +6.1c   [BET]
-          on Kalshi: "Full Game: Over 54.5 points scored" -> tap YES
-
 Boston College @ SMU   (Sat 10/03 11:00 AM)
-  Model: SMU -19.1, total 47.9   |   SMU wins 89%, Boston College wins 11%
+  Model: SMU -19.0, total 47.2   |   SMU wins 89%, Boston College wins 11%
   WINNER: SMU to WIN the game
-          BUY YES @ 92c | model 89% | edge -3.3c   [PASS]
+          BUY YES @ 88c | model 89% | edge +0.4c   [LEAN]
           on Kalshi: "SMU wins" -> tap YES
-  SPREAD: SMU wins by 20 or fewer, or loses
-          BUY NO @ 45c | model 54% | edge +7.6c   [BET]
-          on Kalshi: "SMU wins by over 20.5 points" -> tap NO
-  TOTAL : UNDER 49.5 total points
-          BUY NO @ 34c | model 53% | edge +17.6c   [BET]
-          on Kalshi: "Over 49.5 points scored" -> tap NO
+  SPREAD: SMU wins by MORE than 13.5
+          BUY YES @ 27c | model 64% | edge +35.4c   [BET]
+          on Kalshi: "SMU wins by over 13.5 points" -> tap YES
+  TOTAL : OVER 43.5 total points
+          BUY YES @ 55c | model 59% | edge +2.3c   [LEAN]
+          on Kalshi: "Over 43.5 points scored" -> tap YES
 
 Stanford @ Wake Forest   (Sat 10/03 11:00 AM)
-  Model: Wake Forest -14.8, total 51.8   |   Wake Forest wins 83%, Stanford wins 17%
-  WINNER: Wake Forest to WIN the game
-          BUY YES @ 84c | model 83% | edge -1.8c   [PASS]
-          on Kalshi: "Wake Forest wins" -> tap YES
-  SPREAD: Wake Forest wins by MORE than 14.5
-          BUY YES @ 49c | model 51% | edge +0.0c   [LEAN]
-          on Kalshi: "Wake Forest wins by over 14.5 points" -> tap YES
+  Model: Wake Forest -14.8, total 52.1   |   Wake Forest wins 83%, Stanford wins 17%
+  WINNER: Stanford to WIN the game
+          BUY YES @ 1c | model 17% | edge +15.9c   [LEAN]   (thin market or extreme price)
+          on Kalshi: "Stanford wins" -> tap YES
+  SPREAD: Wake Forest wins by 42 or fewer, or loses
+          BUY NO @ 53c | model 97% | edge +42.1c   [BET]
+          on Kalshi: "Wake Forest wins by over 42.5 points" -> tap NO
   TOTAL : UNDER 52.5 total points
-          BUY NO @ 46c | model 52% | edge +3.8c   [LEAN]
+          BUY NO @ 26c | model 50% | edge +23.0c   [BET]
           on Kalshi: "Over 52.5 points scored" -> tap NO
 
+Middle Tennessee @ Kansas   (Sat 10/03 11:00 AM)
+  Model: Kansas -11.1, total 49.1   |   Kansas wins 77%, Middle Tennessee wins 23%
+  WINNER: Middle Tennessee to WIN the game
+          BUY YES @ 1c | model 23% | edge +22.4c   [LEAN]   (thin market or extreme price)
+          on Kalshi: "Middle Tennessee wins" -> tap YES
+  SPREAD: Kansas wins by 38 or fewer, or loses
+          BUY NO @ 26c | model 96% | edge +69.1c   [BET]
+          on Kalshi: "Kansas wins by over 38.5 points" -> tap NO
+  TOTAL : OVER 48.5 total points
+          BUY YES @ 37c | model 52% | edge +12.9c   [BET]
+          on Kalshi: "Full Game: Over 48.5 points scored" -> tap YES
+
+UCF @ Houston   (Sat 10/03 11:00 AM)
+  Model: Houston -6.3, total 55.7   |   Houston wins 66%, UCF wins 34%
+  WINNER: Houston to WIN the game
+          BUY YES @ 55c | model 66% | edge +9.1c   [BET]
+          on Kalshi: "Houston wins" -> tap YES
+  SPREAD: Houston wins by MORE than 5.5
+          BUY YES @ 26c | model 52% | edge +24.8c   [BET]
+          on Kalshi: "Houston wins by over 5.5 points" -> tap YES
+  TOTAL : OVER 51.5 total points
+          BUY YES @ 27c | model 60% | edge +31.7c   [BET]
+          on Kalshi: "Over 51.5 points scored" -> tap YES
+
+West Virginia @ Iowa State   (Sat 10/03 11:00 AM)
+  Model: Iowa State -10.4, total 54.3   |   Iowa State wins 75%, West Virginia wins 25%
+  WINNER: Iowa State to WIN the game
+          BUY YES @ 56c | model 75% | edge +17.1c   [BET]
+          on Kalshi: "Iowa St. wins" -> tap YES
+  SPREAD: Iowa State wins by MORE than 6.5
+          BUY YES @ 28c | model 60% | edge +30.3c   [BET]
+          on Kalshi: "Iowa St. wins by over 6.5 points" -> tap YES
+  TOTAL : UNDER 65.5 total points
+          BUY NO @ 34c | model 75% | edge +39.4c   [BET]
+          on Kalshi: "Over 65.5 points scored" -> tap NO
+
 Syracuse @ UConn   (Sat 10/03 11:00 AM)
-  Model: UConn -7.4, total 56.1   |   UConn wins 69%, Syracuse wins 31%
+  Model: UConn -7.4, total 55.9   |   UConn wins 68%, Syracuse wins 32%
   WINNER: UConn to WIN the game
-          BUY NO @ 32c | model 69% | edge +35.2c   [BET]
+          BUY NO @ 7c | model 68% | edge +61.0c   [LEAN]   (thin market or extreme price)
           on Kalshi: "Syracuse wins" -> tap NO
-  SPREAD: Syracuse wins by 2 or fewer, or loses
-          BUY NO @ 36c | model 73% | edge +35.8c   [BET]
-          on Kalshi: "Syracuse wins by over 2.5 points" -> tap NO
-  TOTAL : OVER 55.5 total points
-          BUY YES @ 37c | model 52% | edge +13.4c   [BET]
-          on Kalshi: "Over 55.5 points scored" -> tap YES
+  SPREAD: Syracuse wins by 7 or fewer, or loses
+          BUY NO @ 26c | model 83% | edge +55.5c   [BET]
+          on Kalshi: "Syracuse wins by over 7.5 points" -> tap NO
+  TOTAL : UNDER 68.5 total points
+          BUY NO @ 38c | model 77% | edge +37.8c   [BET]
+          on Kalshi: "Over 68.5 points scored" -> tap NO
 
 Michigan @ Minnesota   (Sat 10/03 11:00 AM)
-  Model: Michigan -2.5, total 43.2   |   Minnesota wins 43%, Michigan wins 57%
+  Model: Michigan -2.5, total 43.5   |   Minnesota wins 44%, Michigan wins 56%
   WINNER: Michigan to WIN the game
-          BUY YES @ 67c | model 57% | edge -11.9c   [PASS]
-          on Kalshi: "Michigan wins" -> tap YES
-  SPREAD: Michigan wins by 5 or fewer, or loses
-          BUY NO @ 47c | model 57% | edge +8.5c   [BET]
-          on Kalshi: "Michigan wins by over 5.5 points" -> tap NO
-  TOTAL : OVER 41.5 total points
-          BUY YES @ 55c | model 54% | edge -2.6c   [PASS]
-          on Kalshi: "Over 41.5 points scored" -> tap YES
+          BUY NO @ 37c | model 56% | edge +17.7c   [BET]
+          on Kalshi: "Minnesota wins" -> tap NO
+  SPREAD: Minnesota wins by 1 or fewer, or loses
+          BUY NO @ 38c | model 59% | edge +19.3c   [BET]
+          on Kalshi: "Minnesota wins by over 1.5 points" -> tap NO
+  TOTAL : OVER 42.5 total points
+          BUY YES @ 54c | model 53% | edge -2.9c   [PASS]
+          on Kalshi: "Over 42.5 points scored" -> tap YES
 
 Navy @ Air Force   (Sat 10/03 11:00 AM)
   Model: Navy -0.8, total 61.3   |   Air Force wins 48%, Navy wins 52%
   WINNER: Navy to WIN the game
-          BUY YES @ 43c | model 52% | edge +7.3c   [BET]
+          BUY YES @ 20c | model 52% | edge +31.3c   [BET]
           on Kalshi: "Navy wins" -> tap YES
-  SPREAD: Air Force wins by 1 or fewer, or loses
-          BUY NO @ 45c | model 55% | edge +8.0c   [BET]
-          on Kalshi: "Air Force wins by over 1.5 points" -> tap NO
-  TOTAL : OVER 52.5 total points
-          BUY YES @ 33c | model 70% | edge +35.5c   [BET]
-          on Kalshi: "Over 52.5 points scored" -> tap YES
+  SPREAD: Air Force wins by 3 or fewer, or loses
+          BUY NO @ 27c | model 61% | edge +32.2c   [BET]
+          on Kalshi: "Air Force wins by over 3.5 points" -> tap NO
+  TOTAL : OVER 36.5 total points
+          BUY YES @ 32c | model 93% | edge +59.5c   [BET]
+          on Kalshi: "Over 36.5 points scored" -> tap YES
 
 Alabama @ Mississippi State   (Sat 10/03 11:00 AM)
-  Model: Alabama -8.7, total 74.7   |   Mississippi State wins 28%, Alabama wins 72%
+  Model: Alabama -8.7, total 74.7   |   Mississippi State wins 29%, Alabama wins 71%
   WINNER: Alabama to WIN the game
-          BUY NO @ 67c | model 72% | edge +3.0c   [LEAN]
+          BUY NO @ 98c | model 71% | edge -27.0c   [PASS]   (thin market or extreme price)
           on Kalshi: "Mississippi St. wins" -> tap NO
-  SPREAD: Alabama wins by MORE than 7.5
-          BUY YES @ 41c | model 53% | edge +10.4c   [BET]
-          on Kalshi: "Alabama wins by over 7.5 points" -> tap YES
-  TOTAL : OVER 69.5 total points
-          BUY YES @ 29c | model 63% | edge +32.2c   [BET]
-          on Kalshi: "Over 69.5 points scored" -> tap YES
-
-Middle Tennessee @ Kansas   (Sat 10/03 11:00 AM)
-  Model: Kansas -11.1, total 49.0   |   Kansas wins 76%, Middle Tennessee wins 24%
-  WINNER: Kansas to WIN the game
-          BUY NO @ 91c | model 76% | edge -15.3c   [PASS]
-          on Kalshi: "Middle Tennessee wins" -> tap NO
-  SPREAD: Kansas wins by 13 or fewer, or loses
-          BUY NO @ 35c | model 57% | edge +20.6c   [BET]
-          on Kalshi: "Kansas wins by over 13.5 points" -> tap NO
-  TOTAL : UNDER 50.5 total points
-          BUY NO @ 50c | model 53% | edge +1.3c   [LEAN]
-          on Kalshi: "Full Game: Over 50.5 points scored" -> tap NO
-
-West Virginia @ Iowa State   (Sat 10/03 11:00 AM)
-  Model: Iowa State -10.3, total 54.4   |   Iowa State wins 75%, West Virginia wins 25%
-  WINNER: Iowa State to WIN the game
-          BUY YES @ 59c | model 75% | edge +14.6c   [BET]
-          on Kalshi: "Iowa St. wins" -> tap YES
-  SPREAD: Iowa State wins by MORE than 7.5
-          BUY YES @ 34c | model 57% | edge +21.7c   [BET]
-          on Kalshi: "Iowa St. wins by over 7.5 points" -> tap YES
-  TOTAL : OVER 54.5 total points
-          BUY YES @ 46c | model 50% | edge +2.4c   [LEAN]
-          on Kalshi: "Over 54.5 points scored" -> tap YES
-
-UCF @ Houston   (Sat 10/03 11:00 AM)
-  Model: Houston -6.3, total 55.9   |   Houston wins 66%, UCF wins 34%
-  WINNER: Houston to WIN the game
-          BUY YES @ 80c | model 66% | edge -15.4c   [PASS]
-          on Kalshi: "Houston wins" -> tap YES
-  SPREAD: Houston wins by 6 or fewer, or loses
-          BUY NO @ 36c | model 51% | edge +13.1c   [BET]
-          on Kalshi: "Houston wins by over 6.5 points" -> tap NO
-  TOTAL : OVER 51.5 total points
-          BUY YES @ 48c | model 61% | edge +10.9c   [BET]
-          on Kalshi: "Over 51.5 points scored" -> tap YES
+  SPREAD: Alabama wins by 14 or fewer, or loses
+          BUY NO @ 28c | model 65% | edge +35.3c   [BET]
+          on Kalshi: "Alabama wins by over 14.5 points" -> tap NO
+  TOTAL : UNDER 78.5 total points
+          BUY NO @ 30c | model 59% | edge +27.7c   [BET]
+          on Kalshi: "Over 78.5 points scored" -> tap NO
 
 Notre Dame @ North Carolina   (Sat 10/03 11:00 AM)
-  Model: Notre Dame -22.6, total 40.7   |   North Carolina wins 7%, Notre Dame wins 93%
-  WINNER: Notre Dame to WIN the game
-          BUY NO @ 94c | model 93% | edge -1.4c   [PASS]   (thin market or extreme price)
-          on Kalshi: "North Carolina wins" -> tap NO
+  Model: Notre Dame -22.5, total 40.6   |   North Carolina wins 7%, Notre Dame wins 93%
+  WINNER: North Carolina to WIN the game
+          BUY YES @ 1c | model 7% | edge +6.2c   [LEAN]   (thin market or extreme price)
+          on Kalshi: "North Carolina wins" -> tap YES
   SPREAD: Notre Dame wins by MORE than 21.5
-          BUY YES @ 47c | model 50% | edge +1.4c   [LEAN]
+          BUY YES @ 27c | model 50% | edge +21.7c   [BET]
           on Kalshi: "Notre Dame wins by over 21.5 points" -> tap YES
-  TOTAL : UNDER 42.5 total points
-          BUY NO @ 39c | model 52% | edge +11.6c   [BET]
-          on Kalshi: "Over 42.5 points scored" -> tap NO
+  TOTAL : UNDER 63.5 total points
+          BUY NO @ 48c | model 91% | edge +41.7c   [BET]
+          on Kalshi: "Over 63.5 points scored" -> tap NO
 
 Michigan State @ Wisconsin   (Sat 10/03 11:30 AM)
-  Model: Wisconsin -4.5, total 37.6   |   Wisconsin wins 62%, Michigan State wins 38%
+  Model: Wisconsin -4.0, total 37.8   |   Wisconsin wins 60%, Michigan State wins 40%
   WINNER: Wisconsin to WIN the game
-          BUY YES @ 77c | model 62% | edge -16.4c   [PASS]
+          BUY YES @ 99c | model 60% | edge -39.0c   [PASS]   (thin market or extreme price)
           on Kalshi: "Wisconsin wins" -> tap YES
-  SPREAD: Wisconsin wins by 5 or fewer, or loses
-          BUY NO @ 38c | model 52% | edge +12.5c   [BET]
-          on Kalshi: "Wisconsin wins by over 5.5 points" -> tap NO
+  SPREAD: Wisconsin wins by 16 or fewer, or loses
+          BUY NO @ 25c | model 80% | edge +53.3c   [BET]
+          on Kalshi: "Wisconsin wins by over 16.5 points" -> tap NO
   TOTAL : UNDER 39.5 total points
-          BUY NO @ 41c | model 54% | edge +11.5c   [BET]
+          BUY NO @ 38c | model 54% | edge +14.0c   [BET]
           on Kalshi: "Over 39.5 points scored" -> tap NO
 
 Vanderbilt @ Georgia   (Sat 10/03 11:45 AM)
-  Model: Georgia -18.2, total 61.6   |   Georgia wins 88%, Vanderbilt wins 12%
+  Model: Georgia -18.6, total 61.6   |   Georgia wins 88%, Vanderbilt wins 12%
   WINNER: Georgia to WIN the game
-          BUY NO @ 96c | model 88% | edge -8.5c   [PASS]   (thin market or extreme price)
+          BUY NO @ 97c | model 88% | edge -8.8c   [PASS]   (thin market or extreme price)
           on Kalshi: "Vanderbilt wins" -> tap NO
-  SPREAD: Georgia wins by 23 or fewer, or loses
-          BUY NO @ 43c | model 64% | edge +19.2c   [BET]
-          on Kalshi: "Georgia wins by over 23.5 points" -> tap NO
-  TOTAL : OVER 59.5 total points
-          BUY YES @ 27c | model 55% | edge +27.0c   [BET]
-          on Kalshi: "Over 59.5 points scored" -> tap YES
-
-Western Michigan @ Buffalo   (Sat 10/03 12:00 PM)
-  Model: Western Michigan -13.3, total 44.9   |   Buffalo wins 20%, Western Michigan wins 80%
-  WINNER: Western Michigan to WIN the game
-          BUY YES @ 84c | model 80% | edge -4.6c   [PASS]
-          on Kalshi: "Western Michigan wins" -> tap YES
-  SPREAD: Western Michigan wins by MORE than 10.5
-          BUY YES @ 55c | model 57% | edge -0.0c   [PASS]
-          on Kalshi: "Western Michigan wins by over 10.5 points" -> tap YES
-  TOTAL : UNDER 45.5 total points
-          BUY NO @ 49c | model 51% | edge +0.3c   [LEAN]
-          on Kalshi: "Full Game: Over 45.5 points scored" -> tap NO
-
-Toledo @ Ball State   (Sat 10/03 1:00 PM)
-  Model: Toledo -19.4, total 61.6   |   Ball State wins 10%, Toledo wins 90%
-  WINNER: Toledo to WIN the game
-          BUY NO @ 91c | model 90% | edge -1.9c   [PASS]
-          on Kalshi: "Ball St. wins" -> tap NO
-  SPREAD: Toledo wins by 20 or fewer, or loses
-          BUY NO @ 48c | model 54% | edge +3.9c   [LEAN]
-          on Kalshi: "Toledo wins by over 20.5 points" -> tap NO
-  TOTAL : OVER 52.5 total points
-          BUY YES @ 47c | model 71% | edge +22.5c   [BET]
-          on Kalshi: "Over 52.5 points scored" -> tap YES
-
-Old Dominion @ Georgia State   (Sat 10/03 2:30 PM)
-  Model: Georgia State -3.3, total 57.5   |   Georgia State wins 58%, Old Dominion wins 42%
-  WINNER: Georgia State to WIN the game
-          BUY NO @ 56c | model 58% | edge +0.2c   [LEAN]
-          on Kalshi: "Old Dominion wins" -> tap NO
-  SPREAD: Old Dominion wins by 2 or fewer, or loses
-          BUY NO @ 60c | model 63% | edge +1.4c   [LEAN]
-          on Kalshi: "Old Dominion wins by over 2.5 points" -> tap NO
-  TOTAL : OVER 52.5 total points
-          BUY YES @ 48c | model 62% | edge +12.7c   [BET]
-          on Kalshi: "Over 52.5 points scored" -> tap YES
-
-California @ UNLV   (Sat 10/03 2:30 PM)
-  Model: UNLV -8.1, total 44.0   |   UNLV wins 70%, California wins 30%
-  WINNER: UNLV to WIN the game
-          BUY YES @ 55c | model 70% | edge +13.7c   [BET]
-          on Kalshi: "UNLV wins" -> tap YES
-  SPREAD: UNLV wins by MORE than 3.5
-          BUY YES @ 42c | model 63% | edge +18.9c   [BET]
-          on Kalshi: "UNLV wins by over 3.5 points" -> tap YES
-  TOTAL : UNDER 49.5 total points
-          BUY NO @ 39c | model 63% | edge +22.7c   [BET]
-          on Kalshi: "Over 49.5 points scored" -> tap NO
-
-Florida @ Missouri   (Sat 10/03 2:30 PM)
-  Model: Florida -2.9, total 63.4   |   Missouri wins 42%, Florida wins 58%
-  WINNER: Florida to WIN the game
-          BUY NO @ 67c | model 58% | edge -10.8c   [PASS]
-          on Kalshi: "Missouri wins" -> tap NO
-  SPREAD: Florida wins by 3 or fewer, or loses
-          BUY NO @ 44c | model 51% | edge +4.8c   [LEAN]
-          on Kalshi: "Florida wins by over 3.5 points" -> tap NO
+  SPREAD: Georgia wins by 20 or fewer, or loses
+          BUY NO @ 52c | model 55% | edge +1.6c   [LEAN]
+          on Kalshi: "Georgia wins by over 20.5 points" -> tap NO
   TOTAL : OVER 60.5 total points
-          BUY YES @ 43c | model 57% | edge +12.7c   [BET]
+          BUY YES @ 44c | model 52% | edge +6.7c   [BET]
           on Kalshi: "Over 60.5 points scored" -> tap YES
 
-Louisville @ NC State   (Sat 10/03 2:30 PM)
-  Model: Louisville -1.1, total 69.6   |   NC State wins 47%, Louisville wins 53%
-  WINNER: Louisville to WIN the game
-          BUY YES @ 61c | model 53% | edge -10.0c   [PASS]
-          on Kalshi: "Louisville wins" -> tap YES
-  SPREAD: Louisville wins by 2 or fewer, or loses
-          BUY NO @ 44c | model 53% | edge +6.9c   [BET]
-          on Kalshi: "Louisville wins by over 2.5 points" -> tap NO
-  TOTAL : OVER 59.5 total points
-          BUY YES @ 44c | model 73% | edge +27.4c   [BET]
-          on Kalshi: "Over 59.5 points scored" -> tap YES
+Western Michigan @ Buffalo   (Sat 10/03 12:00 PM)
+  Model: Western Michigan -13.9, total 44.9   |   Buffalo wins 18%, Western Michigan wins 82%
+  WINNER: Western Michigan to WIN the game
+          BUY YES @ 65c | model 81% | edge +14.9c   [BET]
+          on Kalshi: "Western Michigan wins" -> tap YES
+  SPREAD: Western Michigan wins by MORE than 7.5
+          BUY YES @ 29c | model 65% | edge +35.0c   [BET]
+          on Kalshi: "Western Michigan wins by over 7.5 points" -> tap YES
+  TOTAL : UNDER 46.5 total points
+          BUY NO @ 49c | model 54% | edge +3.4c   [LEAN]
+          on Kalshi: "Full Game: Over 46.5 points scored" -> tap NO
 
-Akron @ Central Michigan   (Sat 10/03 2:30 PM)
-  Model: Central Michigan -8.2, total 41.2   |   Central Michigan wins 70%, Akron wins 30%
-  WINNER: Central Michigan to WIN the game
-          BUY YES @ 69c | model 70% | edge -0.4c   [PASS]
-          on Kalshi: "Central Michigan wins" -> tap YES
-  SPREAD: Central Michigan wins by MORE than 7.5
-          BUY YES @ 46c | model 52% | edge +3.9c   [LEAN]
-          on Kalshi: "Central Michigan wins by over 7.5 points" -> tap YES
-  TOTAL : UNDER 41.5 total points
-          BUY NO @ 35c | model 51% | edge +14.2c   [BET]
-          on Kalshi: "Over 41.5 points scored" -> tap NO
+Toledo @ Ball State   (Sat 10/03 1:00 PM)
+  Model: Toledo -19.0, total 61.8   |   Ball State wins 11%, Toledo wins 89%
+  WINNER: Toledo to WIN the game
+          BUY YES @ 87c | model 89% | edge +1.6c   [LEAN]
+          on Kalshi: "Toledo wins" -> tap YES
+  SPREAD: Toledo wins by MORE than 17.5
+          BUY YES @ 42c | model 54% | edge +10.2c   [BET]
+          on Kalshi: "Toledo wins by over 17.5 points" -> tap YES
+  TOTAL : OVER 61.5 total points
+          BUY YES @ 30c | model 51% | edge +19.3c   [BET]
+          on Kalshi: "Over 61.5 points scored" -> tap YES
+
+Old Dominion @ Georgia State   (Sat 10/03 2:30 PM)
+  Model: Georgia State -3.2, total 57.3   |   Georgia State wins 58%, Old Dominion wins 42%
+  WINNER: Georgia State to WIN the game
+          BUY NO @ 56c | model 58% | edge +0.6c   [LEAN]
+          on Kalshi: "Old Dominion wins" -> tap NO
+  SPREAD: Old Dominion wins by 2 or fewer, or loses
+          BUY NO @ 59c | model 64% | edge +3.0c   [LEAN]
+          on Kalshi: "Old Dominion wins by over 2.5 points" -> tap NO
+  TOTAL : OVER 55.5 total points
+          BUY YES @ 41c | model 54% | edge +11.7c   [BET]
+          on Kalshi: "Over 55.5 points scored" -> tap YES
+
+Virginia @ Florida State   (Sat 10/03 2:30 PM)
+  Model: Virginia -2.0, total 51.1   |   Florida State wins 45%, Virginia wins 55%
+  WINNER: Virginia to WIN the game
+          BUY YES @ 52c | model 55% | edge +1.3c   [LEAN]
+          on Kalshi: "Virginia wins" -> tap YES
+  SPREAD: Florida State wins by 1 or fewer, or loses
+          BUY NO @ 54c | model 58% | edge +2.1c   [LEAN]
+          on Kalshi: "Florida St. wins by over 1.5 points" -> tap NO
+  TOTAL : UNDER 54.5 total points
+          BUY NO @ 57c | model 58% | edge -1.1c   [PASS]
+          on Kalshi: "Over 54.5 points scored" -> tap NO
 
 Auburn @ Tennessee   (Sat 10/03 2:30 PM)
-  Model: Tennessee -9.0, total 58.9   |   Tennessee wins 72%, Auburn wins 28%
+  Model: Tennessee -9.1, total 58.9   |   Tennessee wins 72%, Auburn wins 28%
   WINNER: Tennessee to WIN the game
-          BUY NO @ 72c | model 72% | edge -1.3c   [PASS]
-          on Kalshi: "Auburn wins" -> tap NO
+          BUY YES @ 70c | model 72% | edge +0.5c   [LEAN]
+          on Kalshi: "Tennessee wins" -> tap YES
   SPREAD: Tennessee wins by MORE than 7.5
-          BUY YES @ 46c | model 53% | edge +5.6c   [BET]
+          BUY YES @ 43c | model 54% | edge +9.2c   [BET]
           on Kalshi: "Tennessee wins by over 7.5 points" -> tap YES
   TOTAL : OVER 55.5 total points
           BUY YES @ 44c | model 58% | edge +12.1c   [BET]
           on Kalshi: "Over 55.5 points scored" -> tap YES
 
-Wyoming @ North Dakota State   (Sat 10/03 2:30 PM)
-  Model: North Dakota State -22.2, total 30.1   |   North Dakota State wins 93%, Wyoming wins 7%
-  WINNER: North Dakota State to WIN the game
-          BUY NO @ 90c | model 93% | edge +2.3c   [LEAN]
-          on Kalshi: "Wyoming wins" -> tap NO
-  SPREAD: North Dakota State wins by MORE than 17.5
-          BUY YES @ 48c | model 57% | edge +7.2c   [BET]
-          on Kalshi: "North Dakota St. wins by over 17.5 points" -> tap YES
-  TOTAL : UNDER 40.5 total points
-          BUY NO @ 36c | model 72% | edge +34.1c   [BET]
-          on Kalshi: "Full Game: Over 40.5 points scored" -> tap NO
+Florida @ Missouri   (Sat 10/03 2:30 PM)
+  Model: Florida -2.8, total 63.4   |   Missouri wins 42%, Florida wins 58%
+  WINNER: Florida to WIN the game
+          BUY NO @ 67c | model 58% | edge -10.2c   [PASS]
+          on Kalshi: "Missouri wins" -> tap NO
+  SPREAD: Florida wins by 5 or fewer, or loses
+          BUY NO @ 49c | model 56% | edge +5.0c   [LEAN]
+          on Kalshi: "Florida wins by over 5.5 points" -> tap NO
+  TOTAL : OVER 58.5 total points
+          BUY YES @ 47c | model 62% | edge +13.2c   [BET]
+          on Kalshi: "Over 58.5 points scored" -> tap YES
 
-Ohio State @ Iowa   (Sat 10/03 2:30 PM)
-  Model: Ohio State -9.4, total 44.2   |   Iowa wins 27%, Ohio State wins 73%
-  WINNER: Ohio State to WIN the game
-          BUY YES @ 85c | model 73% | edge -13.1c   [PASS]
-          on Kalshi: "Ohio St. wins" -> tap YES
-  SPREAD: Ohio State wins by 13 or fewer, or loses
-          BUY NO @ 45c | model 61% | edge +14.2c   [BET]
-          on Kalshi: "Ohio St. wins by over 13.5 points" -> tap NO
-  TOTAL : UNDER 44.5 total points
-          BUY NO @ 47c | model 50% | edge +1.7c   [LEAN]
-          on Kalshi: "Over 44.5 points scored" -> tap NO
-
-Bowling Green @ Miami (OH)   (Sat 10/03 2:30 PM)
-  Model: Miami (OH) -17.1, total 41.8   |   Miami (OH) wins 87%, Bowling Green wins 13%
-  WINNER: Miami (OH) to WIN the game
-          BUY YES @ 83c | model 87% | edge +2.7c   [LEAN]
-          on Kalshi: "Miami (OH) wins" -> tap YES
-  SPREAD: Miami (OH) wins by MORE than 14.5
-          BUY YES @ 42c | model 55% | edge +11.6c   [BET]
-          on Kalshi: "Miami (OH) wins by over 14.5 points" -> tap YES
-  TOTAL : UNDER 42.5 total points
-          BUY NO @ 50c | model 51% | edge -0.7c   [PASS]
-          on Kalshi: "Full Game: Over 42.5 points scored" -> tap NO
-
-Ohio @ Kent State   (Sat 10/03 2:30 PM)
-  Model: Ohio -6.0, total 55.8   |   Kent State wins 34%, Ohio wins 66%
-  WINNER: Ohio to WIN the game
-          BUY YES @ 62c | model 66% | edge +2.0c   [LEAN]
-          on Kalshi: "Ohio wins" -> tap YES
-  SPREAD: Ohio wins by MORE than 4.5
-          BUY YES @ 47c | model 55% | edge +6.0c   [BET]
-          on Kalshi: "Ohio wins by over 4.5 points" -> tap YES
-  TOTAL : OVER 53.5 total points
-          BUY YES @ 41c | model 56% | edge +13.2c   [BET]
-          on Kalshi: "Over 53.5 points scored" -> tap YES
-
-Eastern Michigan @ Massachusetts   (Sat 10/03 2:30 PM)
-  Model: Massachusetts -11.0, total 44.2   |   Massachusetts wins 76%, Eastern Michigan wins 24%
-  WINNER: Massachusetts to WIN the game
-          BUY YES @ 67c | model 76% | edge +7.4c   [BET]
-          on Kalshi: "UMass wins" -> tap YES
-  SPREAD: Massachusetts wins by MORE than 7.5
-          BUY YES @ 41c | model 58% | edge +15.7c   [BET]
-          on Kalshi: "UMass wins by over 7.5 points" -> tap YES
-  TOTAL : UNDER 46.5 total points
-          BUY NO @ 44c | model 55% | edge +9.3c   [BET]
-          on Kalshi: "Full Game: Over 46.5 points scored" -> tap NO
-
-Virginia @ Florida State   (Sat 10/03 2:30 PM)
-  Model: Virginia -2.3, total 51.0   |   Florida State wins 43%, Virginia wins 57%
-  WINNER: Virginia to WIN the game
-          BUY YES @ 53c | model 57% | edge +1.8c   [LEAN]
-          on Kalshi: "Virginia wins" -> tap YES
-  SPREAD: Florida State wins by 2 or fewer, or loses
-          BUY NO @ 57c | model 62% | edge +3.0c   [LEAN]
-          on Kalshi: "Florida St. wins by over 2.5 points" -> tap NO
-  TOTAL : UNDER 54.5 total points
-          BUY NO @ 56c | model 58% | edge +0.2c   [LEAN]
-          on Kalshi: "Over 54.5 points scored" -> tap NO
-
-Marshall @ James Madison   (Sat 10/03 2:45 PM)
-  Model: James Madison -27.2, total 61.4   |   James Madison wins 96%, Marshall wins 4%
-  WINNER: James Madison to WIN the game
-          BUY NO @ 90c | model 96% | edge +5.2c   [BET]
-          on Kalshi: "Marshall wins" -> tap NO
-  SPREAD: James Madison wins by MORE than 21.5
-          BUY YES @ 39c | model 64% | edge +23.6c   [BET]
-          on Kalshi: "James Madison wins by over 21.5 points" -> tap YES
+Louisville @ NC State   (Sat 10/03 2:30 PM)
+  Model: Louisville -1.2, total 69.7   |   NC State wins 47%, Louisville wins 53%
+  WINNER: Louisville to WIN the game
+          BUY NO @ 64c | model 53% | edge -12.7c   [PASS]
+          on Kalshi: "NC St. wins" -> tap NO
+  SPREAD: Louisville wins by 2 or fewer, or loses
+          BUY NO @ 40c | model 52% | edge +10.8c   [BET]
+          on Kalshi: "Louisville wins by over 2.5 points" -> tap NO
   TOTAL : OVER 59.5 total points
-          BUY YES @ 40c | model 55% | edge +12.9c   [BET]
+          BUY YES @ 41c | model 73% | edge +30.5c   [BET]
           on Kalshi: "Over 59.5 points scored" -> tap YES
 
+Ohio State @ Iowa   (Sat 10/03 2:30 PM)
+  Model: Ohio State -9.4, total 44.2   |   Iowa wins 26%, Ohio State wins 74%
+  WINNER: Ohio State to WIN the game
+          BUY YES @ 85c | model 74% | edge -11.9c   [PASS]
+          on Kalshi: "Ohio St. wins" -> tap YES
+  SPREAD: Ohio State wins by 13 or fewer, or loses
+          BUY NO @ 44c | model 60% | edge +14.7c   [BET]
+          on Kalshi: "Ohio St. wins by over 13.5 points" -> tap NO
+  TOTAL : UNDER 44.5 total points
+          BUY NO @ 46c | model 51% | edge +2.8c   [LEAN]
+          on Kalshi: "Over 44.5 points scored" -> tap NO
+
+Wyoming @ North Dakota State   (Sat 10/03 2:30 PM)
+  Model: North Dakota State -22.1, total 30.1   |   North Dakota State wins 92%, Wyoming wins 8%
+  WINNER: North Dakota State to WIN the game
+          BUY NO @ 89c | model 93% | edge +2.8c   [LEAN]
+          on Kalshi: "Wyoming wins" -> tap NO
+  SPREAD: North Dakota State wins by MORE than 17.5
+          BUY YES @ 47c | model 56% | edge +7.5c   [BET]
+          on Kalshi: "North Dakota St. wins by over 17.5 points" -> tap YES
+  TOTAL : UNDER 40.5 total points
+          BUY NO @ 38c | model 71% | edge +31.7c   [BET]
+          on Kalshi: "Full Game: Over 40.5 points scored" -> tap NO
+
+California @ UNLV   (Sat 10/03 2:30 PM)
+  Model: UNLV -8.4, total 43.8   |   UNLV wins 71%, California wins 29%
+  WINNER: UNLV to WIN the game
+          BUY YES @ 52c | model 71% | edge +16.9c   [BET]
+          on Kalshi: "UNLV wins" -> tap YES
+  SPREAD: UNLV wins by MORE than 7.5
+          BUY YES @ 28c | model 52% | edge +22.6c   [BET]
+          on Kalshi: "UNLV wins by over 7.5 points" -> tap YES
+  TOTAL : UNDER 49.5 total points
+          BUY NO @ 40c | model 63% | edge +21.5c   [BET]
+          on Kalshi: "Over 49.5 points scored" -> tap NO
+
+Akron @ Central Michigan   (Sat 10/03 2:30 PM)
+  Model: Central Michigan -8.1, total 41.2   |   Central Michigan wins 70%, Akron wins 30%
+  WINNER: Central Michigan to WIN the game
+          BUY YES @ 71c | model 70% | edge -2.2c   [PASS]
+          on Kalshi: "Central Michigan wins" -> tap YES
+  SPREAD: Central Michigan wins by MORE than 7.5
+          BUY YES @ 47c | model 51% | edge +2.2c   [LEAN]
+          on Kalshi: "Central Michigan wins by over 7.5 points" -> tap YES
+  TOTAL : UNDER 41.5 total points
+          BUY NO @ 36c | model 51% | edge +13.1c   [BET]
+          on Kalshi: "Over 41.5 points scored" -> tap NO
+
+Bowling Green @ Miami (OH)   (Sat 10/03 2:30 PM)
+  Model: Miami (OH) -17.1, total 41.6   |   Miami (OH) wins 87%, Bowling Green wins 13%
+  WINNER: Miami (OH) to WIN the game
+          BUY YES @ 80c | model 87% | edge +5.6c   [BET]
+          on Kalshi: "Miami (OH) wins" -> tap YES
+  SPREAD: Miami (OH) wins by MORE than 14.5
+          BUY YES @ 40c | model 56% | edge +13.9c   [BET]
+          on Kalshi: "Miami (OH) wins by over 14.5 points" -> tap YES
+  TOTAL : OVER 41.5 total points
+          BUY YES @ 50c | model 51% | edge -0.6c   [PASS]
+          on Kalshi: "Full Game: Over 41.5 points scored" -> tap YES
+
+Eastern Michigan @ Massachusetts   (Sat 10/03 2:30 PM)
+  Model: Massachusetts -11.1, total 44.2   |   Massachusetts wins 76%, Eastern Michigan wins 24%
+  WINNER: Massachusetts to WIN the game
+          BUY YES @ 67c | model 76% | edge +7.5c   [BET]
+          on Kalshi: "UMass wins" -> tap YES
+  SPREAD: Massachusetts wins by MORE than 7.5
+          BUY YES @ 40c | model 59% | edge +16.8c   [BET]
+          on Kalshi: "UMass wins by over 7.5 points" -> tap YES
+  TOTAL : UNDER 46.5 total points
+          BUY NO @ 44c | model 56% | edge +9.8c   [BET]
+          on Kalshi: "Full Game: Over 46.5 points scored" -> tap NO
+
+Ohio @ Kent State   (Sat 10/03 2:30 PM)
+  Model: Ohio -5.9, total 55.8   |   Kent State wins 35%, Ohio wins 65%
+  WINNER: Ohio to WIN the game
+          BUY YES @ 63c | model 65% | edge +0.4c   [LEAN]
+          on Kalshi: "Ohio wins" -> tap YES
+  SPREAD: Ohio wins by MORE than 4.5
+          BUY YES @ 47c | model 54% | edge +5.7c   [BET]
+          on Kalshi: "Ohio wins by over 4.5 points" -> tap YES
+  TOTAL : OVER 53.5 total points
+          BUY YES @ 42c | model 56% | edge +12.5c   [BET]
+          on Kalshi: "Over 53.5 points scored" -> tap YES
+
+Marshall @ James Madison   (Sat 10/03 2:45 PM)
+  Model: James Madison -28.1, total 62.2   |   James Madison wins 96%, Marshall wins 4%
+  WINNER: James Madison to WIN the game
+          BUY NO @ 88c | model 96% | edge +7.8c   [BET]
+          on Kalshi: "Marshall wins" -> tap NO
+  SPREAD: James Madison wins by MORE than 21.5
+          BUY YES @ 35c | model 66% | edge +29.5c   [BET]
+          on Kalshi: "James Madison wins by over 21.5 points" -> tap YES
+  TOTAL : OVER 57.5 total points
+          BUY YES @ 44c | model 61% | edge +15.6c   [BET]
+          on Kalshi: "Over 57.5 points scored" -> tap YES
+
 Maryland @ Nebraska   (Sat 10/03 3:00 PM)
-  Model: Nebraska -14.5, total 55.6   |   Nebraska wins 83%, Maryland wins 17%
+  Model: Nebraska -14.5, total 55.3   |   Nebraska wins 83%, Maryland wins 17%
   WINNER: Nebraska to WIN the game
-          BUY YES @ 86c | model 83% | edge -3.5c   [PASS]
+          BUY YES @ 86c | model 83% | edge -4.2c   [PASS]
           on Kalshi: "Nebraska wins" -> tap YES
   SPREAD: Nebraska wins by 20 or fewer, or loses
-          BUY NO @ 63c | model 65% | edge +0.0c   [LEAN]
+          BUY NO @ 62c | model 65% | edge +1.7c   [LEAN]
           on Kalshi: "Nebraska wins by over 20.5 points" -> tap NO
-  TOTAL : OVER 54.5 total points
-          BUY YES @ 45c | model 52% | edge +5.5c   [BET]
-          on Kalshi: "Over 54.5 points scored" -> tap YES
+  TOTAL : OVER 52.5 total points
+          BUY YES @ 50c | model 57% | edge +5.5c   [BET]
+          on Kalshi: "Over 52.5 points scored" -> tap YES
 
 UTEP @ New Mexico   (Sat 10/03 3:00 PM)
   Model: New Mexico -27.5, total 56.1   |   New Mexico wins 96%, UTEP wins 4%
   WINNER: New Mexico to WIN the game
-          BUY NO @ 95c | model 96% | edge +0.8c   [LEAN]   (thin market or extreme price)
+          BUY NO @ 95c | model 96% | edge +0.9c   [LEAN]   (thin market or extreme price)
           on Kalshi: "UTEP wins" -> tap NO
   SPREAD: New Mexico wins by MORE than 24.5
-          BUY YES @ 45c | model 57% | edge +10.0c   [BET]
+          BUY YES @ 46c | model 57% | edge +9.2c   [BET]
           on Kalshi: "New Mexico wins by over 24.5 points" -> tap YES
   TOTAL : OVER 52.5 total points
-          BUY YES @ 37c | model 59% | edge +20.8c   [BET]
+          BUY YES @ 37c | model 59% | edge +20.9c   [BET]
           on Kalshi: "Full Game: Over 52.5 points scored" -> tap YES
 
-Kentucky @ South Carolina   (Sat 10/03 3:15 PM)
-  Model: South Carolina -1.9, total 52.7   |   South Carolina wins 55%, Kentucky wins 45%
-  WINNER: South Carolina to WIN the game
-          BUY NO @ 57c | model 55% | edge -3.6c   [PASS]
-          on Kalshi: "Kentucky wins" -> tap NO
-  SPREAD: Kentucky wins by 1 or fewer, or loses
-          BUY NO @ 57c | model 58% | edge -1.0c   [PASS]
-          on Kalshi: "Kentucky wins by over 1.5 points" -> tap NO
-  TOTAL : UNDER 53.5 total points
-          BUY NO @ 49c | model 52% | edge +1.6c   [LEAN]
-          on Kalshi: "Over 53.5 points scored" -> tap NO
-
 Purdue @ Illinois   (Sat 10/03 3:15 PM)
-  Model: Illinois -12.1, total 67.0   |   Illinois wins 79%, Purdue wins 21%
+  Model: Illinois -12.1, total 67.0   |   Illinois wins 78%, Purdue wins 22%
   WINNER: Illinois to WIN the game
-          BUY YES @ 77c | model 79% | edge +0.3c   [LEAN]
-          on Kalshi: "Illinois wins" -> tap YES
+          BUY NO @ 77c | model 78% | edge +0.2c   [LEAN]
+          on Kalshi: "Purdue wins" -> tap NO
   SPREAD: Illinois wins by MORE than 10.5
-          BUY YES @ 48c | model 54% | edge +4.4c   [LEAN]
+          BUY YES @ 46c | model 54% | edge +6.2c   [BET]
           on Kalshi: "Illinois wins by over 10.5 points" -> tap YES
   TOTAL : OVER 62.5 total points
-          BUY YES @ 49c | model 61% | edge +9.9c   [BET]
+          BUY YES @ 47c | model 61% | edge +12.0c   [BET]
           on Kalshi: "Over 62.5 points scored" -> tap YES
 
+Kentucky @ South Carolina   (Sat 10/03 3:15 PM)
+  Model: South Carolina -1.9, total 52.6   |   South Carolina wins 54%, Kentucky wins 46%
+  WINNER: South Carolina to WIN the game
+          BUY NO @ 55c | model 55% | edge -2.2c   [PASS]
+          on Kalshi: "Kentucky wins" -> tap NO
+  SPREAD: Kentucky wins by 2 or fewer, or loses
+          BUY NO @ 59c | model 60% | edge -0.8c   [PASS]
+          on Kalshi: "Kentucky wins by over 2.5 points" -> tap NO
+  TOTAL : UNDER 53.5 total points
+          BUY NO @ 52c | model 52% | edge -1.5c   [PASS]
+          on Kalshi: "Over 53.5 points scored" -> tap NO
+
 Oregon State @ Colorado State   (Sat 10/03 5:00 PM)
-  Model: Oregon State -1.9, total 66.1   |   Colorado State wins 46%, Oregon State wins 54%
+  Model: Oregon State -1.9, total 65.6   |   Colorado State wins 45%, Oregon State wins 55%
   WINNER: Oregon State to WIN the game
-          BUY YES @ 68c | model 54% | edge -15.1c   [PASS]
+          BUY YES @ 68c | model 55% | edge -14.7c   [PASS]
           on Kalshi: "Oregon St. wins" -> tap YES
   SPREAD: Oregon State wins by 2 or fewer, or loses
-          BUY NO @ 36c | model 51% | edge +13.3c   [BET]
+          BUY NO @ 35c | model 51% | edge +14.1c   [BET]
           on Kalshi: "Oregon St. wins by over 2.5 points" -> tap NO
-  TOTAL : OVER 58.5 total points
-          BUY YES @ 57c | model 67% | edge +8.6c   [BET]
-          on Kalshi: "Over 58.5 points scored" -> tap YES
+  TOTAL : OVER 63.5 total points
+          BUY YES @ 46c | model 56% | edge +7.8c   [BET]
+          on Kalshi: "Over 63.5 points scored" -> tap YES
 
 UTSA @ Rice   (Sat 10/03 6:00 PM)
-  Model: UTSA -7.9, total 57.7   |   Rice wins 31%, UTSA wins 69%
+  Model: UTSA -7.9, total 55.2   |   Rice wins 30%, UTSA wins 70%
   WINNER: UTSA to WIN the game
-          BUY NO @ 81c | model 69% | edge -12.6c   [PASS]
-          on Kalshi: "Rice wins" -> tap NO
+          BUY YES @ 82c | model 70% | edge -13.5c   [PASS]
+          on Kalshi: "UTSA wins" -> tap YES
   SPREAD: UTSA wins by 9 or fewer, or loses
-          BUY NO @ 43c | model 54% | edge +9.5c   [BET]
+          BUY NO @ 43c | model 54% | edge +9.1c   [BET]
           on Kalshi: "UTSA wins by over 9.5 points" -> tap NO
-  TOTAL : OVER 56.5 total points
-          BUY YES @ 49c | model 53% | edge +1.9c   [LEAN]
-          on Kalshi: "Over 56.5 points scored" -> tap YES
+  TOTAL : UNDER 62.5 total points
+          BUY NO @ 66c | model 66% | edge -1.3c   [PASS]
+          on Kalshi: "Over 62.5 points scored" -> tap NO
+
+Arkansas @ Texas A&M   (Sat 10/03 6:00 PM)
+  Model: Texas A&M -13.8, total 57.6   |   Texas A&M wins 82%, Arkansas wins 18%
+  WINNER: Texas A&M to WIN the game
+          BUY YES @ 84c | model 82% | edge -3.4c   [PASS]
+          on Kalshi: "Texas A&M wins" -> tap YES
+  SPREAD: Texas A&M wins by MORE than 10.5
+          BUY YES @ 58c | model 58% | edge -1.5c   [PASS]
+          on Kalshi: "Texas A&M wins by over 10.5 points" -> tap YES
+  TOTAL : OVER 52.5 total points
+          BUY YES @ 43c | model 63% | edge +17.9c   [BET]
+          on Kalshi: "Over 52.5 points scored" -> tap YES
 
 Georgia Southern @ Coastal Carolina   (Sat 10/03 6:00 PM)
-  Model: Georgia Southern -1.1, total 48.8   |   Coastal Carolina wins 47%, Georgia Southern wins 53%
+  Model: Georgia Southern -1.2, total 48.9   |   Coastal Carolina wins 47%, Georgia Southern wins 53%
   WINNER: Georgia Southern to WIN the game
           BUY YES @ 54c | model 53% | edge -3.1c   [PASS]
           on Kalshi: "Georgia Southern wins" -> tap YES
-  SPREAD: Georgia Southern wins by 2 or fewer, or loses
-          BUY NO @ 52c | model 53% | edge -0.9c   [PASS]
-          on Kalshi: "Georgia Southern wins by over 2.5 points" -> tap NO
-  TOTAL : UNDER 49.5 total points
-          BUY NO @ 41c | model 52% | edge +8.9c   [BET]
-          on Kalshi: "Full Game: Over 49.5 points scored" -> tap NO
+  SPREAD: Georgia Southern wins by 1 or fewer, or loses
+          BUY NO @ 49c | model 50% | edge -0.7c   [PASS]
+          on Kalshi: "Georgia Southern wins by over 1.5 points" -> tap NO
+  TOTAL : UNDER 52.5 total points
+          BUY NO @ 49c | model 58% | edge +7.7c   [BET]
+          on Kalshi: "Full Game: Over 52.5 points scored" -> tap NO
 
 BYU @ TCU   (Sat 10/03 6:00 PM)
-  Model: BYU -4.8, total 47.6   |   TCU wins 38%, BYU wins 62%
+  Model: BYU -4.8, total 47.7   |   TCU wins 37%, BYU wins 63%
   WINNER: BYU to WIN the game
-          BUY NO @ 68c | model 63% | edge -7.0c   [PASS]
-          on Kalshi: "TCU wins" -> tap NO
+          BUY YES @ 67c | model 63% | edge -5.9c   [PASS]
+          on Kalshi: "BYU wins" -> tap YES
   SPREAD: BYU wins by 5 or fewer, or loses
-          BUY NO @ 49c | model 52% | edge +0.9c   [LEAN]
+          BUY NO @ 49c | model 51% | edge +0.7c   [LEAN]
           on Kalshi: "BYU wins by over 5.5 points" -> tap NO
-  TOTAL : UNDER 47.5 total points
-          BUY NO @ 48c | model 50% | edge +0.4c   [LEAN]
-          on Kalshi: "Over 47.5 points scored" -> tap NO
+  TOTAL : UNDER 54.5 total points
+          BUY NO @ 66c | model 66% | edge -1.4c   [PASS]
+          on Kalshi: "Over 54.5 points scored" -> tap NO
 
 UL Monroe @ South Alabama   (Sat 10/03 6:00 PM)
-  Model: South Alabama -18.9, total 64.0   |   South Alabama wins 89%, UL Monroe wins 11%
+  Model: South Alabama -18.9, total 64.1   |   South Alabama wins 89%, UL Monroe wins 11%
   WINNER: South Alabama to WIN the game
-          BUY NO @ 84c | model 89% | edge +4.3c   [LEAN]
-          on Kalshi: "Louisiana-Monroe wins" -> tap NO
+          BUY YES @ 84c | model 89% | edge +4.3c   [LEAN]
+          on Kalshi: "South Alabama wins" -> tap YES
   SPREAD: South Alabama wins by MORE than 14.5
-          BUY YES @ 48c | model 61% | edge +11.2c   [BET]
+          BUY YES @ 45c | model 61% | edge +14.7c   [BET]
           on Kalshi: "South Alabama wins by over 14.5 points" -> tap YES
-  TOTAL : OVER 58.5 total points
-          BUY YES @ 46c | model 62% | edge +14.7c   [BET]
-          on Kalshi: "Over 58.5 points scored" -> tap YES
-
-Arkansas @ Texas A&M   (Sat 10/03 6:00 PM)
-  Model: Texas A&M -13.8, total 57.5   |   Texas A&M wins 82%, Arkansas wins 18%
-  WINNER: Texas A&M to WIN the game
-          BUY YES @ 84c | model 82% | edge -3.3c   [PASS]
-          on Kalshi: "Texas A&M wins" -> tap YES
-  SPREAD: Texas A&M wins by MORE than 10.5
-          BUY YES @ 58c | model 58% | edge -1.2c   [PASS]
-          on Kalshi: "Texas A&M wins by over 10.5 points" -> tap YES
-  TOTAL : OVER 51.5 total points
-          BUY YES @ 46c | model 64% | edge +16.7c   [BET]
-          on Kalshi: "Over 51.5 points scored" -> tap YES
-
-Temple @ South Florida   (Sat 10/03 6:30 PM)
-  Model: South Florida -12.7, total 54.9   |   South Florida wins 79%, Temple wins 21%
-  WINNER: South Florida to WIN the game
-          BUY YES @ 67c | model 79% | edge +10.7c   [BET]
-          on Kalshi: "South Florida wins" -> tap YES
-  SPREAD: South Florida wins by MORE than 7.5
-          BUY YES @ 40c | model 63% | edge +21.0c   [BET]
-          on Kalshi: "South Florida wins by over 7.5 points" -> tap YES
-  TOTAL : OVER 51.5 total points
-          BUY YES @ 43c | model 59% | edge +13.9c   [BET]
-          on Kalshi: "Over 51.5 points scored" -> tap YES
-
-Army @ Louisiana Tech   (Sat 10/03 6:30 PM)
-  Model: Army -1.6, total 52.8   |   Louisiana Tech wins 46%, Army wins 54%
-  WINNER: Army to WIN the game
-          BUY NO @ 54c | model 54% | edge -1.3c   [PASS]
-          on Kalshi: "Louisiana Tech wins" -> tap NO
-  SPREAD: Army wins by MORE than 1.5
-          BUY YES @ 51c | model 52% | edge -1.0c   [PASS]
-          on Kalshi: "Army wins by over 1.5 points" -> tap YES
-  TOTAL : OVER 49.5 total points
-          BUY YES @ 44c | model 58% | edge +12.5c   [BET]
-          on Kalshi: "Full Game: Over 49.5 points scored" -> tap YES
-
-Utah State @ Boise State   (Sat 10/03 6:30 PM)
-  Model: Boise State -19.5, total 43.0   |   Boise State wins 90%, Utah State wins 10%
-  WINNER: Boise State to WIN the game
-          BUY NO @ 92c | model 90% | edge -2.8c   [PASS]
-          on Kalshi: "Utah St. wins" -> tap NO
-  SPREAD: Boise State wins by MORE than 7.5
-          BUY YES @ 77c | model 77% | edge -0.8c   [PASS]
-          on Kalshi: "Boise St. wins by over 7.5 points" -> tap YES
-  TOTAL : UNDER 47.5 total points
-          BUY NO @ 38c | model 60% | edge +20.8c   [BET]
-          on Kalshi: "Over 47.5 points scored" -> tap NO
-
-Miami @ Clemson   (Sat 10/03 6:30 PM)
-  Model: Miami -13.4, total 51.4   |   Clemson wins 19%, Miami wins 81%
-  WINNER: Miami to WIN the game
-          BUY YES @ 87c | model 81% | edge -7.1c   [PASS]
-          on Kalshi: "Miami (FL) wins" -> tap YES
-  SPREAD: Miami wins by 13 or fewer, or loses
-          BUY NO @ 43c | model 51% | edge +6.1c   [BET]
-          on Kalshi: "Miami (FL) wins by over 13.5 points" -> tap NO
-  TOTAL : OVER 51.5 total points
-          BUY YES @ 38c | model 50% | edge +10.4c   [BET]
-          on Kalshi: "Over 51.5 points scored" -> tap YES
+  TOTAL : OVER 57.5 total points
+          BUY YES @ 48c | model 66% | edge +16.0c   [BET]
+          on Kalshi: "Over 57.5 points scored" -> tap YES
 
 Washington @ USC   (Sat 10/03 6:30 PM)
-  Model: USC -9.7, total 62.4   |   USC wins 73%, Washington wins 27%
+  Model: USC -9.6, total 62.4   |   USC wins 73%, Washington wins 27%
   WINNER: USC to WIN the game
-          BUY NO @ 77c | model 73% | edge -4.8c   [PASS]
+          BUY NO @ 76c | model 73% | edge -4.0c   [PASS]
           on Kalshi: "Washington wins" -> tap NO
   SPREAD: USC wins by MORE than 7.5
-          BUY YES @ 54c | model 55% | edge -0.5c   [PASS]
+          BUY YES @ 49c | model 56% | edge +4.8c   [LEAN]
           on Kalshi: "USC wins by over 7.5 points" -> tap YES
   TOTAL : OVER 60.5 total points
-          BUY YES @ 44c | model 55% | edge +9.2c   [BET]
+          BUY YES @ 42c | model 55% | edge +11.1c   [BET]
           on Kalshi: "Over 60.5 points scored" -> tap YES
 
+Temple @ South Florida   (Sat 10/03 6:30 PM)
+  Model: South Florida -13.1, total 54.9   |   South Florida wins 80%, Temple wins 20%
+  WINNER: South Florida to WIN the game
+          BUY YES @ 66c | model 81% | edge +12.9c   [BET]
+          on Kalshi: "South Florida wins" -> tap YES
+  SPREAD: South Florida wins by MORE than 7.5
+          BUY YES @ 40c | model 64% | edge +22.7c   [BET]
+          on Kalshi: "South Florida wins by over 7.5 points" -> tap YES
+  TOTAL : OVER 51.5 total points
+          BUY YES @ 43c | model 58% | edge +13.5c   [BET]
+          on Kalshi: "Over 51.5 points scored" -> tap YES
+
 Texas Tech @ Colorado   (Sat 10/03 6:30 PM)
-  Model: Texas Tech -16.0, total 48.0   |   Colorado wins 15%, Texas Tech wins 85%
+  Model: Texas Tech -15.4, total 48.0   |   Colorado wins 16%, Texas Tech wins 84%
   WINNER: Texas Tech to WIN the game
-          BUY YES @ 82c | model 85% | edge +2.2c   [LEAN]
+          BUY YES @ 83c | model 84% | edge +0.2c   [LEAN]
           on Kalshi: "Texas Tech wins" -> tap YES
   SPREAD: Texas Tech wins by MORE than 14.5
-          BUY YES @ 43c | model 53% | edge +8.7c   [BET]
+          BUY YES @ 46c | model 52% | edge +4.2c   [LEAN]
           on Kalshi: "Texas Tech wins by over 14.5 points" -> tap YES
   TOTAL : UNDER 50.5 total points
           BUY NO @ 53c | model 55% | edge +0.7c   [LEAN]
           on Kalshi: "Over 50.5 points scored" -> tap NO
 
-Arkansas State @ Louisiana   (Sat 10/03 7:00 PM)
-  Model: Louisiana -7.4, total 44.9   |   Louisiana wins 69%, Arkansas State wins 31%
-  WINNER: Louisiana to WIN the game
-          BUY YES @ 69c | model 69% | edge -1.6c   [PASS]
-          on Kalshi: "Louisiana wins" -> tap YES
-  SPREAD: Louisiana wins by MORE than 4.5
-          BUY YES @ 54c | model 58% | edge +2.1c   [LEAN]
-          on Kalshi: "Louisiana wins by over 4.5 points" -> tap YES
-  TOTAL : UNDER 46.5 total points
-          BUY NO @ 45c | model 54% | edge +6.9c   [BET]
-          on Kalshi: "Full Game: Over 46.5 points scored" -> tap NO
+Utah State @ Boise State   (Sat 10/03 6:30 PM)
+  Model: Boise State -19.8, total 42.8   |   Boise State wins 90%, Utah State wins 10%
+  WINNER: Boise State to WIN the game
+          BUY NO @ 91c | model 90% | edge -1.7c   [PASS]
+          on Kalshi: "Utah St. wins" -> tap NO
+  SPREAD: Boise State wins by MORE than 14.5
+          BUY YES @ 61c | model 62% | edge -0.5c   [PASS]
+          on Kalshi: "Boise St. wins by over 14.5 points" -> tap YES
+  TOTAL : UNDER 47.5 total points
+          BUY NO @ 38c | model 61% | edge +20.9c   [BET]
+          on Kalshi: "Over 47.5 points scored" -> tap NO
+
+Miami @ Clemson   (Sat 10/03 6:30 PM)
+  Model: Miami -13.4, total 51.5   |   Clemson wins 20%, Miami wins 80%
+  WINNER: Miami to WIN the game
+          BUY YES @ 87c | model 80% | edge -7.3c   [PASS]
+          on Kalshi: "Miami (FL) wins" -> tap YES
+  SPREAD: Miami wins by 13 or fewer, or loses
+          BUY NO @ 43c | model 51% | edge +6.2c   [BET]
+          on Kalshi: "Miami (FL) wins by over 13.5 points" -> tap NO
+  TOTAL : OVER 51.5 total points
+          BUY YES @ 40c | model 50% | edge +8.6c   [BET]
+          on Kalshi: "Over 51.5 points scored" -> tap YES
+
+Army @ Louisiana Tech   (Sat 10/03 6:30 PM)
+  Model: Army -1.5, total 52.9   |   Louisiana Tech wins 46%, Army wins 54%
+  WINNER: Army to WIN the game
+          BUY NO @ 50c | model 54% | edge +2.0c   [LEAN]
+          on Kalshi: "Louisiana Tech wins" -> tap NO
+  SPREAD: Army wins by MORE than 1.5
+          BUY YES @ 47c | model 51% | edge +2.4c   [LEAN]
+          on Kalshi: "Army wins by over 1.5 points" -> tap YES
+  TOTAL : OVER 48.5 total points
+          BUY YES @ 45c | model 60% | edge +13.6c   [BET]
+          on Kalshi: "Full Game: Over 48.5 points scored" -> tap YES
 
 Indiana @ Rutgers   (Sat 10/03 7:00 PM)
-  Model: Indiana -21.8, total 58.4   |   Rutgers wins 8%, Indiana wins 92%
+  Model: Indiana -22.4, total 58.4   |   Rutgers wins 8%, Indiana wins 92%
   WINNER: Indiana to WIN the game
-          BUY NO @ 95c | model 92% | edge -3.3c   [PASS]   (thin market or extreme price)
+          BUY NO @ 95c | model 93% | edge -2.8c   [PASS]   (thin market or extreme price)
           on Kalshi: "Rutgers wins" -> tap NO
   SPREAD: Indiana wins by 23 or fewer, or loses
-          BUY NO @ 47c | model 55% | edge +6.2c   [BET]
+          BUY NO @ 47c | model 53% | edge +4.1c   [LEAN]
           on Kalshi: "Indiana wins by over 23.5 points" -> tap NO
   TOTAL : OVER 58.5 total points
-          BUY YES @ 47c | model 50% | edge +1.3c   [LEAN]
+          BUY YES @ 46c | model 50% | edge +2.6c   [LEAN]
           on Kalshi: "Over 58.5 points scored" -> tap YES
 
+Arkansas State @ Louisiana   (Sat 10/03 7:00 PM)
+  Model: Louisiana -6.7, total 44.3   |   Louisiana wins 68%, Arkansas State wins 32%
+  WINNER: Louisiana to WIN the game
+          BUY YES @ 67c | model 68% | edge -0.9c   [PASS]
+          on Kalshi: "Louisiana wins" -> tap YES
+  SPREAD: Louisiana wins by MORE than 6.5
+          BUY YES @ 46c | model 51% | edge +3.0c   [LEAN]
+          on Kalshi: "Louisiana wins by over 6.5 points" -> tap YES
+  TOTAL : UNDER 47.5 total points
+          BUY NO @ 45c | model 57% | edge +10.7c   [BET]
+          on Kalshi: "Full Game: Over 47.5 points scored" -> tap NO
+
 Fresno State @ Washington State   (Sat 10/03 8:30 PM)
-  Model: Fresno State -1.6, total 36.2   |   Washington State wins 46%, Fresno State wins 54%
+  Model: Fresno State -1.5, total 36.2   |   Washington State wins 46%, Fresno State wins 54%
   WINNER: Fresno State to WIN the game
-          BUY NO @ 48c | model 54% | edge +4.2c   [LEAN]
+          BUY NO @ 48c | model 54% | edge +4.6c   [LEAN]
           on Kalshi: "Washington St. wins" -> tap NO
-  SPREAD: Washington State wins by 2 or fewer, or loses
-          BUY NO @ 51c | model 59% | edge +6.6c   [BET]
-          on Kalshi: "Washington St. wins by over 2.5 points" -> tap NO
+  SPREAD: Washington State wins by 1 or fewer, or loses
+          BUY NO @ 49c | model 57% | edge +6.4c   [BET]
+          on Kalshi: "Washington St. wins by over 1.5 points" -> tap NO
   TOTAL : UNDER 40.5 total points
-          BUY NO @ 35c | model 60% | edge +23.6c   [BET]
+          BUY NO @ 35c | model 60% | edge +23.4c   [BET]
           on Kalshi: "Over 40.5 points scored" -> tap NO
 
-Texas State @ San Diego State   (Sat 10/03 9:30 PM)
-  Model: San Diego State -0.5, total 56.7   |   San Diego State wins 52%, Texas State wins 48%
-  WINNER: San Diego State to WIN the game
-          BUY NO @ 25c | model 52% | edge +25.2c   [BET]
-          on Kalshi: "Texas St. wins" -> tap NO
-  SPREAD: Texas State wins by 2 or fewer, or loses
-          BUY NO @ 29c | model 57% | edge +26.5c   [BET]
-          on Kalshi: "Texas St. wins by over 2.5 points" -> tap NO
-  TOTAL : UNDER 66.5 total points
-          BUY NO @ 72c | model 72% | edge -1.1c   [PASS]
-          on Kalshi: "Over 66.5 points scored" -> tap NO
-
 Baylor @ Arizona State   (Sat 10/03 9:30 PM)
-  Model: Arizona State -0.5, total 53.8   |   Arizona State wins 51%, Baylor wins 49%
+  Model: Arizona State -0.4, total 53.9   |   Arizona State wins 51%, Baylor wins 49%
   WINNER: Arizona State to WIN the game
-          BUY YES @ 62c | model 51% | edge -12.6c   [PASS]
+          BUY YES @ 62c | model 51% | edge -12.4c   [PASS]
           on Kalshi: "Arizona St. wins" -> tap YES
   SPREAD: Arizona State wins by 2 or fewer, or loses
-          BUY NO @ 43c | model 54% | edge +9.8c   [BET]
+          BUY NO @ 44c | model 54% | edge +8.3c   [BET]
           on Kalshi: "Arizona St. wins by over 2.5 points" -> tap NO
   TOTAL : OVER 52.5 total points
-          BUY YES @ 39c | model 54% | edge +13.7c   [BET]
+          BUY YES @ 38c | model 54% | edge +14.3c   [BET]
           on Kalshi: "Over 52.5 points scored" -> tap YES
 
+Texas State @ San Diego State   (Sat 10/03 9:30 PM)
+  Model: San Diego State -0.5, total 56.6   |   San Diego State wins 51%, Texas State wins 49%
+  WINNER: San Diego State to WIN the game
+          BUY NO @ 25c | model 51% | edge +24.8c   [BET]
+          on Kalshi: "Texas St. wins" -> tap NO
+  SPREAD: Texas State wins by 2 or fewer, or loses
+          BUY NO @ 26c | model 56% | edge +29.0c   [BET]
+          on Kalshi: "Texas St. wins by over 2.5 points" -> tap NO
+  TOTAL : UNDER 58.5 total points
+          BUY NO @ 54c | model 54% | edge -1.6c   [PASS]
+          on Kalshi: "Over 58.5 points scored" -> tap NO
+
 Cincinnati @ Arizona   (Sat 10/03 10:00 PM)
-  Model: Arizona -5.4, total 59.3   |   Arizona wins 64%, Cincinnati wins 36%
+  Model: Arizona -5.4, total 59.5   |   Arizona wins 64%, Cincinnati wins 36%
   WINNER: Arizona to WIN the game
-          BUY YES @ 69c | model 64% | edge -6.4c   [PASS]
+          BUY YES @ 69c | model 64% | edge -6.6c   [PASS]
           on Kalshi: "Arizona wins" -> tap YES
   SPREAD: Arizona wins by 6 or fewer, or loses
-          BUY NO @ 49c | model 53% | edge +1.8c   [LEAN]
+          BUY NO @ 46c | model 53% | edge +5.3c   [BET]
           on Kalshi: "Arizona wins by over 6.5 points" -> tap NO
-  TOTAL : OVER 55.5 total points
-          BUY YES @ 50c | model 58% | edge +6.4c   [BET]
-          on Kalshi: "Over 55.5 points scored" -> tap YES
+  TOTAL : OVER 56.5 total points
+          BUY YES @ 47c | model 57% | edge +8.4c   [BET]
+          on Kalshi: "Over 56.5 points scored" -> tap YES
 
 San José State @ Hawai'i   (Sat 10/03 10:59 PM)
-  Model: Hawai'i -4.5, total 50.8   |   Hawai'i wins 61%, San José State wins 39%
+  Model: Hawai'i -4.6, total 51.0   |   Hawai'i wins 62%, San José State wins 38%
   WINNER: Hawai'i to WIN the game
-          BUY NO @ 59c | model 61% | edge +0.7c   [LEAN]
-          on Kalshi: "San Jose St. wins" -> tap NO
+          BUY YES @ 58c | model 62% | edge +2.6c   [LEAN]
+          on Kalshi: "Hawai'i wins" -> tap YES
   SPREAD: Hawai'i wins by MORE than 4.5
-          BUY YES @ 42c | model 50% | edge +6.8c   [BET]
+          BUY YES @ 42c | model 51% | edge +7.2c   [BET]
           on Kalshi: "Hawai'i wins by over 4.5 points" -> tap YES
   TOTAL : UNDER 56.5 total points
-          BUY NO @ 64c | model 63% | edge -2.3c   [PASS]
+          BUY NO @ 64c | model 63% | edge -2.7c   [PASS]
           on Kalshi: "Over 56.5 points scored" -> tap NO
 
 Saved -> /home/runner/work/AIOCFB/AIOCFB/output/model_picks_all_games.csv
@@ -665,101 +617,104 @@ Saved -> /home/runner/work/AIOCFB/AIOCFB/output/model_picks_all_games.csv
  STRONGEST BETS (BET-rated only, best per game)   (1 unit = $1)
 ==============================================================================
 
-#1  BUY YES:  UConn wins by MORE than 3.5
-    Game     : Syracuse @ UConn   (Sat 10/03 11:00 AM)
-    Price    : 23c per contract   ->   buy 4 contract(s) = $0.92   (1 unit)
-    Chance   : model 61% | blended 61% | market 22%   ->  edge +36.8c per contract after fees
-    Why      : Projection: UConn by 7.4; the bet is UConn winning by more than 3.5.
-    Context  : #93 Syracuse at #72 UConn | ATS: UConn 2-2, Syracuse 1-2
-    On Kalshi: find "UConn wins by over 3.5 points"  (KXNCAAFSPREAD-26OCT03SYRCONN-CONN4)  and tap YES
+#1  BUY NO:  Kansas wins by 33 or fewer, or loses
+    Game     : Middle Tennessee @ Kansas   (Sat 10/03 11:00 AM)
+    Price    : 9c per contract   ->   buy 11 contract(s) = $0.99   (1 unit)
+    Chance   : model 93% | blended 93% | market 8%   ->  edge +83.3c per contract after fees
+    Why      : Projection: Kansas by 11.1; the bet is Kansas winning by more than 33.5.
+    Context  : #119 Middle Tennessee at #81 Kansas | ATS: Kansas 1-2, Middle Tennessee 3-1
+    On Kalshi: find "Kansas wins by over 33.5 points"  (KXNCAAFSPREAD-26OCT03MTUKU-KU34)  and tap NO
     !! model and market disagree a lot - check injuries/QB news before betting
     !! thin volume
 
-#2  BUY YES:  OVER 52.5 total points
+#2  BUY NO:  Wake Forest wins by 30 or fewer, or loses
+    Game     : Stanford @ Wake Forest   (Sat 10/03 11:00 AM)
+    Price    : 8c per contract   ->   buy 12 contract(s) = $0.96   (1 unit)
+    Chance   : model 85% | blended 85% | market 7%   ->  edge +77.0c per contract after fees
+    Why      : Projection: Wake Forest by 14.8; the bet is Wake Forest winning by more than 30.5.
+    Context  : #109 Stanford at #47 Wake Forest | ATS: Wake Forest 2-2, Stanford 2-2
+    On Kalshi: find "Wake Forest wins by over 30.5 points"  (KXNCAAFSPREAD-26OCT03STANWAKE-WAKE31)  and tap NO
+    !! model and market disagree a lot - check injuries/QB news before betting
+    !! thin volume
+
+#3  BUY YES:  OVER 42.5 total points
     Game     : Navy @ Air Force   (Sat 10/03 11:00 AM)
-    Price    : 33c per contract   ->   buy 3 contract(s) = $0.99   (1 unit)
-    Chance   : model 70% | blended 70% | market 32%   ->  edge +35.5c per contract after fees
-    Why      : Projected total 61.3 vs Kalshi line 52.5.
+    Price    : 12c per contract   ->   buy 8 contract(s) = $0.96   (1 unit)
+    Chance   : model 87% | blended 87% | market 11%   ->  edge +74.3c per contract after fees
+    Why      : Projected total 61.3 vs Kalshi line 42.5.
     Context  : #82 Navy at #86 Air Force | Overs: Air Force 2-1, Navy 2-1
-    On Kalshi: find "Over 52.5 points scored"  (KXNCAAFTOTAL-26OCT03NAVYAFA-53)  and tap YES
+    On Kalshi: find "Over 42.5 points scored"  (KXNCAAFTOTAL-26OCT03NAVYAFA-43)  and tap YES
     !! model and market disagree a lot - check injuries/QB news before betting
     !! thin volume
 
-#3  BUY NO:  Syracuse to LOSE the game (UConn wins)
+#4  BUY NO:  UNDER 54.5 total points
+    Game     : Notre Dame @ North Carolina   (Sat 10/03 11:00 AM)
+    Price    : 11c per contract   ->   buy 9 contract(s) = $0.99   (1 unit)
+    Chance   : model 80% | blended 80% | market 10%   ->  edge +68.2c per contract after fees
+    Why      : Projected total 40.6 vs Kalshi line 54.5.
+    Context  : #1 Notre Dame at #76 North Carolina | Overs: North Carolina 1-2, Notre Dame 2-2
+    On Kalshi: find "Over 54.5 points scored"  (KXNCAAFTOTAL-26OCT03NDUNC-55)  and tap NO
+    !! model and market disagree a lot - check injuries/QB news before betting
+    !! thin volume
+
+#5  BUY NO:  Syracuse wins by 5 or fewer, or loses
     Game     : Syracuse @ UConn   (Sat 10/03 11:00 AM)
-    Price    : 32c per contract   ->   buy 3 contract(s) = $0.96   (1 unit)
-    Chance   : model 69% | blended 69% | market 31%   ->  edge +35.2c per contract after fees
-    Why      : Projected line: UConn -7.4 (home win 68.7%).
-    Context  : #93 Syracuse at #72 UConn | ATS: UConn 2-2, Syracuse 1-2
-    On Kalshi: find "Syracuse wins"  (KXNCAAFGAME-26OCT03SYRCONN-SYR)  and tap NO
+    Price    : 15c per contract   ->   buy 6 contract(s) = $0.90   (1 unit)
+    Chance   : model 79% | blended 79% | market 14%   ->  edge +63.4c per contract after fees
+    Why      : Projection: UConn by 7.4; the bet is Syracuse winning by more than 5.5.
+    Context  : #93 Syracuse at #73 UConn | ATS: UConn 2-2, Syracuse 1-2
+    On Kalshi: find "Syracuse wins by over 5.5 points"  (KXNCAAFSPREAD-26OCT03SYRCONN-SYR6)  and tap NO
     !! model and market disagree a lot - check injuries/QB news before betting
     !! thin volume
 
-#4  BUY NO:  UNDER 40.5 total points
-    Game     : Wyoming @ North Dakota State   (Sat 10/03 2:30 PM)
-    Price    : 36c per contract   ->   buy 2 contract(s) = $0.72   (1 unit)
-    Chance   : model 72% | blended 72% | market 36%   ->  edge +34.1c per contract after fees
-    Why      : Projected total 30.1 vs Kalshi line 40.5.
-    Context  : #127 Wyoming at #38 North Dakota State | Overs: North Dakota State 1-3, Wyoming 1-3
-    On Kalshi: find "Full Game: Over 40.5 points scored"  (KXNCAAFTOTAL-26OCT03WYONDSU-41)  and tap NO
+#6  BUY NO:  Wisconsin wins by 13 or fewer, or loses
+    Game     : Michigan State @ Wisconsin   (Sat 10/03 11:30 AM)
+    Price    : 15c per contract   ->   buy 6 contract(s) = $0.90   (1 unit)
+    Chance   : model 74% | blended 74% | market 14%   ->  edge +57.7c per contract after fees
+    Why      : Projection: Wisconsin by 4.0; the bet is Wisconsin winning by more than 13.5.
+    Context  : #61 Michigan State at #57 Wisconsin | ATS: Wisconsin 2-2, Michigan State 2-1-1
+    On Kalshi: find "Wisconsin wins by over 13.5 points"  (KXNCAAFSPREAD-26OCT03MSUWIS-WIS14)  and tap NO
     !! model and market disagree a lot - check injuries/QB news before betting
     !! thin volume
 
-#5  BUY YES:  OVER 69.5 total points
+#7  BUY NO:  UNDER 62.5 total points
+    Game     : West Virginia @ Iowa State   (Sat 10/03 11:00 AM)
+    Price    : 14c per contract   ->   buy 7 contract(s) = $0.98   (1 unit)
+    Chance   : model 69% | blended 69% | market 10%   ->  edge +54.0c per contract after fees
+    Why      : Projected total 54.3 vs Kalshi line 62.5.
+    Context  : #77 West Virginia at #40 Iowa State | Overs: Iowa State 2-2, West Virginia 4-0
+    On Kalshi: find "Over 62.5 points scored"  (KXNCAAFTOTAL-26OCT03WVUISU-63)  and tap NO
+    !! model and market disagree a lot - check injuries/QB news before betting
+    !! thin volume
+
+#8  BUY NO:  UNDER 62.5 total points
+    Game     : Syracuse @ UConn   (Sat 10/03 11:00 AM)
+    Price    : 14c per contract   ->   buy 7 contract(s) = $0.98   (1 unit)
+    Chance   : model 65% | blended 65% | market 14%   ->  edge +50.2c per contract after fees
+    Why      : Projected total 55.9 vs Kalshi line 62.5.
+    Context  : #93 Syracuse at #73 UConn | Overs: UConn 2-2, Syracuse 1-2
+    On Kalshi: find "Over 62.5 points scored"  (KXNCAAFTOTAL-26OCT03SYRCONN-63)  and tap NO
+    !! model and market disagree a lot - check injuries/QB news before betting
+    !! thin volume
+
+#9  BUY NO:  Alabama wins by 11 or fewer, or loses
     Game     : Alabama @ Mississippi State   (Sat 10/03 11:00 AM)
-    Price    : 29c per contract   ->   buy 3 contract(s) = $0.87   (1 unit)
-    Chance   : model 63% | blended 63% | market 28%   ->  edge +32.2c per contract after fees
-    Why      : Projected total 74.7 vs Kalshi line 69.5.
-    Context  : #2 Alabama at #19 Mississippi State | Overs: Mississippi State 2-2, Alabama 4-0
-    On Kalshi: find "Over 69.5 points scored"  (KXNCAAFTOTAL-26OCT03ALAMSST-70)  and tap YES
+    Price    : 16c per contract   ->   buy 6 contract(s) = $0.96   (1 unit)
+    Chance   : model 58% | blended 58% | market 16%   ->  edge +40.6c per contract after fees
+    Why      : Projection: Alabama by 8.7; the bet is Alabama winning by more than 11.5.
+    Context  : #2 Alabama at #18 Mississippi State | ATS: Mississippi State 4-0, Alabama 3-1
+    On Kalshi: find "Alabama wins by over 11.5 points"  (KXNCAAFSPREAD-26OCT03ALAMSST-ALA12)  and tap NO
     !! model and market disagree a lot - check injuries/QB news before betting
     !! thin volume
 
-#6  BUY NO:  Virginia Tech wins by 2 or fewer, or loses
-    Game     : Pittsburgh @ Virginia Tech   (Fri 10/02 6:00 PM)
-    Price    : 33c per contract   ->   buy 3 contract(s) = $0.99   (1 unit)
-    Chance   : model 64% | blended 64% | market 32%   ->  edge +29.8c per contract after fees
-    Why      : Projection: Pittsburgh by 3.6; the bet is Virginia Tech winning by more than 2.5.
-    Context  : #20 Pittsburgh at #51 Virginia Tech | ATS: Virginia Tech 3-1, Pittsburgh 3-1
-    On Kalshi: find "Virginia Tech wins by over 2.5 points"  (KXNCAAFSPREAD-26OCT02PITTVT-VT3)  and tap NO
+#10  BUY YES:  Iowa State wins by MORE than 9.5
+    Game     : West Virginia @ Iowa State   (Sat 10/03 11:00 AM)
+    Price    : 12c per contract   ->   buy 8 contract(s) = $0.96   (1 unit)
+    Chance   : model 52% | blended 52% | market 12%   ->  edge +39.3c per contract after fees
+    Why      : Projection: Iowa State by 10.4; the bet is Iowa State winning by more than 9.5.
+    Context  : #77 West Virginia at #40 Iowa State | ATS: Iowa State 2-2, West Virginia 2-2
+    On Kalshi: find "Iowa St. wins by over 9.5 points"  (KXNCAAFSPREAD-26OCT03WVUISU-ISU10)  and tap YES
     !! model and market disagree a lot - check injuries/QB news before betting
-    !! thin volume
-
-#7  BUY NO:  Virginia Tech to LOSE the game (Pittsburgh wins)
-    Game     : Pittsburgh @ Virginia Tech   (Fri 10/02 6:00 PM)
-    Price    : 29c per contract   ->   buy 3 contract(s) = $0.87   (1 unit)
-    Chance   : model 59% | blended 59% | market 28%   ->  edge +28.7c per contract after fees
-    Why      : Projected line: Pittsburgh -3.6 (home win 40.9%).
-    Context  : #20 Pittsburgh at #51 Virginia Tech | ATS: Virginia Tech 3-1, Pittsburgh 3-1
-    On Kalshi: find "Virginia Tech wins"  (KXNCAAFGAME-26OCT02PITTVT-VT)  and tap NO
-    !! model and market disagree a lot - check injuries/QB news before betting
-    !! thin volume
-
-#8  BUY YES:  OVER 59.5 total points
-    Game     : Louisville @ NC State   (Sat 10/03 2:30 PM)
-    Price    : 44c per contract   ->   buy 11 contract(s) = $4.84   (5 units)
-    Chance   : model 73% | blended 73% | market 44%   ->  edge +27.4c per contract after fees
-    Why      : Projected total 69.6 vs Kalshi line 59.5.
-    Context  : #36 Louisville at #60 NC State | Overs: NC State 3-1, Louisville 3-1
-    On Kalshi: find "Over 59.5 points scored"  (KXNCAAFTOTAL-26OCT03LOUNCST-60)  and tap YES
-    !! thin volume
-
-#9  BUY YES:  OVER 59.5 total points
-    Game     : Vanderbilt @ Georgia   (Sat 10/03 11:45 AM)
-    Price    : 27c per contract   ->   buy 18 contract(s) = $4.86   (5 units)
-    Chance   : model 55% | blended 55% | market 26%   ->  edge +27.0c per contract after fees
-    Why      : Projected total 61.6 vs Kalshi line 59.5.
-    Context  : #46 Vanderbilt at #5 Georgia | Overs: Georgia 4-0, Vanderbilt 2-2
-    On Kalshi: find "Over 59.5 points scored"  (KXNCAAFTOTAL-26OCT03VANUGA-60)  and tap YES
-    !! thin volume
-
-#10  BUY NO:  Texas State wins by 2 or fewer, or loses
-    Game     : Texas State @ San Diego State   (Sat 10/03 9:30 PM)
-    Price    : 29c per contract   ->   buy 17 contract(s) = $4.93   (5 units)
-    Chance   : model 57% | blended 57% | market 28%   ->  edge +26.5c per contract after fees
-    Why      : Projection: San Diego State by 0.5; the bet is Texas State winning by more than 2.5.
-    Context  : #64 Texas State at #79 San Diego State | ATS: San Diego State 0-4, Texas State 2-2
-    On Kalshi: find "Texas St. wins by over 2.5 points"  (KXNCAAFSPREAD-26OCT03TXSTSDSU-TXST3)  and tap NO
     !! thin volume
 
 Saved -> /home/runner/work/AIOCFB/AIOCFB/output/recommendations.csv
