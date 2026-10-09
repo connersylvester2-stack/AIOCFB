@@ -6,25 +6,25 @@ Every pick is logged before kickoff and never edited. Flat 1-unit stake at the l
 
 | Status | Picks | W-L | Win % | Units | ROI | Avg price | Avg model prob |
 |---|---|---|---|---|---|---|---|
-| BET | 126 | 65-61 | 51.6% | +20.1 | +15.9% | 44c | 59% |
-| LEAN | 53 | 30-23 | 56.6% | -2.3 | -4.4% | 58c | 61% |
-| PASS | 80 | 55-25 | 68.8% | -5.1 | -6.4% | 69c | 65% |
-| ALL | 259 | 150-109 | 57.9% | +12.6 | +4.9% | 54c | 61% |
+| BET | 138 | 68-70 | 49.3% | +15.3 | +11.1% | 44c | 59% |
+| LEAN | 62 | 35-27 | 56.5% | -1.5 | -2.4% | 56c | 60% |
+| PASS | 86 | 61-25 | 70.9% | -1.9 | -2.3% | 69c | 65% |
+| ALL | 286 | 164-122 | 57.3% | +11.8 | +4.1% | 54c | 61% |
 
 ## BET picks by market
 
 | Market | Picks | W-L | Win % | Units | ROI |
 |---|---|---|---|---|---|
-| Winners | 15 | 8-7 | 53.3% | +0.1 | +0.9% |
-| Spreads | 44 | 21-23 | 47.7% | +3.6 | +8.1% |
-| Totals | 67 | 36-31 | 53.7% | +16.4 | +24.5% |
+| Winners | 18 | 8-10 | 44.4% | -2.9 | -16.0% |
+| Spreads | 47 | 22-25 | 46.8% | +2.6 | +5.6% |
+| Totals | 73 | 38-35 | 52.1% | +15.5 | +21.3% |
 
 ## BET picks by week
 
 | Week | Picks | W-L | Units | ROI |
 |---|---|---|---|---|
 | 5 | 124 | 65-59 | +22.1 | +17.8% |
-| 6 | 2 | 0-2 | -2.0 | -100.0% |
+| 6 | 14 | 3-11 | -6.8 | -48.7% |
 
 ## Calibration (all graded picks)
 
@@ -32,8 +32,8 @@ If the model is honest, 'Model said' and 'Actually won' should be close.
 
 | Model said | Picks | Avg model prob | Actually won | Avg price paid |
 |---|---|---|---|---|
-| 50-60% | 154 | 54% | 47% | 47c |
-| 60-70% | 56 | 64% | 66% | 55c |
+| 50-60% | 175 | 54% | 48% | 47c |
+| 60-70% | 61 | 64% | 64% | 55c |
 | 70-80% | 25 | 74% | 68% | 65c |
-| 80-90% | 18 | 85% | 94% | 86c |
+| 80-90% | 19 | 85% | 95% | 86c |
 | 90%+ | 6 | 94% | 100% | 93c |
