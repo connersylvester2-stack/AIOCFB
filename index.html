@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- College football model dashboard. Includes: Power rankings, Cover trends, Games, All / CFB / Golf / NFL / MLB bets (private-repo sync). Version 2026-10-01 all-bets. -->
+<!-- College football model dashboard. Tabs: Power rankings, Cover trends, Games, CFB bets (with weekly record and profit), Recommended bets. Version 2026-10-10 weeks-recs. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -59,10 +59,24 @@ summary::-webkit-details-marker{display:none}
 .wpl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:2px}
 .day{background:var(--bg);padding:8px 14px;font:700 17px "Barlow Condensed",sans-serif;color:var(--muted);border-bottom:1px solid var(--line)}
 .mt div{font:700 18px/1.15 "Barlow Condensed",sans-serif} .mt span{color:var(--muted);font:500 13px Barlow,sans-serif}
-/* picks */
-.p-row{grid-template-columns:36px 90px 1.6fr 70px 70px}
+/* recommended bets */
+.x-row{grid-template-columns:36px 1fr 112px}
+.xr{text-align:right}
+.xr b{display:block;font:700 22px/1.1 "Barlow Condensed",sans-serif}
+.xr small{color:var(--muted);font-size:13px;white-space:nowrap}
+.pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.pill{font:600 12px Barlow,sans-serif;padding:1px 8px;border-radius:99px;background:var(--track);color:var(--muted)}
+.pill.bet{background:var(--pos-bg);color:var(--pos)}
+.pill.lean{background:rgba(232,177,0,.22);color:var(--ink)}
+.pill.warn{background:var(--neg-bg);color:var(--neg)}
+.chipcap{color:var(--muted);font-size:13px;margin:0 0 4px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip{font:600 18px "Barlow Condensed",Barlow,sans-serif;min-height:44px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.chip small{font:500 13px Barlow,sans-serif;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#162033}
+.chip[aria-pressed="true"] small{color:#162033;opacity:.75}
 .badge{font-size:13px;font-weight:600;padding:3px 9px;border-radius:99px;text-align:center}
-.badge.yes{background:var(--pos-bg);color:var(--pos)} .badge.no{background:var(--neg-bg);color:var(--neg)}
+.badge.open{background:var(--track);color:var(--muted)}
 .detail{padding:6px 14px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px 18px}
 .detail .t{border-bottom:1px dashed var(--line);padding-bottom:4px}
 .detail .t span{display:block;color:var(--muted);font-size:12px} .detail .t b{font-weight:600}
@@ -72,7 +86,7 @@ summary::-webkit-details-marker{display:none}
 /* my bets */
 .btools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .btn{font:600 17px "Barlow Condensed",Barlow,sans-serif;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-.btn.primary{background:var(--gold);border-color:var(--gold);color:#162033}
+.btn.primary,.btn[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#162033}
 .btn.small{min-height:36px;font-size:16px;padding:0 12px}
 .btn.danger{color:var(--neg)}
 .bsum{display:grid;grid-template-columns:1.5fr repeat(4,1fr);margin-bottom:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
@@ -84,7 +98,7 @@ summary::-webkit-details-marker{display:none}
 .bf{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
 .bf label{display:block;color:var(--muted);font-size:13px;margin-bottom:3px}
 .bf input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
-.s5{grid-column:span 5}.s7{grid-column:span 7}.s3{grid-column:span 3}.s2{grid-column:span 2}.s4{grid-column:span 4}
+.s5{grid-column:span 5}.s7{grid-column:span 7}.s3{grid-column:span 3}.s2{grid-column:span 2}.s4{grid-column:span 4}.s12{grid-column:span 12}
 .bmath{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
 .bmath .m{display:flex;gap:26px;flex-wrap:wrap}
 .bmath .m span{display:block;color:var(--muted);font-size:12px}
@@ -93,7 +107,6 @@ summary::-webkit-details-marker{display:none}
 .bact{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .bact select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 10px;min-height:36px}
 .b-row{grid-template-columns:62px 1.6fr 90px 100px}
-.badge.open{background:var(--track);color:var(--muted)}
 .bbreak{padding:0;overflow:hidden}
 .bbreak table{width:100%;border-collapse:collapse}
 .bbreak th,.bbreak td{padding:9px 14px;text-align:right}
@@ -101,6 +114,13 @@ summary::-webkit-details-marker{display:none}
 .bbreak thead th{font-weight:600;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
 .bbreak tbody tr+tr td{border-top:1px solid var(--line)}
 .bbreak tfoot td{border-top:2px solid var(--line);font-weight:700}
+.bbreak tr.on td{background:var(--bg)}
+.bbreak .cap{padding:10px 14px 0;color:var(--muted);font-size:13px}
+.wkbtn{background:none;border:0;color:var(--ink);font:600 16px Barlow,sans-serif;padding:6px 0;min-height:36px;cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.evid{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.evid>summary{min-height:56px}
+.evb table{margin-bottom:8px}
+.evb tr.small td{color:var(--muted)}
 .sybar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .sybar .st{flex:1 1 240px;color:var(--muted);font-size:14px}
 .st.good{color:var(--pos)} .st.bad{color:var(--neg)}
@@ -110,10 +130,10 @@ summary::-webkit-details-marker{display:none}
   .r-row{grid-template-columns:34px 1fr 1.1fr} .r-row .rr{display:none}
   .c-row{grid-template-columns:1.3fr .8fr .7fr} .c-row .hide-s{display:none}
   .g-row{grid-template-columns:62px 1fr} .g-row .gx{display:none}
-  .p-row{grid-template-columns:30px 1fr 60px} .p-row .hide-s{display:none}
+  .x-row{grid-template-columns:30px 1fr 98px}
   .bsum{grid-template-columns:1fr 1fr} .bsum .big{grid-column:1/-1;border-bottom:1px solid var(--line)}
   .bsum>div:nth-child(2),.bsum>div:nth-child(4){border-left:0} .bsum>div:nth-child(n+4){border-top:1px solid var(--line)}
-  .s5,.s7,.s3,.s2,.s4{grid-column:span 12} .s3.h{grid-column:span 6}
+  .s5,.s7,.s3,.s2,.s4,.s12{grid-column:span 12} .s3.h{grid-column:span 6}
   .b-row{grid-template-columns:54px 1fr 84px} .b-row .hide-s{display:none}
   .bbreak .hide-s{display:none} .bbreak th,.bbreak td{padding:9px 10px}
 }
@@ -125,6 +145,7 @@ summary::-webkit-details-marker{display:none}
   <p class="sub">Power rankings, against-the-spread trends and model lines for FBS games. Everything here comes from the model's own numbers.</p>
   <div class="tabs" role="tablist" id="tabs"></div>
   <section id="extra" hidden></section>
+  <section id="recbar" hidden></section>
   <div class="controls">
     <input id="q" type="search" placeholder="Search team" aria-label="Search team">
     <select id="sort" aria-label="Sort by"></select>
@@ -137,16 +158,26 @@ summary::-webkit-details-marker{display:none}
 <script>
 // ===== SETTINGS: edit these =====
 const CONFIG = {
-  SHOW_PICKS: false,   // true adds a Picks tab. Pages are public, so leave false if picks are for subscribers.
-  SHOW_MY_BETS: true,  // true adds the bet-tracking tabs. Bets are saved only in the visitor's own browser, never in the repo.
-  BET_SPORTS: ["all", "cfb", "golf", "nfl", "mlb"],   // which bet tabs to show, in this order ("all" is the combined view). Remove a name to hide that tab.
+  SHOW_RECOMMENDED: true,  // Recommended bets tab. GitHub Pages sites are public, so anyone with the link can read it. Set false if these picks are for subscribers only.
+  SHOW_MY_BETS: true,      // CFB bets tab. Bets are saved only in the visitor's own browser (and your private sync repo), never in this repo.
+  WEEK1_SATURDAY: "2026-09-05",  // Saturday of Week 1. A bet placed Sunday through Saturday counts toward that Saturday's week. You can override the week on any bet.
+  RECS: {
+    haircut: 0.06,      // Probability points removed from the model before ranking. Past BET picks won about 8 points less often than the model said.
+    edgeCap: 20,        // Edges above this many cents are ranked down and marked "Check first". Set bigEdgeDecay to 0 to turn the ranking-down off.
+    bigEdgeDecay: 0.5,
+    totalGap: 7,        // Flag a total when the model total is this many points away from the Kalshi line.
+    strongEdge: 5       // Edge (in cents, after the haircut) a bet needs to count as Strong in the confidence table.
+  },
+  // Past record (BET/LEAN/PASS, by category, calibration) is calculated from the ledger, flat 1-unit stakes with fees.
   files: {
     rankings: "output/power_rankings.csv",
     cover:    "output/cover_stats.csv",
     games:    "output/sim_results.csv",
-    picks:    "output/recommendations.csv"
+    recs:     "output/recommendations.csv",  // needs columns: game, kickoff, market, pick, action, price_cents, model_prob, edge_cents, status, week
+    ledger:   "ledger/picks_ledger.csv"      // graded picks. The past-record numbers are calculated from this file (latest season only).
   }
 };
+const W1=(()=>{const p=String(CONFIG.WEEK1_SATURDAY).split("-").map(Number);return Date.UTC(p[0],p[1]-1,p[2])})();
 
 // ==== CORE (pure functions, no page access) ====
 function parseCSV(t){
@@ -166,6 +197,8 @@ const N=x=>{const v=parseFloat(x);return isNaN(v)?null:v};
 const f1=(x,d=1)=>{const v=N(x);return v===null?"–":v.toFixed(d)};
 const sgn=(x,d=1)=>{const v=N(x);return v===null?"–":(v>0?"+":"")+v.toFixed(d)};
 const tile=(k,v)=>`<div class="t"><span>${esc(k)}</span><b>${v}</b></div>`;
+const cellHTML=(k,v,h,c,big)=>`<div${big?' class="big"':""}><span>${k}</span><b class="${c||""}">${v}</b>${h?`<span>${h}</span>`:""}</div>`;
+const MKT={total:"Total",spread:"Spread",winner:"Winner"};
 
 const SORTS={
   rankings:[["Overall rank","overall_rank",1],["Offense rank","off_rank",1],["Defense rank","def_rank",1],["Toughest schedule","sos_rank",1],
@@ -173,8 +206,8 @@ const SORTS={
   cover:[["ATS rank","ats_rank",1],["Best cover %","ats_cover_pct",-1],["Worst cover %","ats_cover_pct",1],["Best avg cover margin","avg_cover_margin",-1],
     ["Most overs","over_pct",-1],["Most unders","under_pct",-1],["Most points above implied","avg_pts_vs_implied",-1],["Team total over %","team_total_over_pct",-1]],
   games:[["Kickoff","kickoff_utc",1],["Biggest model favorite","_absmargin",-1],["Highest model total","model_total",-1],["Lowest model total","model_total",1]],
-  picks:[["Model rank","rank",1],["Biggest edge","edge_cents",-1]],
-  bets:[["Newest","date",-1],["Oldest","date",1],["Open first","_open",-1],["Biggest cost","cost",-1],["Best results first","_pnl",-1],["Worst results first","_pnl",1]]
+  bets:[["Newest","date",-1],["Oldest","date",1],["Open first","_open",-1],["Biggest cost","cost",-1],["Best results first","_pnl",-1],["Worst results first","_pnl",1]],
+  recs:[["Most confident","_score",-1],["Biggest model edge","_raw",-1],["Highest model chance","_prob",-1],["Cheapest price","_price",1],["Kickoff","kickoff_utc",1]]
 };
 
 function sortRows(rows,key,dir){
@@ -263,42 +296,194 @@ function gameRow(g){
       <div class="wide">Weather: ${wx}</div>${inj}</div></details>`;
 }
 
-function pickRow(p){
-  const yes=/YES/.test(p.action||"");
-  return `<details><summary class="p-row">
-    <span class="rk">${esc(p.rank)}</span>
-    <span class="badge ${yes?"yes":"no"}">${esc(p.action)}</span>
-    <span class="tm"><b>${esc(p.bet)}</b><small>${esc(p.game)}</small></span>
-    <span class="num hide-s">${esc(p.price_cents)}c</span>
-    <span class="num pos">+${f1(p.edge_cents)}c</span></summary>
-    <div class="detail">
-      ${tile("Kickoff",esc(p.kickoff))}
-      ${tile("Units",esc(p.units))}
-      ${tile("Contracts / cost",`${esc(p.contracts)} / $${f1(p.cost_dollars,2)}`)}
-      ${tile("Model chance",`${f1(N(p.model_prob)*100,0)}%`)}
-      ${tile("Market chance",`${f1(N(p.market_prob)*100,0)}%`)}
-      <div class="wide">${esc(p.why)} ${esc(p.context)}</div>
-      ${p.flags?`<div class="wide">Check first: ${esc(p.flags)}</div>`:""}
-      <div class="wide">Kalshi market: ${esc(p.market_title)}</div></div></details>`;
+// ---- Recommended bets: scoring, grouping and rows ----
+// Adds the computed fields (_raw, _adj, _score, _prob, _price, _flags, _started) to one CSV row.
+function recEnrich(r,cfg){
+  r.market=String(r.market||"").toLowerCase();
+  r.status=String(r.status||"").toUpperCase();
+  const prob=N(r.model_prob),cents=N(r.price_cents),fee=N(r.fee)||0;
+  let raw=N(r.edge_cents);
+  if(raw===null&&prob!==null&&cents!==null)raw=(prob-cents/100-fee)*100;
+  const adj=raw===null?null:raw-cfg.haircut*100;
+  let score=adj;
+  const big=raw!==null&&raw>cfg.edgeCap;
+  if(big)score=(cfg.edgeCap-cfg.haircut*100)-(raw-cfg.edgeCap)*cfg.bigEdgeDecay;
+  const flags=[];
+  if(big)flags.push(`The model's edge is ${raw.toFixed(1)}c. Edges this large usually mean the model is missing something, so check injuries, quarterback news and weather first.`);
+  if(r.market==="total"){
+    const mt=N(r.model_total),k=N(r.strike);
+    if(mt!==null&&k!==null&&Math.abs(mt-k)>=cfg.totalGap)flags.push(`The model total (${mt.toFixed(1)}) is ${Math.abs(mt-k).toFixed(1)} points from the Kalshi line (${k}). Check pace and weather.`);
+  }
+  const t=Date.parse(r.kickoff_utc);
+  return Object.assign(r,{_raw:raw,_adj:adj,_score:score,_prob:prob===null?null:prob*100,_price:cents,_flags:flags,_started:!isNaN(t)&&t<Date.now()});
+}
+// Marks the highest-score bet in each game as _best.
+function markBest(rows){
+  const by=new Map();
+  for(const r of rows){const k=r.game_id||r.game;if(!by.has(k))by.set(k,[]);by.get(k).push(r)}
+  for(const g of by.values()){
+    let best=g[0];for(const r of g)if((r._score??-1e9)>(best._score??-1e9))best=r;
+    for(const r of g){r._best=r===best;r._multi=g.length>1}
+  }
+}
+// Past record to show for the current filters.
+function recapFor(recap,market,status){
+  if(!recap)return null;
+  const rec=(x,label)=>({label,n:x.n,w:x.w,l:x.l,units:x.units,roi:x.n?x.units/x.n*100:0});
+  if(status==="LEANUP"){
+    const a=recap.status.BET,b=recap.status.LEAN;
+    return rec({n:a.n+b.n,w:a.w+b.w,l:a.l+b.l,units:Math.round((a.units+b.units)*10)/10},"Past BET + LEAN picks");
+  }
+  if(market!=="all"&&recap.market[market])return rec(recap.market[market],"Past BET picks, "+(MKT[market]||market).toLowerCase()+"s");
+  if(status==="BET")return rec(recap.status.BET,"Past BET picks");
+  return rec(recap.status.ALL,"All past picks");
+}
+function bandFor(recap,p){if(!recap||p===null||p===undefined)return null;return recap.bands.find(b=>p>=b.lo&&p<b.hi&&b.said!==null)||null}
+
+// ---- Past record, calculated from the ledger ----
+// Returns "w", "l", "p" (push) or null when the pick isn't graded yet.
+function ledgerOutcome(r){
+  const res=String(r.result||"").trim().toLowerCase();
+  if(/^(w|win|won)$/.test(res))return "w";
+  if(/^(l|loss|lost|lose)$/.test(res))return "l";
+  if(/^(p|push|void|refund|refunded)$/.test(res))return "p";
+  const yo=String(r.yes_outcome||"").trim().toLowerCase(),side=String(r.side||"").trim().toUpperCase();
+  const yes=["1","yes","true","y"].includes(yo)?true:["0","no","false","n"].includes(yo)?false:null;
+  if(yes!==null&&(side==="YES"||side==="NO"))return (side==="YES")===yes?"w":"l";
+  return null;
+}
+// Units on a flat 1-unit stake: the ledger's own units column if filled in, otherwise computed from the logged price and fee.
+function ledgerUnits(r,o){
+  const u=N(r.units);if(u!==null)return u;
+  if(o==="p")return 0;
+  const cost=(N(r.price_cents)??NaN)/100+(N(r.fee)||0);
+  if(!(cost>0))return 0;
+  return o==="w"?(1-cost)/cost:-1;
+}
+// Graded picks from the latest season, with the edge numbers the confidence table needs.
+function gradedPicks(rows,cfg){
+  const seasons=rows.map(r=>N(r.season)).filter(x=>x!==null),season=seasons.length?Math.max(...seasons):null;
+  const out=[];
+  for(const r of rows){
+    if(season!==null&&N(r.season)!==season)continue;
+    const o=ledgerOutcome(r);if(!o)continue;
+    const prob=N(r.model_prob),cents=N(r.price_cents),fee=N(r.fee)||0;
+    let raw=N(r.edge_cents);
+    if(raw===null&&prob!==null&&cents!==null)raw=(prob-cents/100-fee)*100;
+    out.push({o,units:ledgerUnits(r,o),status:String(r.status||"").trim().toUpperCase(),market:String(r.market||"").trim().toLowerCase(),raw,adj:raw===null?null:raw-cfg.haircut*100});
+  }
+  return out;
+}
+// Record by edge size and by confidence tier, plus flat 1u vs 2.5u/1u sizing, for the picks matching the filters.
+function evidence(picks,market,status,cfg){
+  const stOk=p=>status==="BET"?p.status==="BET":status==="LEANUP"?(p.status==="BET"||p.status==="LEAN"):true;
+  const set=picks.filter(p=>stOk(p)&&(market==="all"||p.market===market)&&p.raw!==null);
+  const agg=list=>{const a={n:0,w:0,l:0,p:0,units:0};for(const p of list){a.n++;a[p.o]++;a.units+=p.units}a.units=Math.round(a.units*10)/10;return a};
+  const bands=[["Under 0c",-1e9,0],["0 to 5c",0,5],["5 to 10c",5,10],["10 to 15c",10,15],["15 to 20c",15,20],["20 to 30c",20,30],["30c and up",30,1e9]];
+  const byEdge=bands.map(([label,lo,hi])=>[label,agg(set.filter(p=>p.raw>=lo&&p.raw<hi))]);
+  const tierOf=p=>p.raw>cfg.edgeCap?"check":p.adj>=cfg.strongEdge?"strong":p.adj>=0?"base":"below";
+  const t={strong:[],base:[],check:[],below:[]};for(const p of set)t[tierOf(p)].push(p);
+  const byTier=[[`Strong: ${cfg.strongEdge}c+ after haircut`,agg(t.strong)],[`Base: 0 to ${cfg.strongEdge}c after haircut`,agg(t.base)],
+    [`Check first: over ${cfg.edgeCap}c`,agg(t.check)],["Below haircut: under 0c",agg(t.below)]];
+  const s=byTier[0][1],b=byTier[1][1];
+  return {set:agg(set),byEdge,byTier,sized:{bets:s.n+b.n,staked:2.5*s.n+b.n,units:Math.round((2.5*s.units+b.units)*10)/10}};
+}
+function evidHTML(picks,market,status,cfg,season){
+  const e=evidence(picks,market,status,cfg);
+  const scope=(status==="BET"?"BET picks":status==="LEANUP"?"BET + LEAN picks":"all picks")+(market==="all"?"":", "+(MKT[market]||market).toLowerCase()+"s only");
+  if(!e.set.n)return `<div class="empty">No graded picks match these filters yet.</div>`;
+  const pct=(u,n)=>n?(u/n>=0?"+":"")+(u/n*100).toFixed(1)+"%":"–";
+  const cls=u=>u>0?"pos":u<0?"neg":"";
+  const row=(label,a)=>`<tr${a.n<20?' class="small"':""}><td>${esc(label)}</td><td>${a.n}${a.n<20?"*":""}</td><td>${a.w}-${a.l}${a.p?"-"+a.p:""}</td><td class="${cls(a.units)}">${a.n?sgn(a.units):"–"}</td><td>${pct(a.units,a.n)}</td></tr>`;
+  const head=first=>`<thead><tr><th>${first}</th><th>Bets</th><th>Record</th><th>Units</th><th>Return</th></tr></thead>`;
+  const sizedRow=(label,bets,staked,units)=>`<tr><td>${label}</td><td>${bets}</td><td>${f1(staked,1)}</td><td class="${cls(units)}">${sgn(units)}</td><td>${pct(units,staked)}</td></tr>`;
+  return `<div class="bbreak evb">
+    <div class="cap">Graded ${season?esc(season)+" ":""}${esc(scope)}, ${e.set.n} in all. * means under 20 bets, which is mostly noise. Edge is the model's own number before the haircut.</div>
+    <table>${head("Model edge")}<tbody>${e.byEdge.map(([l,a])=>row(l,a)).join("")}</tbody></table>
+    <div class="cap">By confidence tier, the same tiers the Recommended list ranks by.</div>
+    <table>${head("Tier")}<tbody>${e.byTier.map(([l,a])=>row(l,a)).join("")}</tbody></table>
+    <div class="cap">Sizing, in hindsight on these same picks. Units are in stake units, so 2.5 units on a bet counts 2.5 times its flat result.</div>
+    <table><thead><tr><th>Plan</th><th>Bets</th><th>Staked</th><th>Profit</th><th>Return</th></tr></thead><tbody>
+      ${sizedRow("Flat 1 unit on every bet",e.set.n,e.set.n,e.set.units)}
+      ${sizedRow("2.5 on Strong, 1 on Base, skip the rest",e.sized.bets,e.sized.staked,e.sized.units)}</tbody></table>
+    <div class="cap" style="padding-bottom:12px">The tiers were set after looking at this data, so expect weaker results going forward. Only move real money to 2.5 units if Strong keeps beating Base over 100+ bets.</div></div>`;
 }
 
-function renderList(tab,rows,opts){
+function buildRecap(rows){
+  const seasons=rows.map(r=>N(r.season)).filter(x=>x!==null),season=seasons.length?Math.max(...seasons):null;
+  const mk=()=>({n:0,w:0,l:0,p:0,units:0,ps:0,pn:0});
+  const status={BET:mk(),LEAN:mk(),PASS:mk(),ALL:mk()},market={winner:mk(),spread:mk(),total:mk()};
+  const bands=[[50,60],[60,70],[70,80],[80,90],[90,101]].map(([lo,hi])=>Object.assign(mk(),{lo,hi}));
+  let pending=0;
+  const add=(a,o,u,p)=>{a.n++;a[o]++;a.units+=u;if(p!==null){a.ps+=p;a.pn++}};
+  for(const r of rows){
+    if(season!==null&&N(r.season)!==season)continue;
+    const o=ledgerOutcome(r);
+    if(!o){pending++;continue}
+    const u=ledgerUnits(r,o),prob=N(r.model_prob);
+    const st=String(r.status||"").trim().toUpperCase(),mkt=String(r.market||"").trim().toLowerCase();
+    if(status[st])add(status[st],o,u,prob);
+    add(status.ALL,o,u,prob);
+    if(st==="BET"&&market[mkt])add(market[mkt],o,u,prob);
+    if(prob!==null){const bd=bands.find(b=>prob*100>=b.lo&&prob*100<b.hi);if(bd)add(bd,o,u,prob)}
+  }
+  const fin=a=>({n:a.n,w:a.w,l:a.l,p:a.p,units:Math.round(a.units*10)/10,prob:a.pn?a.ps/a.pn*100:null});
+  const out={season,pending,status:{},market:{},bands:[]};
+  for(const k in status)out.status[k]=fin(status[k]);
+  for(const k in market)out.market[k]=fin(market[k]);
+  out.bands=bands.map(b=>({lo:b.lo,hi:b.hi,n:b.n,said:b.pn?Math.round(b.ps/b.pn*100):null,won:b.w+b.l?Math.round(b.w/(b.w+b.l)*100):null}));
+  return out;
+}
+
+function recRow(r,showBest){
+  const st=r.status,adj=r._adj,cls=adj===null?"":adj>=0?"pos":"neg";
+  const fee=N(r.fee)||0,be=r._price===null?null:r._price+fee*100;
+  const band=bandFor(RECAP,r._prob),rm=RECAP&&RECAP.market[r.market];
+  const pills=[`<span class="pill">${esc(MKT[r.market]||r.market)}</span>`,
+    `<span class="pill ${st==="BET"?"bet":st==="LEAN"?"lean":""}">${esc(st)}</span>`];
+  if(r._flags.length)pills.push(`<span class="pill warn">Check first</span>`);
+  if(showBest&&r._best&&r._multi)pills.push(`<span class="pill">Best in game</span>`);
+  if(r._started)pills.push(`<span class="pill">Started</span>`);
+  return `<details><summary class="x-row">
+    <span class="rk">${r._rank}</span>
+    <span class="tm"><b>${esc(r.pick)}</b><small>${esc(r.game)}, ${esc(r.kickoff)}</small><span class="pills">${pills.join("")}</span></span>
+    <span class="xr"><b class="${cls}">${adj===null?"–":sgn(adj)+"c"}</b><small>${esc(r.action)} at ${esc(r.price_cents)}c</small></span></summary>
+    <div class="detail">
+      ${tile("Buy",`${esc(r.action)} at ${esc(r.price_cents)}c`)}
+      ${tile("Model chance",r._prob===null?"–":`${f1(r._prob,1)}%`)}
+      ${tile("Break-even chance",be===null?"–":`${f1(be,1)}%`)}
+      ${tile("Model edge, after fee",r._raw===null?"–":`${sgn(r._raw)}c`)}
+      ${tile("Edge after haircut",adj===null?"–":`${sgn(adj)}c`)}
+      ${tile("Fee per contract",`${f1(fee*100,1)}c`)}
+      ${tile("Model line / total",`${esc(r.model_line)} / ${f1(r.model_total)}`)}
+      ${band?tile("Past picks at this model chance",`said ${band.said}%, won ${band.won}%`):""}
+      <div class="wide">Kalshi market: ${esc(r.market_title)} (${esc(r.ticker)})</div>
+      ${rm&&rm.n?`<div class="wide">Past BET picks in this category: ${rm.w}-${rm.l}${rm.p?"-"+rm.p:""}, ${sgn(rm.units)} units.</div>`:""}
+      ${r._flags.map(f=>`<div class="wide">Check first: ${esc(f)}</div>`).join("")}</div></details>`;
+}
+
+function renderList(tab,rows){
   if(tab==="games"){
     let out="",last="";
     for(const g of rows){const d=dayOf(g.kickoff);if(g._grouped&&d!==last){out+=`<div class="day">${esc(d)}</div>`;last=d}out+=gameRow(g)}
     return out;
   }
-  const fn={rankings:rankingRow,cover:coverRow,picks:pickRow,bets:r=>betRow(r,opts&&opts.allSports)}[tab];
+  const fn={rankings:rankingRow,cover:coverRow,bets:betRow}[tab];
   return rows.map(r=>fn(r)).join("");
 }
 
-// ---- My bets: sports, logic and row (pure; the page code for saving and the form is further down) ----
-const SPORTS={
-  cfb:{tab:"CFB bets",game:"Game",gamePh:"Navy @ Air Force",betPh:"Over 48.5 total points (Yes)",search:"Search game or bet"},
-  golf:{tab:"Golf bets",game:"Tournament",gamePh:"Sanderson Farms Championship",betPh:"Scottie Scheffler top 10 (Yes)",search:"Search tournament or bet"},
-  nfl:{tab:"NFL bets",game:"Game",gamePh:"Chiefs @ Bills",betPh:"Over 47.5 total points (Yes)",search:"Search game or bet"},
-  mlb:{tab:"MLB bets",game:"Game",gamePh:"Dodgers @ Padres",betPh:"Dodgers to win (Yes)",search:"Search game or bet"}
-};
+// ---- CFB bets: weeks, logic and row ----
+// Week from a date: the week of the first Saturday on or after it (Sunday starts the next week's bets).
+function weekFromDate(s,w1){
+  const p=String(s).split("-").map(Number);
+  const t=Date.UTC(p[0],p[1]-1,p[2]),dow=new Date(t).getUTCDay();
+  const sat=t+((6-dow+7)%7)*86400000;
+  return Math.max(0,Math.round((sat-w1)/604800000)+1);
+}
+function weekOf(b){return Number.isInteger(b.week)?b.week:weekFromDate(b.date,W1)}
+
+// Sports other than CFB are hidden on this page, but their saved bets are kept so nothing is lost or removed from sync.
+const SPORTS={cfb:1,golf:1,nfl:1,mlb:1};
 const sportOf=b=>SPORTS[b&&b.sport]?b.sport:"cfb";   // older bets have no sport and count as CFB
 const Bets=(()=>{
   const ST=["pending","won","lost","push"];
@@ -313,6 +498,7 @@ const Bets=(()=>{
     if(!(p>0))return "Enter the max payout.";
     if(p<=c)return "Max payout must be more than the cost.";
     if(!/^\d{4}-\d{2}-\d{2}$/.test(String(f.date||"")))return "Pick a date.";
+    if(f.week!=null&&String(f.week).trim()!==""&&!/^\d{1,2}$/.test(String(f.week).trim()))return "Week must be a whole number like 6, or leave it blank.";
     return "";
   };
   const summarize=bets=>{
@@ -330,21 +516,22 @@ const Bets=(()=>{
   const guard=t=>/^[=+\-@\t\r]/.test(t)?"'"+t:t, unguard=t=>/^'[=+\-@\t\r]/.test(t)?t.slice(1):t;
   const qt=t=>{t=String(t==null?"":t);return /[",\n\r]/.test(t)?'"'+t.replace(/"/g,'""')+'"':t};
   const usd=c=>(c/100).toFixed(2);
-  const toCSV=bets=>["id,sport,date,game,bet,cost,max_payout,status,pnl,notes"].concat(bets.map(b=>{const v=pnl(b);
-    return [b.id,sportOf(b),b.date,qt(guard(b.game)),qt(guard(b.bet)),usd(b.cost),usd(b.payout),b.status,v==null?"":usd(v),qt(guard(b.notes||""))].join(",")})).join("\n")+"\n";
+  const toCSV=bets=>["id,sport,week,date,game,bet,cost,max_payout,status,pnl,notes"].concat(bets.map(b=>{const v=pnl(b);
+    return [b.id,sportOf(b),weekOf(b),b.date,qt(guard(b.game)),qt(guard(b.bet)),usd(b.cost),usd(b.payout),b.status,v==null?"":usd(v),qt(guard(b.notes||""))].join(",")})).join("\n")+"\n";
   const fromCSV=(text,defaultSport)=>{
     defaultSport=SPORTS[defaultSport]?defaultSport:"cfb";
     const rows=parseCSV(String(text).replace(/^\uFEFF/,"")).map(r=>Object.fromEntries(Object.entries(r).map(([k,v])=>[k.trim().toLowerCase().replace(/[\s-]+/g,"_"),String(v).trim()])));
-    const bets=[];let skipped=0,defaulted=0;
+    const bets=[];let skipped=0;
     for(const r of rows){
       const f={game:unguard(r.game||""),bet:unguard(r.bet||r.your_bet||""),cost:r.cost||"",payout:r.max_payout||r.maxpayout||r.payout||"",date:r.date||""};
       if(validate(f)){skipped++;continue}
       const st=(r.status||r.result||"").toLowerCase();
       const sp=(r.sport||"").toLowerCase(),sport=SPORTS[sp]?sp:sp==="pga"?"golf":defaultSport;
-      if(!SPORTS[sp]&&sp!=="pga")defaulted++;
-      bets.push({id:r.id||newId(),sport,date:f.date,game:f.game,bet:f.bet,cost:toCents(f.cost),payout:toCents(f.payout),status:ST.includes(st)?st:"pending",notes:unguard(r.notes||"")});
+      const rec={id:r.id||newId(),sport,date:f.date,game:f.game,bet:f.bet,cost:toCents(f.cost),payout:toCents(f.payout),status:ST.includes(st)?st:"pending",notes:unguard(r.notes||"")};
+      if(/^\d{1,2}$/.test(r.week||""))rec.week=parseInt(r.week,10);
+      bets.push(rec);
     }
-    return {bets,skipped,defaulted};
+    return {bets,skipped};
   };
   // ---- sync helpers: each record carries updatedAt; deletes leave a small tombstone so they reach other devices
   const merge=(local,remote)=>{const m=new Map();for(const r of remote||[])if(r&&r.id)m.set(r.id,r);
@@ -352,18 +539,18 @@ const Bets=(()=>{
   const purge=(all,now)=>all.filter(b=>!(b.deleted&&now-(b.updatedAt||0)>15552000000));
   const same=(a,b)=>{const k=x=>JSON.stringify([...x].sort((p,q)=>p.id<q.id?-1:p.id>q.id?1:0));return k(a)===k(b)};
   const sane=r=>!!r&&typeof r.id==="string"&&r.id!==""&&(r.deleted===true||(typeof r.game==="string"&&typeof r.bet==="string"
-    &&Number.isFinite(r.cost)&&Number.isFinite(r.payout)&&r.cost>0&&r.payout>r.cost&&/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))&&ST.includes(r.status)&&(r.sport==null||!!SPORTS[r.sport])));
+    &&Number.isFinite(r.cost)&&Number.isFinite(r.payout)&&r.cost>0&&r.payout>r.cost&&/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))&&ST.includes(r.status)
+    &&(r.sport==null||!!SPORTS[r.sport])&&(r.week==null||Number.isInteger(r.week))));
   return {ST,toCents,money,pnl,validate,summarize,newId,toCSV,fromCSV,merge,purge,same,sane};
 })();
 const fmtDay=s=>{const [y,m,d]=String(s).split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-US",{month:"short",day:"numeric"})};
 
-function betRow(b,showSport){
-  const spName=SPORTS[sportOf(b)].tab.replace(" bets","");
+function betRow(b){
   const p=Bets.pnl(b);
   const right=b.status==="pending"?`<span class="badge open">Open</span>`:b.status==="push"?`<span class="badge open">Push</span>`:`<span class="num ${p>=0?"pos":"neg"}">${Bets.money(p,true)}</span>`;
   const opts=[["pending","Open"],["won","Won"],["lost","Lost"],["push","Push"]].map(o=>`<option value="${o[0]}"${o[0]===b.status?" selected":""}>${o[1]}</option>`).join("");
   return `<details data-id="${esc(b.id)}"><summary class="b-row">
-    <span class="dim">${esc(fmtDay(b.date))}${showSport?"<br>"+esc(spName):""}</span>
+    <span class="dim">${esc(fmtDay(b.date))}<br>Wk ${weekOf(b)}</span>
     <span class="tm"><b>${esc(b.game)}</b><small>${esc(b.bet)}</small></span>
     <span class="num hide-s">${Bets.money(b.cost)}</span>
     <span class="num">${right}</span></summary>
@@ -372,7 +559,7 @@ function betRow(b,showSport){
       ${tile("Max payout",Bets.money(b.payout))}
       ${tile("Profit if it wins",Bets.money(b.payout-b.cost,true))}
       ${tile("Break-even win rate",(b.cost/b.payout*100).toFixed(1)+"%")}
-      ${showSport?tile("Sport",esc(spName)):""}
+      ${tile("Week",`Week ${weekOf(b)}${Number.isInteger(b.week)?"":" (from date)"}`)}
       ${tile("Date",esc(b.date))}
       ${b.notes?`<div class="wide">${esc(b.notes)}</div>`:""}
       <div class="wide bact"><label for="r-${esc(b.id)}">Result</label>
@@ -382,15 +569,23 @@ function betRow(b,showSport){
 }
 // ==== END CORE ====
 
-const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]].concat(CONFIG.SHOW_PICKS?[["picks","Picks"]]:[]).concat(CONFIG.SHOW_MY_BETS?(CONFIG.BET_SPORTS||[]).filter(k=>k==="all"||SPORTS[k]).map(k=>["bets_"+k,k==="all"?"All bets":SPORTS[k].tab]):[]);
+const TABS=[["rankings","Power rankings"],["cover","Cover trends"],["games","Games"]]
+  .concat(CONFIG.SHOW_MY_BETS?[["bets","CFB bets"]]:[])
+  .concat(CONFIG.SHOW_RECOMMENDED?[["recs","Recommended bets"]]:[]);
 const NOTES={
   rankings:"Rating is the model's points-above-average scale. Tap a team for offense, defense, schedule and efficiency detail.",
   cover:"ATS means against the spread. Share of total line is a team's average points as a percent of the game's total line.",
   games:"Model lines come from the simulator and do not use sportsbook lines. Tap a game for projected score, weather and injuries.",
-  picks:"Model output, not a guarantee and not betting advice. Confirm injuries and lineups before betting.",
-  bets:"Your own bets, kept separately for each sport. They are saved on this device, and shared between your devices if you set up sync. On Kalshi each contract pays $1 if it wins."
+  bets:"Your own bets. They are saved on this device, and shared between your devices if you set up sync. Weeks follow the college football calendar: a bet placed Sunday through Saturday counts toward that Saturday's games, and you can set the week yourself on any bet. On Kalshi each contract pays $1 if it wins."
 };
-const state={tab:"rankings",data:{},loaded:{},sport:"cfb"};
+function recNote(){
+  const c=CONFIG.RECS,b=RECAP&&RECAP.status.BET;
+  const why=b&&b.w+b.l?`, because past BET picks won ${f1(b.w/(b.w+b.l)*100,0)}% of the time while the model averaged ${f1(b.prob,0)}%`:"";
+  return `Ranked by model edge after a ${(c.haircut*100).toFixed(0)}-point haircut${why}. Edges above ${c.edgeCap}c are ranked down and marked Check first, since an edge that big usually means the model is missing something. Past records are calculated from ${CONFIG.files.ledger}. Model output, not betting advice. Confirm injuries and lineups before betting.`;
+}
+let RECAP=null,LEDGER=[];   // past record, built from the ledger when the Recommended bets tab loads
+const state={tab:"rankings",data:{},loaded:{},err:{}};
+const R={market:"all",status:"BET",one:true,built:false};   // Recommended bets filters
 const $=id=>document.getElementById(id);
 
 async function load(tab){
@@ -399,61 +594,140 @@ async function load(tab){
   try{
     const r=await fetch(CONFIG.files[tab],{cache:"no-store"});
     if(!r.ok)throw new Error(r.status);
-    state.data[tab]=parseCSV(await r.text());
-  }catch(e){state.data[tab]=null}
+    const rows=parseCSV(await r.text());
+    if(tab==="recs"&&rows.length&&!["market","status","price_cents","model_prob"].every(k=>k in rows[0])){state.err.recs="cols";throw new Error("columns")}
+    if(tab==="recs")rows.forEach(r=>recEnrich(r,CONFIG.RECS));
+    state.data[tab]=rows;
+  }catch(e){state.data[tab]=null;if(state.err[tab]!=="cols")state.err[tab]="load"}
+  if(tab==="recs")await loadLedger();
   state.loaded[tab]=true;
 }
+async function loadLedger(){
+  try{
+    const r=await fetch(CONFIG.files.ledger,{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    const rows=parseCSV(await r.text());
+    if(rows.length&&!(["status","market","model_prob"].every(k=>k in rows[0])&&("result" in rows[0]||"yes_outcome" in rows[0])))throw new Error("columns");
+    RECAP=buildRecap(rows);LEDGER=gradedPicks(rows,CONFIG.RECS);
+  }catch(e){RECAP=null;LEDGER=[]}
+}
+function weekList(){const m=new Map();for(const b of live()){const w=weekOf(b);m.set(w,(m.get(w)||0)+1)}return [...m.entries()].sort((a,b)=>b[0]-a[0])}
+function fillWeeks(){
+  const sel=$("conf"),prev=sel.value,list=weekList();
+  sel.innerHTML=`<option value="">All weeks</option>`+list.map(([w,n])=>`<option value="${w}">Week ${w} (${n} ${n===1?"bet":"bets"})</option>`).join("");
+  if(prev&&list.some(([w])=>String(w)===prev))sel.value=prev;
+}
 function buildControls(){
-  $("sort").innerHTML=SORTS[state.tab].map((s,i)=>`<option value="${i}">${esc(s[0])}</option>`).join("");
-  const rows=state.data[state.tab]||[];
-  const confs=[...new Set(rows.map(r=>r.conference).filter(Boolean))].sort();
-  $("conf").innerHTML=`<option value="">All conferences</option>`+confs.map(c=>`<option>${esc(c)}</option>`).join("");
-  const allBets=state.tab==="bets"&&state.sport==="all";
-  if(allBets)$("conf").innerHTML=`<option value="">All sports</option>`+Object.keys(SPORTS).map(k=>`<option value="${k}">${esc(SPORTS[k].tab.replace(" bets",""))}</option>`).join("");
-  $("conf").style.display=(state.tab==="games"||state.tab==="picks"||(state.tab==="bets"&&!allBets))?"none":"";
-  $("conf").setAttribute("aria-label",allBets?"Sport":"Conference");
-  const ph=state.tab==="bets"?(SPORTS[state.sport]||{search:"Search game or bet"}).search:"Search team";
+  const t=state.tab,rows=state.data[t]||[],conf=$("conf");
+  $("sort").innerHTML=SORTS[t].map((s,i)=>`<option value="${i}">${esc(s[0])}</option>`).join("");
+  let show=false,label="Conference";conf.innerHTML="";
+  if(t==="rankings"||t==="cover"){
+    const confs=[...new Set(rows.map(r=>r.conference).filter(Boolean))].sort();
+    conf.innerHTML=`<option value="">All conferences</option>`+confs.map(c=>`<option>${esc(c)}</option>`).join("");show=true;
+  }else if(t==="bets"){fillWeeks();show=true;label="Week"}
+  else if(t==="recs"){
+    const wk=[...new Set(rows.map(r=>String(r.week||"")).filter(Boolean))].sort((a,b)=>b-a);   // newest week first and selected
+    conf.innerHTML=wk.map(w=>`<option value="${esc(w)}">Week ${esc(w)}</option>`).join("");show=wk.length>1;label="Week";
+  }
+  conf.style.display=show?"":"none";conf.setAttribute("aria-label",label);
+  const ph=t==="bets"?"Search game or bet":t==="recs"?"Search team or bet":"Search team";
   $("q").placeholder=ph;$("q").setAttribute("aria-label",ph);
   $("q").value="";
 }
+function renderRecs(){
+  const rows0=state.data.recs;
+  $("note").textContent=recNote();
+  const clear=()=>{["rcMarket","rcStatus","rcSum","rcEvBody"].forEach(id=>$(id).innerHTML="")};
+  if(rows0===null){clear();$("status").textContent="";
+    $("list").innerHTML=`<div class="empty">${state.err.recs==="cols"?`${esc(CONFIG.files.recs)} doesn't have the columns this tab needs (market, status, price_cents, model_prob, edge_cents). Point CONFIG.files.recs at the weekly picks CSV.`:`Couldn't load ${esc(CONFIG.files.recs)}. Check the file name in CONFIG at the top of index.html and that the file is in the repo.`}</div>`;return}
+  if(!rows0.length){clear();$("status").textContent="";$("list").innerHTML=`<div class="empty">That file has no rows yet.</div>`;return}
+  const wk=$("conf").value,q=$("q").value.trim().toLowerCase();
+  const stOk=(r,s)=>s==="BET"?r.status==="BET":s==="LEANUP"?(r.status==="BET"||r.status==="LEAN"):true;
+  const base=rows0.filter(r=>(!wk||String(r.week)===wk)&&(!q||[r.game,r.pick,r.market_title,r.home,r.away].some(s=>s&&String(s).toLowerCase().includes(q))));
+  const mCount=m=>base.filter(r=>stOk(r,R.status)&&r.market===m).length;
+  let rows=base.filter(r=>stOk(r,R.status));
+  markBest(rows);
+  const one=R.market==="all"&&R.one;
+  if(R.market!=="all")rows=rows.filter(r=>r.market===R.market);
+  else if(one)rows=rows.filter(r=>r._best);
+  rows.slice().sort((a,b)=>(b._score??-1e9)-(a._score??-1e9)).forEach((r,i)=>{r._rank=i+1});
+  const [, key, dir]=SORTS.recs[+$("sort").value||0];
+  rows=sortRows(rows,key,dir);
+  $("rcMarket").innerHTML=[["all","Most confident"],["total","Totals"],["spread","Spreads"],["winner","Winners"]]
+    .map(([k,l])=>`<button type="button" class="chip" data-m="${k}" aria-pressed="${R.market===k}">${l}${k==="all"?"":` <small>${mCount(k)}</small>`}</button>`).join("");
+  $("rcStatus").innerHTML=[["BET","BET"],["LEANUP","BET + LEAN"],["ALL","All picks"]]
+    .map(([k,l])=>`<button type="button" class="chip" data-s="${k}" aria-pressed="${R.status===k}">${l}</button>`).join("");
+  const h=recapFor(RECAP,R.market,R.status),shown=cellHTML("Showing",String(rows.length),rows.length===1?"bet":"bets");
+  if(h){
+    const wr=h.w+h.l?h.w/(h.w+h.l)*100:null;
+    $("rcSum").innerHTML=cellHTML(esc(h.label),sgn(h.units)+" units",`${h.n} graded, 1 unit each${RECAP.season?" ("+RECAP.season+")":""}`,h.units>=0?"pos":"neg",true)
+      +cellHTML("Record",`${h.w}-${h.l}${h.p?"-"+h.p:""}`,"")
+      +cellHTML("Win rate",wr===null?"–":f1(wr,1)+"%","")
+      +cellHTML("Return",sgn(h.roi)+"%","per unit staked",h.roi>=0?"pos":"neg")+shown;
+  }else $("rcSum").innerHTML=cellHTML("Past record","Not available",`Couldn't read ${esc(CONFIG.files.ledger)}`,"",true)+shown;
+  $("rcEvBody").innerHTML=RECAP?evidHTML(LEDGER,R.market,R.status,CONFIG.RECS,RECAP.season):`<div class="empty">Past record not available.</div>`;
+  $("rcOneRow").hidden=R.market!=="all";
+  $("rcOne").textContent="One bet per game: "+(one?"On":"Off");$("rcOne").setAttribute("aria-pressed",String(R.one));
+  $("status").textContent=`${rows.length} ${rows.length===1?"bet":"bets"}, edge shown after a ${(CONFIG.RECS.haircut*100).toFixed(0)}-point haircut`;
+  $("list").innerHTML=rows.length?rows.map(r=>recRow(r,!one)).join(""):`<div class="empty">No bets match these filters. Try BET + LEAN or All picks.</div>`;
+}
 function render(){
-  const rows0=state.data[state.tab];
-  $("note").textContent=NOTES[state.tab]||"";
-  if(state.tab==="bets")renderSum();
-  const keep=state.tab==="bets"?[...document.querySelectorAll("#list details[open]")].map(d=>d.dataset.id):[];
-  if(rows0===null){$("status").textContent="";$("list").innerHTML=`<div class="empty">Couldn't load ${esc(CONFIG.files[state.tab])}. Check the file name in CONFIG at the top of index.html and that the file is in the repo.</div>`;return}
-  if(!rows0.length){$("status").textContent="";$("list").innerHTML=`<div class="empty">${state.tab==="bets"?"No bets yet. Add your first one above.":"That file has no rows yet."}</div>`;return}
-  const [, key, dir]=SORTS[state.tab][+$("sort").value||0];
+  const t=state.tab;
+  if(t==="recs")return renderRecs();
+  $("note").textContent=NOTES[t]||"";
+  if(t==="bets"){fillWeeks();renderSum()}
+  const rows0=state.data[t];
+  const keep=t==="bets"?[...document.querySelectorAll("#list details[open]")].map(d=>d.dataset.id):[];
+  if(rows0===null){$("status").textContent="";$("list").innerHTML=`<div class="empty">Couldn't load ${esc(CONFIG.files[t])}. Check the file name in CONFIG at the top of index.html and that the file is in the repo.</div>`;return}
+  if(!rows0.length){$("status").textContent="";$("list").innerHTML=`<div class="empty">${t==="bets"?"No bets yet. Add your first one above.":"That file has no rows yet."}</div>`;return}
+  const [, key, dir]=SORTS[t][+$("sort").value||0];
   const q=$("q").value.trim().toLowerCase(),conf=$("conf").value;
   let rows=rows0.filter(r=>{
-    if(conf&&(state.tab==="bets"?sportOf(r):r.conference)!==conf)return false;
+    if(conf&&(t==="bets"?String(weekOf(r)):r.conference)!==conf)return false;
     if(!q)return true;
     return [r.team,r.away,r.home,r.bet,r.game].some(s=>s&&String(s).toLowerCase().includes(q));
   });
   rows=sortRows(rows,key,dir);
-  if(state.tab==="games")rows.forEach(g=>g._grouped=key==="kickoff_utc");
-  $("status").textContent=`${rows.length} ${state.tab==="games"?"games":state.tab==="picks"?"picks":state.tab==="bets"?"bets":"teams"}`;
-  $("list").innerHTML=rows.length?renderList(state.tab,rows,{allSports:state.tab==="bets"&&state.sport==="all"}):`<div class="empty">Nothing matches that search.</div>`;
-  if(state.tab==="bets"){for(const id of keep.concat(B.open?[B.open]:[])){const d=document.querySelector(`#list details[data-id="${CSS.escape(id)}"]`);if(d)d.open=true}B.open=null}
+  if(t==="games")rows.forEach(g=>g._grouped=key==="kickoff_utc");
+  $("status").textContent=`${rows.length} ${t==="games"?"games":t==="bets"?"bets":"teams"}`;
+  $("list").innerHTML=rows.length?renderList(t,rows):`<div class="empty">Nothing matches that filter or search.</div>`;
+  if(t==="bets"){for(const id of keep.concat(B.open?[B.open]:[])){const d=document.querySelector(`#list details[data-id="${CSS.escape(id)}"]`);if(d)d.open=true}B.open=null}
 }
 async function show(tab){
-  const isBet=tab.startsWith("bets_");
-  state.tab=isBet?"bets":tab;if(isBet)state.sport=tab.slice(5);location.hash=tab;
+  state.tab=tab;location.hash=tab;
   document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
   const cur=document.querySelector('#tabs button[aria-selected="true"]');if(cur&&cur.scrollIntoView)cur.scrollIntoView({inline:"center",block:"nearest"});
-  $("extra").hidden=!isBet;if(isBet){buildExtra();bSport()}
+  $("extra").hidden=tab!=="bets";$("recbar").hidden=tab!=="recs";
+  if(tab==="bets")buildExtra();
+  if(tab==="recs")buildRecBar();
   $("status").textContent="Loading";
-  await load(state.tab);buildControls();render();
+  await load(tab);buildControls();render();
 }
 $("tabs").innerHTML=TABS.map(t=>`<button role="tab" data-t="${t[0]}" aria-selected="false">${t[1]}</button>`).join("");
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(b)show(b.dataset.t)};
 $("sort").onchange=render;$("conf").onchange=render;$("q").oninput=render;
 
-// ---- My bets: page code (saving, sync, form, export and import) ----
+// ---- Recommended bets: filter buttons ----
+function buildRecBar(){
+  if(R.built)return;R.built=true;
+  $("recbar").innerHTML=`
+    <div class="chipcap">Bet category</div><div class="chips" id="rcMarket" role="group" aria-label="Bet category"></div>
+    <div class="chipcap">Model tier</div><div class="chips" id="rcStatus" role="group" aria-label="Model tier"></div>
+    <div class="bsum" id="rcSum"></div>
+    <details class="evid" id="rcEvid"><summary class="tm"><span><b>Does confidence pay?</b><small>Record by edge size and tier, from the ledger. Tap to open.</small></span></summary><div id="rcEvBody"></div></details>
+    <div class="sybar" id="rcOneRow"><button type="button" class="btn small" id="rcOne" aria-pressed="true"></button><span class="st">Keeps only the most confident bet from each game, since a game's winner, spread and total tend to move together.</span></div>`;
+  $("recbar").addEventListener("click",e=>{
+    const m=e.target.closest("button[data-m]"),s=e.target.closest("button[data-s]"),o=e.target.closest("#rcOne");
+    if(m)R.market=m.dataset.m;else if(s)R.status=s.dataset.s;else if(o)R.one=!R.one;else return;
+    render();
+  });
+}
+
+// ---- CFB bets: page code (saving, sync, form, export and import) ----
 const BKEY="cfb_my_bets_v1",SKEY="cfb_my_bets_sync_v1";
 const B={all:[],editing:null,ok:true,built:false,open:null};
 const Sy={cfg:null,busy:false,again:false,timer:null,last:0};
-const live=()=>B.all.filter(b=>!b.deleted&&(state.sport==="all"||sportOf(b)===state.sport));
+const live=()=>B.all.filter(b=>!b.deleted&&sportOf(b)==="cfb");
 function bRefresh(){state.data.bets=live()}
 function bLoad(){try{const d=JSON.parse(localStorage.getItem(BKEY)||"[]");return Array.isArray(d)?d:[]}catch(e){B.ok=false;return []}}
 function bSave(){try{localStorage.setItem(BKEY,JSON.stringify(B.all));B.ok=true}catch(e){B.ok=false}if($("bWarn"))$("bWarn").hidden=B.ok}
@@ -533,43 +807,40 @@ async function syncNow(){
 // ---- display ----
 function renderSum(){
   if(!B.built)return;
-  const L=live(),s=Bets.summarize(L),st=s.w+s.l+s.p;
-  const cell=(k,v,h,c,big)=>`<div${big?' class="big"':""}><span>${k}</span><b class="${c||""}">${v}</b>${h?`<span>${h}</span>`:""}</div>`;
-  $("bSum").innerHTML=cell("Net profit and loss",Bets.money(s.net,true),st?st+" settled":"No settled bets yet",s.net>0?"pos":s.net<0?"neg":"",true)
-    +cell("At risk now",Bets.money(s.atRisk),s.open+(s.open===1?" open bet":" open bets"))
-    +cell("Payout if all win",Bets.money(s.potentialPayout),s.open?Bets.money(s.potentialProfit,true)+" profit":"")
-    +cell("Record",s.w+"-"+s.l+(s.p?"-"+s.p:""),"Won-lost"+(s.p?"-push":""))
-    +cell("Return on cost",s.roi==null?"–":(s.roi>=0?"+":"")+(s.roi*100).toFixed(1)+"%","Pushes excluded",s.roi==null?"":s.net>=0?"pos":"neg");
-  $("bGames").innerHTML=[...new Set(L.map(b=>b.game))].map(g=>`<option value="${esc(g)}">`).join("");
-  const bb=$("bBreak");
-  if(state.sport!=="all"){bb.hidden=true;return}
-  const tr=(label,x,n,total)=>`<tr><td>${esc(label)}</td><td class="hide-s">${n}</td><td>${x.w}-${x.l}${x.p?"-"+x.p:""}</td><td class="${x.net>0?"pos":x.net<0?"neg":""}">${Bets.money(x.net,true)}</td><td>${x.roi==null?"–":(x.roi>=0?"+":"")+(x.roi*100).toFixed(1)+"%"}</td></tr>`;
-  const per=Object.keys(SPORTS).map(k=>{const l=B.all.filter(b=>!b.deleted&&sportOf(b)===k);return {k,n:l.length,x:Bets.summarize(l)}}).filter(r=>r.n>0);
-  bb.hidden=per.length===0;
-  bb.innerHTML=`<table><thead><tr><th>Sport</th><th class="hide-s">Bets</th><th>Record</th><th>Net</th><th>Return</th></tr></thead><tbody>`
-    +per.map(r=>tr(SPORTS[r.k].tab.replace(" bets",""),r.x,r.n)).join("")+`</tbody><tfoot>${tr("All sports",s,L.length)}</tfoot></table>`;
+  const wk=$("conf").value,all=live();
+  const L=wk?all.filter(b=>String(weekOf(b))===wk):all,s=Bets.summarize(L),st=s.w+s.l+s.p;
+  $("bSum").innerHTML=cellHTML(wk?`Week ${esc(wk)} net profit and loss`:"Net profit and loss",Bets.money(s.net,true),st?st+" settled":"No settled bets yet",s.net>0?"pos":s.net<0?"neg":"",true)
+    +cellHTML("At risk now",Bets.money(s.atRisk),s.open+(s.open===1?" open bet":" open bets"))
+    +cellHTML("Payout if all win",Bets.money(s.potentialPayout),s.open?Bets.money(s.potentialProfit,true)+" profit":"")
+    +cellHTML("Record",s.w+"-"+s.l+(s.p?"-"+s.p:""),"Won-lost"+(s.p?"-push":""))
+    +cellHTML("Return on cost",s.roi==null?"–":(s.roi>=0?"+":"")+(s.roi*100).toFixed(1)+"%","Pushes excluded",s.roi==null?"":s.net>=0?"pos":"neg");
+  $("bGames").innerHTML=[...new Set(all.map(b=>b.game))].map(g=>`<option value="${esc(g)}">`).join("");
+  // by-week table: tap a week to filter the list and totals above
+  const by=new Map();for(const b of all){const w=weekOf(b);if(!by.has(w))by.set(w,[]);by.get(w).push(b)}
+  const weeks=[...by.keys()].sort((a,b)=>b-a),bb=$("bBreak");
+  bb.hidden=weeks.length===0;
+  const tr=(label,x,n,val)=>`<tr${String(val)===wk?' class="on" aria-current="true"':""}><td><button type="button" class="wkbtn" data-wk="${val}">${label}</button></td><td class="hide-s">${n}</td><td>${x.w}-${x.l}${x.p?"-"+x.p:""}</td><td class="${x.net>0?"pos":x.net<0?"neg":""}">${Bets.money(x.net,true)}</td><td>${x.roi==null?"–":(x.roi>=0?"+":"")+(x.roi*100).toFixed(1)+"%"}</td></tr>`;
+  bb.innerHTML=`<div class="cap">By week. Tap a week to see just those bets.</div><table><thead><tr><th>Week</th><th class="hide-s">Bets</th><th>Record</th><th>Profit</th><th>Return</th></tr></thead><tbody>`
+    +weeks.map(w=>tr("Week "+w,Bets.summarize(by.get(w)),by.get(w).length,w)).join("")
+    +`</tbody><tfoot>${tr("All weeks",Bets.summarize(all),all.length,"")}</tfoot></table>`;
 }
 function bMath(){
   const c=Bets.toCents($("bCost").value),p=Bets.toCents($("bPay").value),ok=c>0&&p>c;
   $("mP").textContent=ok?Bets.money(p-c,true):"–";
   $("mB").textContent=ok?(c/p*100).toFixed(1)+"%":"–";
 }
+function bWeekHint(){const d=$("bDate").value;$("bWeek").placeholder=/^\d{4}-\d{2}-\d{2}$/.test(d)?"Auto: "+weekFromDate(d,W1):"Auto"}
 function bReset(){
   B.editing=null;
-  for(const id of ["bGame","bBet","bCost","bPay","bNotes"])$(id).value="";
-  $("bDate").value=todayStr();$("bSubmit").textContent="Add bet";$("bCancel").hidden=true;$("bErr").textContent="";bMath();
-}
-function bSport(){
-  const all=state.sport==="all";
-  $("bForm").hidden=all;$("bAllNote").hidden=!all;
-  if(!all){const S=SPORTS[state.sport];$("lGame").textContent=S.game;$("bGame").placeholder=S.gamePh;$("bBet").placeholder=S.betPh}
-  bReset();
+  for(const id of ["bGame","bBet","bCost","bPay","bWeek","bNotes"])$(id).value="";
+  $("bDate").value=todayStr();$("bSubmit").textContent="Add bet";$("bCancel").hidden=true;$("bErr").textContent="";bMath();bWeekHint();
 }
 function bEdit(id){
   const b=B.all.find(x=>x.id===id&&!x.deleted);if(!b)return;
   B.editing=id;
   $("bGame").value=b.game;$("bBet").value=b.bet;$("bCost").value=(b.cost/100).toFixed(2);$("bPay").value=(b.payout/100).toFixed(2);
-  $("bDate").value=b.date;$("bNotes").value=b.notes||"";$("bSubmit").textContent="Save changes";$("bCancel").hidden=false;$("bErr").textContent="";bMath();
+  $("bDate").value=b.date;$("bWeek").value=Number.isInteger(b.week)?String(b.week):"";$("bNotes").value=b.notes||"";
+  $("bSubmit").textContent="Save changes";$("bCancel").hidden=false;$("bErr").textContent="";bMath();bWeekHint();
   $("bForm").scrollIntoView({block:"center"});$("bGame").focus();
 }
 function buildExtra(){
@@ -597,15 +868,15 @@ function buildExtra(){
     <p class="note" id="bWarn" hidden>This browser is blocking saved data, so your bets will vanish when you close the tab. Export a CSV before you leave.</p>
     <div class="bsum" id="bSum"></div>
     <div class="bx bbreak" id="bBreak" hidden></div>
-    <p class="note" id="bAllNote" hidden>This tab combines every sport. To add or edit a bet, open its sport tab. You can still change a result or delete a bet here.</p>
     <form class="bx" id="bForm" novalidate>
       <div class="bf">
-        <div class="s5"><label for="bGame" id="lGame">Game</label><input id="bGame" list="bGames" autocomplete="off" placeholder="Navy @ Air Force"><datalist id="bGames"></datalist></div>
+        <div class="s5"><label for="bGame">Game</label><input id="bGame" list="bGames" autocomplete="off" placeholder="Navy @ Air Force"><datalist id="bGames"></datalist></div>
         <div class="s7"><label for="bBet">Your bet</label><input id="bBet" autocomplete="off" placeholder="Over 48.5 total points (Yes)"></div>
         <div class="s3 h"><label for="bCost">Cost ($)</label><input id="bCost" inputmode="decimal" autocomplete="off" placeholder="5.00"></div>
         <div class="s3 h"><label for="bPay">Max payout ($)</label><input id="bPay" inputmode="decimal" autocomplete="off" placeholder="10.00"></div>
-        <div class="s2"><label for="bDate">Date</label><input id="bDate" type="date"></div>
-        <div class="s4"><label for="bNotes">Notes (optional)</label><input id="bNotes" autocomplete="off" placeholder="Ticker, source, reason"></div>
+        <div class="s3 h"><label for="bDate">Date</label><input id="bDate" type="date"></div>
+        <div class="s3 h"><label for="bWeek">Week (optional)</label><input id="bWeek" inputmode="numeric" autocomplete="off" placeholder="Auto"></div>
+        <div class="s12"><label for="bNotes">Notes (optional)</label><input id="bNotes" autocomplete="off" placeholder="Ticker, source, reason"></div>
       </div>
       <div class="bmath"><div class="m" aria-live="polite"><div><span>Profit if it wins</span><b id="mP">–</b></div><div><span>Break-even win rate</span><b id="mB">–</b></div></div>
         <div class="bact"><button type="button" class="btn" id="bCancel" hidden>Cancel</button><button type="submit" class="btn primary" id="bSubmit">Add bet</button></div></div>
@@ -614,40 +885,40 @@ function buildExtra(){
   syUi();
   $("bForm").addEventListener("submit",e=>{
     e.preventDefault();
-    const f={game:$("bGame").value,bet:$("bBet").value,cost:$("bCost").value,payout:$("bPay").value,date:$("bDate").value};
+    const wkTxt=$("bWeek").value.trim();
+    const f={game:$("bGame").value,bet:$("bBet").value,cost:$("bCost").value,payout:$("bPay").value,date:$("bDate").value,week:wkTxt};
     const err=Bets.validate(f);$("bErr").textContent=err;if(err)return;
-    const rec={game:f.game.trim(),bet:f.bet.trim(),cost:Bets.toCents(f.cost),payout:Bets.toCents(f.payout),date:f.date,notes:$("bNotes").value.trim()};
+    const rec={game:f.game.trim(),bet:f.bet.trim(),cost:Bets.toCents(f.cost),payout:Bets.toCents(f.payout),date:f.date,week:wkTxt===""?undefined:parseInt(wkTxt,10),notes:$("bNotes").value.trim()};
     if(B.editing){Object.assign(B.all.find(x=>x.id===B.editing),rec,{updatedAt:Date.now()});B.open=B.editing}
-    else B.all.push(Object.assign({id:Bets.newId(),sport:state.sport,status:"pending",updatedAt:Date.now()},rec));
+    else B.all.push(Object.assign({id:Bets.newId(),sport:"cfb",status:"pending",updatedAt:Date.now()},rec));
     bChanged();bReset();render();$("bGame").focus();
   });
   $("bCancel").onclick=bReset;
-  $("bCost").oninput=bMath;$("bPay").oninput=bMath;
+  $("bCost").oninput=bMath;$("bPay").oninput=bMath;$("bDate").oninput=bWeekHint;
+  $("bBreak").addEventListener("click",e=>{const b=e.target.closest("button[data-wk]");if(!b)return;$("conf").value=b.dataset.wk;render()});
   $("bExport").onclick=()=>{
     const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([Bets.toCSV(live())],{type:"text/csv;charset=utf-8"}));
-    a.download="my_"+state.sport+"_bets_"+todayStr()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    a.download="my_cfb_bets_"+todayStr()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
   };
   $("bImport").onclick=()=>$("bFile").click();
   $("bFile").onchange=async e=>{
     const file=e.target.files[0];e.target.value="";if(!file)return;
-    const {bets,skipped,defaulted}=Bets.fromCSV(await file.text(),state.sport);
-    const other=state.sport==="all"?0:bets.filter(b=>b.sport!==state.sport).length;
+    const {bets,skipped}=Bets.fromCSV(await file.text(),"cfb");
+    const hidden=bets.filter(b=>b.sport!=="cfb").length;
     const at=new Map(B.all.map((b,i)=>[b.id,i]));let added=0;
     for(const b of bets){const i=at.get(b.id),rec=Object.assign({},b,{updatedAt:Date.now()});
       if(i===undefined){B.all.push(rec);at.set(b.id,B.all.length-1);added++}else if(B.all[i].deleted){B.all[i]=rec;added++}}
     bChanged();render();
-    alert("Imported "+added+" bet"+(added===1?"":"s")+(bets.length-added?", "+(bets.length-added)+" already here":"")+(other?", "+other+" belong to other sport tabs":"")+(state.sport==="all"&&defaulted?", "+defaulted+" had no sport and went to CFB bets":"")+(skipped?", "+skipped+" skipped (missing or invalid fields)":"")+".");
+    alert("Imported "+added+" bet"+(added===1?"":"s")+(bets.length-added?", "+(bets.length-added)+" already here":"")+(hidden?", "+hidden+" are for sports not shown on this page":"")+(skipped?", "+skipped+" skipped (missing or invalid fields)":"")+".");
   };
   $("list").addEventListener("change",e=>{
     const sel=e.target.closest("select[data-result]");if(!sel)return;
     const b=B.all.find(x=>x.id===sel.dataset.result&&!x.deleted);if(!b)return;
     b.status=sel.value;b.updatedAt=Date.now();B.open=b.id;bChanged();render();
   });
-  $("list").addEventListener("click",async e=>{
+  $("list").addEventListener("click",e=>{
     const ed=e.target.closest("button[data-edit]");
-    if(ed){const b=B.all.find(x=>x.id===ed.dataset.edit&&!x.deleted);if(!b)return;
-      if(state.sport==="all")await show("bets_"+sportOf(b));   // editing happens in the bet's own sport tab
-      bEdit(b.id);return}
+    if(ed){bEdit(ed.dataset.edit);return}
     const dl=e.target.closest("button[data-del]");
     if(dl){const b=B.all.find(x=>x.id===dl.dataset.del&&!x.deleted);
       if(b&&confirm("Delete this bet?\n"+b.game+" - "+b.bet)){
@@ -671,7 +942,7 @@ function buildExtra(){
   window.addEventListener("online",()=>{if(Sy.cfg&&state.tab==="bets")syncNow()});
   bReset();
 }
-const start0=location.hash.slice(1),start=start0==="bets"?"bets_cfb":start0;
+const start0=location.hash.slice(1),start=start0.startsWith("bets")?"bets":start0;   // old bookmarks like #bets_cfb still work
 show(TABS.some(t=>t[0]===start)?start:"rankings");
 </script>
 </body>
