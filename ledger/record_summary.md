@@ -6,18 +6,18 @@ Every pick is logged before kickoff and never edited. Flat 1-unit stake at the l
 
 | Status | Picks | W-L | Win % | Units | ROI | Avg price | Avg model prob |
 |---|---|---|---|---|---|---|---|
-| BET | 1024 | 411-613 | 40.1% | -144.6 | -14.1% | 45c | 59% |
-| LEAN | 673 | 375-298 | 55.7% | -28.3 | -4.2% | 57c | 60% |
-| PASS | 654 | 437-217 | 66.8% | -26.2 | -4.0% | 68c | 65% |
-| ALL | 2351 | 1223-1128 | 52.0% | -199.2 | -8.5% | 55c | 61% |
+| BET | 1038 | 417-621 | 40.2% | -145.0 | -14.0% | 45c | 59% |
+| LEAN | 685 | 384-301 | 56.1% | -24.1 | -3.5% | 57c | 60% |
+| PASS | 667 | 449-218 | 67.3% | -22.3 | -3.4% | 68c | 65% |
+| ALL | 2390 | 1250-1140 | 52.3% | -191.4 | -8.0% | 55c | 61% |
 
 ## BET picks by market
 
 | Market | Picks | W-L | Win % | Units | ROI |
 |---|---|---|---|---|---|
-| Winners | 117 | 53-64 | 45.3% | -26.9 | -23.0% |
-| Spreads | 366 | 152-214 | 41.5% | -39.3 | -10.7% |
-| Totals | 541 | 206-335 | 38.1% | -78.4 | -14.5% |
+| Winners | 118 | 54-64 | 45.8% | -25.9 | -22.0% |
+| Spreads | 372 | 155-217 | 41.7% | -38.8 | -10.4% |
+| Totals | 548 | 208-340 | 38.0% | -80.2 | -14.6% |
 
 ## BET picks by week
 
@@ -31,6 +31,7 @@ Every pick is logged before kickoff and never edited. Flat 1-unit stake at the l
 | 10 | 128 | 51-77 | -15.7 | -12.3% |
 | 11 | 115 | 47-68 | -19.0 | -16.5% |
 | 12 | 103 | 24-79 | -51.7 | -50.2% |
+| 13 | 14 | 6-8 | -0.4 | -2.6% |
 
 ## Calibration (all graded picks)
 
@@ -38,10 +39,10 @@ If the model is honest, 'Model said' and 'Actually won' should be close.
 
 | Model said | Picks | Avg model prob | Actually won | Avg price paid |
 |---|---|---|---|---|
-| 50-60% | 1383 | 54% | 45% | 47c |
-| 60-70% | 546 | 64% | 55% | 56c |
-| 70-80% | 226 | 74% | 63% | 70c |
-| 80-90% | 145 | 84% | 84% | 82c |
+| 50-60% | 1404 | 54% | 45% | 47c |
+| 60-70% | 556 | 64% | 55% | 56c |
+| 70-80% | 232 | 74% | 64% | 70c |
+| 80-90% | 147 | 84% | 84% | 82c |
 | 90%+ | 48 | 93% | 88% | 92c |
 
 ## Needs a look: 3 pick(s) where Kalshi's settlement and the final score disagree
